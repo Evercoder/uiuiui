@@ -1,0 +1,17 @@
+.rc-slider {
+	background: #f0f0f0;
+	height: 1em;
+	position: relative;
+	border-radius: 0.5em;
+}
+
+.rc-slider__handle {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(-50%, -50%);
+	height: 0.5em;
+	width: 0.5em;
+	background: red;
+	border-radius: 50%;
+}
