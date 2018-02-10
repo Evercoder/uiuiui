@@ -22,3 +22,17 @@ This is provided for symmetry with `onInteractionEnd`.
 
 The `onInteractionEnd` callback is useful when you need to know that the user has finished interacting with the surface. While you might stage a transient value on the `onChange` callback, you can use `onInteractionEnd` to commit that value.
 
+## CSS
+
+### Class Name
+
+The `Surface` component has the class name __`rc-surface`__.
+
+### Dimensions
+
+`Surface` components have no intrinsic dimensions, and by default will expand to fill the full width and height of its parent. To work as expected, make sure that the parent component has intrinsic dimensions. Alternatively, you can style `.rc-surface` to provide it with an explicit width and height.
+
+## Children 
+
+The `Surface` component accepts arbitrary children.
+

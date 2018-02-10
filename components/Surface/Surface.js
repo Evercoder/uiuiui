@@ -75,8 +75,7 @@ class Surface extends React.PureComponent {
 
 		return (
 			<div 
-				className='rc-surface' 
-				style={{ width: '100%', height: '100%' }}
+				className='rc-surface'
 				ref={this.register}
 				onMouseDownCapture={this.startInteraction}
 			>
