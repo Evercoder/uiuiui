@@ -24,12 +24,28 @@ The project aims to provide the user with useful primitives with which to build 
 
 ## Controls
 
-I've currently implemented these components, about which you can read on their respective README files:
+Taking a leaf from [_Atomic Web Design_](bradfrost.com/blog/post/atomic-web-design/), the library provides a set of increasingly complex building blocks:
+
+### Atoms (Utility components)
+
+These low-level components, not meant for public consumption, may form the basis of new high-level components:
 
 * [Surface](./components/Surface/README.md)
+
+### Molecules (High-level components)
+
+These are components usable in a project, based on _Atoms_:
+
 * [Slider](./components/Slider/README.md)
 * [Pad](./components/Pad/README.md)
+
+### Organisms (Components using other components)
+
+These are pre-built interfaces using _Molecules_:
+
 * [ColorPicker](./components/ColorPicker/README.md)
+
+They're provided both as examples on how to put together controls harmoniously, and as interfaces usable in your project.
 
 ## Development
 
