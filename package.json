@@ -21,7 +21,7 @@
     "react-event-listener": "^0.5.3"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
   }
 }
