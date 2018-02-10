@@ -88,7 +88,7 @@ class Pad extends React.Component {
 			previous_state => {
 				let proposed_value = previous_state.transient_x + this.props.x_step * dir;
 				return { 
-					transient_value: this.format_x(
+					transient_x: this.format_x(
 						this.x_scale(
 							this.x_scale.invert(proposed_value)
 						)
@@ -106,7 +106,7 @@ class Pad extends React.Component {
 			previous_state => {
 				let proposed_value = previous_state.transient_y + this.props.y_step * dir;
 				return { 
-					transient_value: this.format_y(
+					transient_y: this.format_y(
 						this.y_scale(
 							this.y_scale.invert(proposed_value)
 						)

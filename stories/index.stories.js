@@ -4,12 +4,16 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import Slider from '../components/Slider';
-import Pad from '../components/Pad';
 import Surface from '../components/Surface';
+
+import Slider from '../components/Slider';
 import SliderHandle from '../components/SliderHandle';
 import SliderProgress from '../components/SliderProgress';
 import SliderTooltip from '../components/SliderTooltip';
+
+
+import Pad from '../components/Pad';
+import PadHandle from '../components/PadHandle';
 
 storiesOf('Slider', module)
 	.add('Basic Slider', () => {
@@ -56,7 +60,11 @@ storiesOf('Slider', module)
 
 storiesOf('Pad', module)
 	.add('Basic Pad', () => {
-		return <Pad onChange={action('onChange')}/>;
+		return (
+			<Pad onChange={action('onChange')}>
+				<PadHandle/>
+			</Pad>
+		);
 	});
 
 storiesOf('Surface', module)
