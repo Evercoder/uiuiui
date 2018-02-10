@@ -1,13 +1,20 @@
+// Libs
 import React from 'react';
+import chroma from 'chroma-js';
 
+// Common Components
 import Pad from '../Pad';
 import PadHandle from '../PadHandle';
 import Slider from '../Slider';
 import SliderHandle from '../SliderHandle';
 
-import chroma from 'chroma-js';
+// ColorPicker-specific Components
+import SaturationValueSpectrum from './SaturationValueSpectrum';
+import HueSpectrum from './HueSpectrum';
+import OpacitySpectrum from './OpacitySpectrum';
 
-import { valueSaturationGradient } from '../util/style';
+// Styles
+import './ColorPicker.css';
 
 const initial_state = {
 	hue: 120,
@@ -52,11 +59,9 @@ class ColorPicker extends React.Component {
 		return (
 			<div className='rc-colorpicker'>
 				<div className='rc-colorpicker__pad'>
-					<div style={{
-						width: '300px',
-						height: '300px',
-						background: valueSaturationGradient(hue)
-					}}></div>
+					
+					<SaturationValueSpectrum hue={hue} />
+
 					<Pad 
 						x={saturation} 
 						y={value}
@@ -68,6 +73,8 @@ class ColorPicker extends React.Component {
 					</Pad>
 				</div>
 				<div className='rc-colorpicker__slider'>
+					<HueSpectrum />
+
 					<Slider 
 						value={hue}
 						start='360'
@@ -80,6 +87,13 @@ class ColorPicker extends React.Component {
 				</div>
 
 				<div className='rc-colorpicker__slider'>
+					
+					<OpacitySpectrum 
+						hue={hue} 
+						saturation={saturation} 
+						value={value} 
+					/>
+
 					<Slider 
 						value={opacity}
 						start='0'
@@ -87,6 +101,7 @@ class ColorPicker extends React.Component {
 						step='0.1'
 						precision='1'
 						onChange={this.onOpacityChanged}
+						increment='1'
 					>
 						<SliderHandle/>
 					</Slider>

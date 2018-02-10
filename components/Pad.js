@@ -51,12 +51,12 @@ class Pad extends React.PureComponent {
 			.clamp(true);
 	}
 
-	format_x(value) {
-		return to_step(value, this.props.x_step, this.props.x_precision);
+	format_x(value, increment) {
+		return to_step(value, increment === undefined ? this.props.x_step : increment, this.props.x_precision);
 	}
 
-	format_y(value) {
-		return to_step(value, this.props.y_step, this.props.y_precision);
+	format_y(value, increment) {
+		return to_step(value, increment === undefined ? this.props.y_step : increment, this.props.y_precision);
 	}
 
 	onChange({x, y}) {
@@ -86,8 +86,12 @@ class Pad extends React.PureComponent {
 	offset_x(dir) {
 		this.setState(
 			previous_state => {
+
+				let amount = this.props.x_increment === undefined ? 
+					this.props.x_step : this.props.x_increment;
+
 				let proposed_value = previous_state.transient_x + 
-					this.props.x_step * dir * Math.sign(this.props.x_end - this.props.x_start);
+					amount * dir * Math.sign(this.props.x_end - this.props.x_start);
 				return { 
 					transient_x: this.format_x(
 						this.x_scale(
@@ -105,8 +109,12 @@ class Pad extends React.PureComponent {
 	offset_y(dir) {
 		this.setState(
 			previous_state => {
+
+				let amount = this.props.y_increment === undefined ? 
+					this.props.y_step : this.props.y_increment;
+
 				let proposed_value = previous_state.transient_y + 
-					this.props.y_step * dir * Math.sign(this.props.y_end - this.props.y_start);
+					amount * dir * Math.sign(this.props.y_end - this.props.y_start);
 				return { 
 					transient_y: this.format_y(
 						this.y_scale(
@@ -122,6 +130,7 @@ class Pad extends React.PureComponent {
 	}
 
 	onKeyDown(e) {
+		let handled = true;
 		switch (e.key) {
 			case 'ArrowUp':
 				this.offset_y(-1);
@@ -135,6 +144,11 @@ class Pad extends React.PureComponent {
 			case 'ArrowRight':
 				this.offset_x(1);
 				break;
+			default:
+				handled = false;
+		}
+		if (handled) {
+			e.preventDefault();
 		}
 	}
 
@@ -184,6 +198,8 @@ Pad.defaultProps = {
 	y_step: 1,
 	x_precision: 0,
 	y_precision: 0,
+	x_increment: undefined,
+	y_increment: undefined,
 	x: 50,
 	y: 50
 };

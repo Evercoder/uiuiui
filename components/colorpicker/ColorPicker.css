@@ -1,0 +1,22 @@
+.rc-colorpicker {}
+
+.rc-colorpicker__pad {
+	width: 256px;
+	height: 256px;
+	position: relative;
+}
+
+.rc-colorpicker__pad .rc-spectrum {
+	width: 100%;
+	height: 100%;
+}
+
+.rc-colorpicker__pad .rc-pad {
+	background: transparent;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

@@ -47,8 +47,8 @@ class Slider extends React.Component {
 			.clamp(true);
 	}
 
-	format_value(value) {
-		return to_step(value, this.props.step, this.props.precision);
+	format_value(value, increment) {
+		return to_step(value, increment === undefined ? this.props.step : increment, this.props.precision);
 	}
 
 	onChange({x, y}) {
@@ -79,13 +79,17 @@ class Slider extends React.Component {
 	offset_value(dir) {
 		this.setState(
 			previous_state => {
+
+				let amount = this.props.increment === undefined ? this.props.step : this.props.increment;
+
 				let proposed_value = previous_state.transient_value 
-					+ this.props.step * dir * Math.sign(this.props.end - this.props.start);
+					+ amount * dir * Math.sign(this.props.end - this.props.start);
 				return { 
 					transient_value: this.format_value(
 						this.scale(
 							this.scale.invert(proposed_value)
-						)
+						),
+						this.props.increment
 					) 
 				};
 			},
@@ -96,6 +100,7 @@ class Slider extends React.Component {
 	}
 
 	onKeyDown(e) {
+		let handled = true;
 		switch (e.key) {
 			case 'ArrowUp':
 			case 'ArrowRight':
@@ -105,6 +110,11 @@ class Slider extends React.Component {
 			case 'ArrowLeft':
 				this.offset_value(-1);
 				break;
+			default:
+				handled = false;
+		}
+		if (handled) {
+			e.preventDefault();
 		}
 	}
 
@@ -152,6 +162,7 @@ Slider.defaultProps = {
 	end: 100,
 	step: 1,
 	precision: 0,
+	increment: undefined,
 	value: 50,
 	vertical: false
 };
