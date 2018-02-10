@@ -3,11 +3,11 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step } from './util/numbers';
+import { to_step } from '../util/numbers';
 
 import './Pad.css';
 
-import Surface from './Surface';
+import Surface from '../Surface';
 
 const initial_state = {
 	transient_x: null,

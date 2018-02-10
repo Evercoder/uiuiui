@@ -3,18 +3,15 @@ import React from 'react';
 import chroma from 'chroma-js';
 
 // Common Components
-import Pad from '../Pad';
-import PadHandle from '../PadHandle';
-import Slider from '../Slider';
-import SliderHandle from '../SliderHandle';
+import Pad, { PadHandle } from '../Pad';
+import Slider, { SliderHandle } from '../Slider';
 
 // ColorPicker-specific Components
-import SaturationValueSpectrum from './SaturationValueSpectrum';
-import HueSpectrum from './HueSpectrum';
-import OpacitySpectrum from './OpacitySpectrum';
-
-// Styles
-import './ColorPicker.css';
+import { 
+	SaturationValueSpectrum,
+	HueSpectrum,
+	OpacitySpectrum
+} from './';
 
 const initial_state = {
 	hue: 120,

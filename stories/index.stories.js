@@ -6,16 +6,16 @@ import { linkTo } from '@storybook/addon-links';
 
 import Surface from '../components/Surface';
 
-import Slider from '../components/Slider';
-import SliderHandle from '../components/SliderHandle';
-import SliderProgress from '../components/SliderProgress';
-import SliderTooltip from '../components/SliderTooltip';
+import Slider, { 
+	SliderHandle, 
+	SliderProgress, 
+	SliderTooltip 
+} from '../components/Slider';
 
-import ColorPicker from '../components/colorpicker/ColorPicker';
+import Pad, { PadHandle } from '../components/Pad';
 
+import ColorPicker from '../components/ColorPicker';
 
-import Pad from '../components/Pad';
-import PadHandle from '../components/PadHandle';
 
 storiesOf('Slider', module)
 	.add('Basic Slider', () => {
