@@ -1,12 +1,26 @@
 # Slider
 
-`Slider` is a high-level component that provides functionality similar to the HTML [`<input type='range'/>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range), but with some extra perks.
+`Slider` is a high-level component that provides functionality similar to the HTML [`range` input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range), but with some extra perks.
 
-[Storybook for `Slider`](https://danburzo.github.io/react-controls/storybook-static/?selectedKind=Slider), containing some examples.
+Take a look at the [Storybook for `Slider`](https://danburzo.github.io/react-controls/storybook-static/?selectedKind=Slider) for some examples.
 
 ## How it's built
 
 `Slider` uses [`Surface`](../Surface/README.md) under the hood to capture the user interaction, out of which it extracts the X or the Y coordinate, depending on whether it's a horizontal or vertical slider.
+
+It uses a linear scale from [`d3-scale`](https://github.com/d3/d3-scale) to map between the percentage received from `Surface` and the slider's range, as defined by its `start` and `end` properties.
+
+## Properties
+
+Property | Type | Default value | Notes
+-------- | ---- | ------------- | -----
+`value` | `number` | `0` | The initial value for the slider.
+`start` | `number` | `0` | The __starting value__ for the range.
+`end` | `number` | `100` | The __end value__ for the range. It is __not necessary__ that `start <= end`, as the Slider works well even with inverted ranges.
+`step` | `number` | `1` | I recommend you also define an appropriate `precision` to go along with the `step`, to make sure you don't get bitten by JavaScript's float operation errors.
+`precision` | `number` | `0` | The number of decimals to round the value to.
+`increment` | `number` | none | (Optional) number that defines the _increment step_ when the user presses the arrow keys. When not defined, the `step` property will be used for this purpose.
+`vertical` | `boolean` | `false` | Whether the slider should be horizontal or vertical.
 
 ## CSS
 

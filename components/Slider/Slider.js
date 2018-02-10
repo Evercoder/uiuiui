@@ -161,7 +161,7 @@ Slider.defaultProps = {
 	step: 1,
 	precision: 0,
 	increment: undefined,
-	value: 50,
+	value: 0,
 	vertical: false
 };
 
