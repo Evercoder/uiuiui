@@ -3,126 +3,142 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
+import { to_step } from './util/numbers';
+
 import './Slider.css';
 
+import Pad from './Pad';
+
 const initial_state = {
-	visible: false,
-	sliding: false
+	transient_value: null,
+	interacting: false
 };
 
 class Slider extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.startSlide = this.startSlide.bind(this);
-		this.doSlide = this.doSlide.bind(this);
-		this.endSlide = this.endSlide.bind(this);
-		this.__register_wrapper = this.__register_wrapper.bind(this);
+		this.onChange = this.onChange.bind(this);
+		this.onKeyDown = this.onKeyDown.bind(this);
+		this.onStartInteraction = this.onStartInteraction.bind(this);
+		this.onEndInteraction = this.onEndInteraction.bind(this);
 		this.state = {
 			...initial_state,
 			transient_value: props.value
-		};
+		}
+		this.computed_props(props);
 	}
 
 	componentWillReceiveProps(props) {
 		this.setState({
 			transient_value: props.value
 		});
+		this.computed_props(props);
 	}
 
-	startSlide(e) {
-		this.setState({ 
-			sliding: true,
-			transient_value: this.value_scale(e.clientX)
-		});
+	computed_props(props) {
+		this.scale = scaleLinear()
+			.domain([0, 100])
+			.range([props.start, props.end])
+			.clamp(true);
 	}
 
-	doSlide(e) {
-		this.setState({
-			transient_value: this.value_scale(e.clientX)
-		});
+	format_value(value) {
+		return to_step(value, this.props.step, this.props.precision);
 	}
 
-	endSlide(e) {
-		this.setState({ sliding: false });
-	}
-
-	__register_wrapper(el) {
-		this.__slider_wrapper = el;
-		if (el) {
-			this.setState({ visible: true });
-			let rect = this.__slider_wrapper.getBoundingClientRect();
-			let { min, max } = this.props;
-
-			this.value_scale = scaleLinear()
-				.domain([rect.left, rect.right])
-				.range([min, max])
-				.clamp(true);
-
-			this.position_scale = scaleLinear()
-				.domain([min, max])
-				.range([0, 100])
-				.clamp(true);
-		} else {
-			this.setState({ visible: false });
+	onChange({x, y}) {
+		let value = this.format_value(this.scale(x));
+		if (value !== this.state.transient_value) {
+			this.setState({
+				transient_value: value
+			});
+			this.props.onChange(value);
 		}
-		
+	}
+
+	onStartInteraction() {
+		this.setState({
+			interacting: true
+		});
+	}
+
+	onEndInteraction() {
+		this.setState({
+			interacting: false
+		});
+	}
+
+	offset_value(dir) {
+		this.setState(
+			previous_state => {
+				let proposed_value = previous_state.transient_value + this.props.step * dir;
+				return { 
+					transient_value: this.format_value(
+						this.scale(
+							this.scale.invert(proposed_value)
+						)
+					) 
+				};
+			},
+			() => {
+				this.props.onChange(this.state.transient_value);
+			}
+		);
+	}
+
+	onKeyDown(e) {
+		switch (e.key) {
+			case 'ArrowUp':
+			case 'ArrowRight':
+				this.offset_value(1);
+				break;
+			case 'ArrowDown':
+			case 'ArrowLeft':
+				this.offset_value(-1);
+				break;
+		}
 	}
 
 	render() {
 
 		let {
-			sliding,
-			visible,
-			transient_value
+			transient_value,
+			interacting
 		} = this.state;
-
-		let {
-			min,
-			max
-		} = this.props;
-
-		let rect, scale, slider_handle_style;
-		if (visible && this.position_scale) {
-			slider_handle_style = {
-				left: this.position_scale(transient_value) + '%'
-			};
-		}
 
 		return (
 			<div 
 				className='rc-slider' 
-				ref={this.__register_wrapper}
-				onMouseDown={this.startSlide}
 				tabIndex='0'
+				onKeyDown={this.onKeyDown}
 			>
-				{
-					visible && 
-						<span 
-							className='rc-slider__handle'
-							style={slider_handle_style}
-							tabIndex='0'
-						/>
+				<Pad
+					onStartInteraction={this.onStartInteraction}
+					onEndInteraction={this.onEndInteraction} 
+					onChange={this.onChange}
+				>
+				{ 
+					React.Children.map(
+						this.props.children, 
+						child => React.cloneElement(child, {
+							value: transient_value,
+							scale: this.scale,
+							interacting: interacting
+						})
+					) 
 				}
-				
-
-				{
-					sliding && 
-						<EventListener 
-							target='document'
-							onMouseMove={this.doSlide}
-							onMouseUp={this.endSlide}
-						/>
-				}
+				</Pad>
 			</div>
 		);
 	}
 }
 
 Slider.defaultProps = {
-	min: 0,
-	max: 100,
+	start: 0,
+	end: 100,
 	step: 1,
+	precision: 0,
 	value: 50
 };
 

@@ -14,4 +14,40 @@
 	width: 0.5em;
 	background: red;
 	border-radius: 50%;
+	z-index: 100;
+}
+
+.rc-slider__handle:hover,
+.rc-slider__handle--interacting {
+	background: blue;
+}
+
+.rc-slider:focus {
+	outline: none;
+}
+
+.rc-slider:focus .rc-slider__handle {
+	outline: 1px solid #000;
+}
+
+.rc-slider__progress {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: #c0c0c0;
+	z-index: 10;
+	pointer-events: none;
+}
+
+.rc-slider__tooltip {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	transform: translate(-50%, 0);
+	background: #222;
+	color: #fff;
+	padding: 0.25em;
+	pointer-events: none;
+	user-select: none;
 }
