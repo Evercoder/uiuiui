@@ -8,7 +8,7 @@ See an [online demo](https://danburzo.github.io/react-controls/storybook-static)
 
 When I started working on this React UI component library, there were a few things I had in mind:
 
-### Accessibility
+### Interaction: Subtlety and accessibility
 
 A control should react to all the [subtle interactions available in a browser](https://medium.com/@addyosmani/accessible-ui-components-for-the-web-39e727101a67), which sometimes tend to be ignored. [Inclusive Components](https://inclusive-components.design/) by Heydon Pickering is an example of things to be mindful of.
 
@@ -17,6 +17,10 @@ A control should react to all the [subtle interactions available in a browser](h
 A control should delegate as much of the styling as possible to the user, and provide helpful hooks for them to do so. It should be unassuming about the context in which it's going to be used, and that means steering clear of hardcoded dimensions and other anti-patterns which may crop up in React projects.
 
 The project uses a consistent CSS naming system based on the BEM methodology, which I've found makes more sense for me when building complex interfaces.
+
+### Architecture: Structure and clarity
+
+The project aims to provide the user with useful primitives with which to build they can build their own controls. That means keeping all the components short and sweet, so that rewriting any of them to match your needs is not a hassle. Everything should be swappable.
 
 ## Controls
 
