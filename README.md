@@ -33,5 +33,5 @@ Run `yarn storybook:start` and visit [`http://localhost:6006`](http://localhost:
 
 ### Building the Storybook
 
-Run `yarn storybook:build` to create a static version of the storybook, amenable to publish via Github Pages. You can view it online at [danburzo.github.io/react-controls/storybook-static](https://danburzo.github.io/storybook-static/).
+Run `yarn storybook:build` to create a static version of the storybook, amenable to publish via Github Pages. You can view it online at [danburzo.github.io/react-controls/storybook-static](https://danburzo.github.io/react-controls/storybook-static/).
 

@@ -96,10 +96,9 @@ class Surface extends React.PureComponent {
 }
 
 Surface.defaultProps = {
-	responsive: false,
 	onStartInteraction: () => {},
 	onEndInteraction: () => {},
-	onChange: (coords) => {}
+	onChange: ({x, y}) => {}
 };
 
 export default Surface;
