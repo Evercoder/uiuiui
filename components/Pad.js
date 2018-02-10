@@ -86,7 +86,8 @@ class Pad extends React.PureComponent {
 	offset_x(dir) {
 		this.setState(
 			previous_state => {
-				let proposed_value = previous_state.transient_x + this.props.x_step * dir;
+				let proposed_value = previous_state.transient_x + 
+					this.props.x_step * dir * Math.sign(this.props.x_end - this.props.x_start);
 				return { 
 					transient_x: this.format_x(
 						this.x_scale(
@@ -104,7 +105,8 @@ class Pad extends React.PureComponent {
 	offset_y(dir) {
 		this.setState(
 			previous_state => {
-				let proposed_value = previous_state.transient_y + this.props.y_step * dir;
+				let proposed_value = previous_state.transient_y + 
+					this.props.y_step * dir * Math.sign(this.props.y_end - this.props.y_start);
 				return { 
 					transient_y: this.format_y(
 						this.y_scale(

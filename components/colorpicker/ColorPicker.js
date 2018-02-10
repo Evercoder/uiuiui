@@ -5,10 +5,14 @@ import PadHandle from '../PadHandle';
 import Slider from '../Slider';
 import SliderHandle from '../SliderHandle';
 
+import chroma from 'chroma-js';
+
+import { valueSaturationGradient } from '../util/style';
+
 const initial_state = {
 	hue: 120,
 	saturation: 50,
-	lightness: 75,
+	value: 75,
 	opacity: 100
 };
 
@@ -16,14 +20,14 @@ class ColorPicker extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.onSaturationLightnessChanged = this.onSaturationLightnessChanged.bind(this);
+		this.onSaturationAndValueChanged = this.onSaturationAndValueChanged.bind(this);
 		this.onHueChanged = this.onHueChanged.bind(this);
 		this.onOpacityChanged = this.onOpacityChanged.bind(this);
 		this.state = initial_state;
 	}
 
-	onSaturationLightnessChanged({ x: saturation, y: lightness }) {
-		this.setState({ saturation, lightness });
+	onSaturationAndValueChanged({ x: saturation, y: value }) {
+		this.setState({ saturation, value });
 	}
 
 	onHueChanged(hue) {
@@ -39,19 +43,26 @@ class ColorPicker extends React.Component {
 		let {
 			hue,
 			saturation,
-			lightness,
+			value,
 			opacity
 		} = this.state;
 
-		console.log(`hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity/100})`);
+		console.log(`hsla(${hue}, ${saturation}%, ${value}%, ${opacity/100})`);
 
 		return (
 			<div className='rc-colorpicker'>
 				<div className='rc-colorpicker__pad'>
+					<div style={{
+						width: '300px',
+						height: '300px',
+						background: valueSaturationGradient(hue)
+					}}></div>
 					<Pad 
 						x={saturation} 
-						y={lightness}
-						onChange={this.onSaturationLightnessChanged}
+						y={value}
+						y_start='100'
+						y_end='0'
+						onChange={this.onSaturationAndValueChanged}
 					>
 						<PadHandle/>
 					</Pad>
@@ -87,7 +98,9 @@ class ColorPicker extends React.Component {
 						{
 							width: '100px',
 							height: '100px',
-							backgroundColor: `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity/100})`
+							backgroundColor: `${ 
+								chroma.hsv(hue, saturation/100, value/100).alpha(opacity/100).css()
+							}`
 						}
 					}
 				>
