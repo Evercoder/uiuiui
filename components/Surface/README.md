@@ -2,6 +2,12 @@
 
 `Surface` is a low-level component which provides the user interaction for components such as [`Slider`](../Slider/README.md), [`Pad`](../Pad/README.md) and [`ColorPicker`](../ColorPicker/README.md).
 
+[Storybook for `Surface`](https://danburzo.github.io/react-controls/storybook-static/?selectedKind=Surface), containing some examples.
+
+## How it's built
+
+The `Surface` component uses a scale from the [`d3-scale`](https://github.com/d3/d3-scale) library to map the user's screen coordinates to the `[0..100]` range.
+
 ## Properties
 
 Property | Type | Default value | Notes
