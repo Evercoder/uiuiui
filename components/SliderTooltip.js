@@ -5,16 +5,16 @@ class SliderTooltip extends React.PureComponent {
 		let {
 			value,
 			scale,
-			interacting
+			interacting,
+			vertical
 		} = this.props;
 
 		if (!interacting) {
 			return null;
 		}
 
-		let handle_styles = {
-			left: scale.invert(value) + '%'
-		};
+		let handle_styles = {};
+		handle_styles[vertical ? 'top' : 'left'] = scale.invert(value) + '%';
 
 		return (
 			<span

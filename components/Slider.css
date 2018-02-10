@@ -10,8 +10,8 @@
 	top: 50%;
 	left: 0;
 	transform: translate(-50%, -50%);
-	height: 0.5em;
-	width: 0.5em;
+	height: 1.5em;
+	width: 1.5em;
 	background: red;
 	border-radius: 50%;
 	z-index: 100;
@@ -50,4 +50,27 @@
 	padding: 0.25em;
 	pointer-events: none;
 	user-select: none;
+}
+
+.rc-slider--vertical {
+	height: 100%;
+	width: 1em;
+}
+
+.rc-slider--vertical .rc-slider__handle {
+	left: 50%;
+	top: 0;
+}
+
+.rc-slider--vertical .rc-slider__progress {
+	left: 0;
+	right: 0;
+	top: auto;
+	bottom: 0;
+}
+
+.rc-slider--vertical .rc-slider__tooltip {
+	left: 100%;
+	top: 0;
+	transform: translate(0, -50%);
 }

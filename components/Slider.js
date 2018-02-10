@@ -7,7 +7,7 @@ import { to_step } from './util/numbers';
 
 import './Slider.css';
 
-import Pad from './Pad';
+import Surface from './Surface';
 
 const initial_state = {
 	transient_value: null,
@@ -39,7 +39,11 @@ class Slider extends React.Component {
 	computed_props(props) {
 		this.scale = scaleLinear()
 			.domain([0, 100])
-			.range([props.start, props.end])
+			.range(
+				this.props.vertical ? 
+					[props.end, props.start] : 
+					[props.start, props.end]
+			)
 			.clamp(true);
 	}
 
@@ -48,7 +52,9 @@ class Slider extends React.Component {
 	}
 
 	onChange({x, y}) {
-		let value = this.format_value(this.scale(x));
+		let value = this.format_value(
+			this.scale(this.props.vertical ? y : x)
+		);
 		if (value !== this.state.transient_value) {
 			this.setState({
 				transient_value: value
@@ -107,13 +113,17 @@ class Slider extends React.Component {
 			interacting
 		} = this.state;
 
+		let {
+			vertical
+		} = this.props;
+
 		return (
 			<div 
-				className='rc-slider' 
+				className={`rc-slider ${vertical ? 'rc-slider--vertical' : '' }`}
 				tabIndex='0'
 				onKeyDown={this.onKeyDown}
 			>
-				<Pad
+				<Surface
 					onStartInteraction={this.onStartInteraction}
 					onEndInteraction={this.onEndInteraction} 
 					onChange={this.onChange}
@@ -124,11 +134,12 @@ class Slider extends React.Component {
 						child => React.cloneElement(child, {
 							value: transient_value,
 							scale: this.scale,
-							interacting: interacting
+							interacting: interacting,
+							vertical: vertical
 						})
 					) 
 				}
-				</Pad>
+				</Surface>
 			</div>
 		);
 	}
@@ -139,7 +150,8 @@ Slider.defaultProps = {
 	end: 100,
 	step: 1,
 	precision: 0,
-	value: 50
+	value: 50,
+	vertical: false
 };
 
 export default Slider;

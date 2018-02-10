@@ -4,12 +4,16 @@ class SliderProgress extends React.PureComponent {
 	render() {
 		let {
 			value,
-			scale
+			scale,
+			vertical
 		} = this.props;
 
-		let handle_styles = {
-			width: scale.invert(value) + '%'
-		};
+		let handle_styles = {};
+		if (vertical) {
+			handle_styles['height'] = (100 - scale.invert(value)) + '%';
+		} else {
+			handle_styles['width'] = scale.invert(value) + '%';
+		}
 
 		return (
 			<span
