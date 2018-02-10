@@ -11,6 +11,8 @@ import SliderHandle from '../components/SliderHandle';
 import SliderProgress from '../components/SliderProgress';
 import SliderTooltip from '../components/SliderTooltip';
 
+import ColorPicker from '../components/colorpicker/ColorPicker';
+
 
 import Pad from '../components/Pad';
 import PadHandle from '../components/PadHandle';
@@ -72,4 +74,9 @@ storiesOf('Surface', module)
 		return <div style={ {width: '300px', height: '300px', 'background': '#f0f0f0' } }>
 			<Surface onChange={action('onChange')}/>
 		</div>;
+	});
+
+storiesOf('Color Picker', module)
+	.add('Basic Color Picker', () => {
+		return <ColorPicker/>;
 	})

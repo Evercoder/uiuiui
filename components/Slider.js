@@ -55,11 +55,12 @@ class Slider extends React.Component {
 		let value = this.format_value(
 			this.scale(this.props.vertical ? y : x)
 		);
+
 		if (value !== this.state.transient_value) {
-			this.setState({
-				transient_value: value
-			});
-			this.props.onChange(value);
+			this.setState(
+				{ transient_value: value }, 
+				() => this.props.onChange(value)
+			);
 		}
 	}
 
@@ -78,7 +79,8 @@ class Slider extends React.Component {
 	offset_value(dir) {
 		this.setState(
 			previous_state => {
-				let proposed_value = previous_state.transient_value + this.props.step * dir;
+				let proposed_value = previous_state.transient_value 
+					+ this.props.step * dir * Math.sign(this.props.end - this.props.start);
 				return { 
 					transient_value: this.format_value(
 						this.scale(

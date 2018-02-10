@@ -15,7 +15,7 @@ const initial_state = {
 	interacting: false
 };
 
-class Pad extends React.Component {
+class Pad extends React.PureComponent {
 
 	constructor(props) {
 		super(props);

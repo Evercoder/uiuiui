@@ -18,27 +18,18 @@ class Surface extends React.PureComponent {
 		this.endInteraction = this.endInteraction.bind(this);
 
 		this.state = initial_state;
+
+		this.x_scale = scaleLinear()
+			.range([0, 100])
+			.clamp(true);
+
+		this.y_scale = scaleLinear()
+			.range([0, 100])
+			.clamp(true);
 	}
 
 	register(wrapper) {
 		this.wrapper = wrapper;
-		if (wrapper) {
-
-			let rect = wrapper.getBoundingClientRect();
-			
-			this.x_scale = scaleLinear()
-				.domain([rect.left, rect.right])
-				.range([0, 100])
-				.clamp(true);
-
-			this.y_scale = scaleLinear()
-				.domain([rect.top, rect.bottom])
-				.range([0, 100])
-				.clamp(true);
-		
-		} else {
-			this.wrapper_rectangle = null;
-		}
 	}
 
 	startInteraction(e) {
@@ -63,10 +54,13 @@ class Surface extends React.PureComponent {
 	}
 
 	onChange(e) {
-		this.props.onChange({
-			x: this.x_scale(e.clientX), 
-			y: this.y_scale(e.clientY)
-		});
+		if (this.wrapper) {
+			let rect = this.wrapper.getBoundingClientRect();
+			this.props.onChange({
+				x: this.x_scale.domain([rect.left, rect.right])(e.clientX), 
+				y: this.y_scale.domain([rect.top, rect.bottom])(e.clientY)
+			});
+		}
 	}
 
 	render() {
