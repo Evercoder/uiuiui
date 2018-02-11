@@ -7,6 +7,9 @@ import { polar_scale } from '../util/numbers';
 
 import Surface from '../Surface';
 
+const x_scale = scaleLinear().range([-50, 50]).clamp(true);
+const y_scale = scaleLinear().range([50, -50]).clamp(true);
+
 class RadialSurface extends React.PureComponent {
 	constructor(props) {
 		super(props);
@@ -15,12 +18,10 @@ class RadialSurface extends React.PureComponent {
 
 	onChange({x, y}) {
 
-		let {r, t} = polar_scale(x - 50, y - 50);
-
-		console.log(x, y, r, t);
-
+		let { r, t } = polar_scale(x, y);
+		
 		this.props.onChange({
-			r: r * 2,
+			r: Math.min(r, 50),
 			t: t
 		});
 	}
@@ -31,6 +32,8 @@ class RadialSurface extends React.PureComponent {
 				onChange={this.onChange}
 				onInteractionStart={this.props.onInteractionStart}
 				onInteractionEnd={this.props.onInteractionEnd}
+				x_scale={x_scale}
+				y_scale={y_scale}
 			>
 				{ this.props.children }
 			</Surface>

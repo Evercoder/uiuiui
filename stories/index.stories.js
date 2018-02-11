@@ -13,8 +13,8 @@ import Slider, {
 	SliderTooltip 
 } from '../components/Slider';
 
-import Pad, { PadHandle } from '../components/Pad';
-import RadialPad, { RadialPadHandle } from '../components/RadialPad';
+import Pad, { PadHandle, PadGrid } from '../components/Pad';
+import RadialPad, { RadialPadHandle, RadialPadGrid } from '../components/RadialPad';
 
 import ColorPicker from '../components/ColorPicker';
 
@@ -69,6 +69,7 @@ storiesOf('Pad', module)
 		return (
 			<Pad onChange={action('onChange')}>
 				<PadHandle/>
+				<PadGrid x_step='10' y_step='10'/>
 			</Pad>
 		);
 	});
@@ -78,6 +79,7 @@ storiesOf('RadialPad', module)
 		return (
 			<RadialPad onChange={action('onChange')}>
 				<RadialPadHandle/>
+				<RadialPadGrid r_step='10' t_step='10'/>
 			</RadialPad>
 		);
 	});

@@ -3,6 +3,8 @@ import { scaleLinear } from 'd3-scale';
 
 import RadialSurface from '../RadialSurface';
 
+import { to_step } from '../util/numbers';
+
 const initial_state = {
 	interacting: false,
 	transient_r: null,
@@ -39,7 +41,7 @@ class RadialPad extends React.PureComponent {
 
 	computed_props(props) {
 		this.r_scale = scaleLinear()
-			.domain([0, 100])
+			.domain([0, 50])
 			.range([this.props.r_start, this.props.r_end])
 			.clamp(true);
 
@@ -62,8 +64,13 @@ class RadialPad extends React.PureComponent {
 		console.log(r, t);
 
 		this.setState({
-			transient_r: this.r_scale(r),
-			transient_t: this.t_scale(t)
+			transient_r: to_step(this.r_scale(r), this.props.r_step, this.props.r_precision),
+			transient_t: to_step(this.t_scale(t), this.props.t_step, this.props.t_precision)
+		}, () => {
+			this.props.onChange({
+				r: this.state.transient_r, 
+				t: this.state.transient_t 
+			})
 		});
 	}
 
@@ -74,6 +81,11 @@ class RadialPad extends React.PureComponent {
 			transient_t,
 			interacting
 		} = this.state;
+
+		let {
+			r_step,
+			t_step,
+		} = this.props;
 
 		return (
 			<div className='rc-radialpad'>
@@ -90,7 +102,11 @@ class RadialPad extends React.PureComponent {
 								t: transient_t,
 								r_scale: this.r_scale,
 								t_scale: this.t_scale,
-								interacting: interacting
+								r_step: r_step,
+								t_step: t_step,
+								interacting: interacting,
+
+								...child.props
 							})
 						)
 					}
@@ -104,9 +120,14 @@ RadialPad.defaultProps = {
 	r: 0,
 	r_start: 0,
 	r_end: 100,
-	t_start: 0,
-	t_end: 360,
-	t: 0
+	t_start: -180,
+	t_end: 180,
+	r_step: 1,
+	r_precision: 0,
+	t_step: 1,
+	t_precision: 0,
+	t: 0,
+	onChange: ({r, t}) => {}
 };
 
 export default RadialPad;

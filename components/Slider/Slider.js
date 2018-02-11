@@ -145,7 +145,9 @@ class Slider extends React.Component {
 							value: transient_value,
 							scale: this.scale,
 							interacting: interacting,
-							vertical: vertical
+							vertical: vertical,
+
+							...child.props
 						})
 					) 
 				}

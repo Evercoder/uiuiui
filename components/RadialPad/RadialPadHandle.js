@@ -12,13 +12,11 @@ class RadialPadHandle extends React.Component {
 			interacting
 		} = this.props;
 
-		let { x, y } = polar_scale.invert(r_scale.invert(r) / 2, t_scale.invert(t));
-
-		console.log(x,y);
+		let { x, y } = polar_scale.invert(r_scale.invert(r), t_scale.invert(t));
 
 		let handle_styles = {
 			left: (x + 50) + '%',
-			top: (y + 50) + '%'
+			top: (50 - y) + '%'
 		};
 
 		return (

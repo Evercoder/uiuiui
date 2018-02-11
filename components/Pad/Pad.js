@@ -160,6 +160,11 @@ class Pad extends React.PureComponent {
 			interacting
 		} = this.state;
 
+		let {
+			x_step,
+			y_step
+		} = this.props;
+
 		return (
 			<div 
 				className='rc-pad'
@@ -175,11 +180,16 @@ class Pad extends React.PureComponent {
 					React.Children.map(
 						this.props.children, 
 						child => React.cloneElement(child, {
+							
 							x: transient_x,
 							y: transient_y,
 							x_scale: this.x_scale,
 							y_scale: this.y_scale,
-							interacting: interacting
+							x_step: x_step,
+							y_step: y_step,
+							interacting: interacting,
+
+							...child.props
 						})
 					) 
 				}

@@ -20,3 +20,5 @@ polar_scale.invert = (r, t) => ({
 	x: r * Math.cos(t),
 	y: r * Math.sin(t)
 });
+
+export const deg_to_radians = deg => deg * Math.PI / 180;
