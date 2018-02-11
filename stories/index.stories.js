@@ -77,9 +77,9 @@ storiesOf('Pad', module)
 storiesOf('RadialPad', module)
 	.add('Basic RadialPad', () => {
 		return (
-			<RadialPad onChange={action('onChange')}>
+			<RadialPad onChange={action('onChange')} r_step='10' t_step='10'>
 				<RadialPadHandle/>
-				<RadialPadGrid r_step='10' t_step='10'/>
+				<RadialPadGrid />
 			</RadialPad>
 		);
 	});

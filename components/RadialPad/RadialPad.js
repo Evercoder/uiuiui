@@ -61,11 +61,17 @@ class RadialPad extends React.PureComponent {
 
 	onChange({ r, t }) {
 
-		console.log(r, t);
+		let r_val = to_step(this.r_scale(r), this.props.r_step, this.props.r_precision);
+		let t_val = to_step(this.t_scale(t), this.props.t_step, this.props.t_precision);
+
+		// don't update state with the same values
+		if (r_val === this.state.transient_r && t_val === this.state.transient_t) {
+			return; 
+		}
 
 		this.setState({
-			transient_r: to_step(this.r_scale(r), this.props.r_step, this.props.r_precision),
-			transient_t: to_step(this.t_scale(t), this.props.t_step, this.props.t_precision)
+			transient_r: r_val,
+			transient_t: t_val
 		}, () => {
 			this.props.onChange({
 				r: this.state.transient_r, 
