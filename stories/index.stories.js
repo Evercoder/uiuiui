@@ -7,6 +7,8 @@ import { linkTo } from '@storybook/addon-links';
 import Surface from '../components/Surface';
 import RadialSurface from '../components/RadialSurface';
 
+import { Checkerboard } from '../components/Spectrum';
+
 import Slider, { 
 	SliderHandle, 
 	SliderProgress, 
@@ -95,6 +97,13 @@ storiesOf('RadialSurface', module)
 	.add('Basic RadialSurface', () => {
 		return <div className='radial-surface-container'>
 			<RadialSurface onChange={action('onChange')}/>
+		</div>;
+	});
+
+storiesOf('Spectrum', module)
+	.add('Checkerboard', () => {
+		return <div className='spectrum-container'>
+			<Checkerboard/>
 		</div>;
 	});
 

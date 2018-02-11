@@ -4,3 +4,8 @@
 	border-radius: 50%;
 	background: #f0f0f0;
 }
+
+.spectrum-container {
+	width: 300px;
+	height: 100px;
+}
