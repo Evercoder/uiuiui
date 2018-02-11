@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import Surface from '../components/Surface';
+import RadialSurface from '../components/RadialSurface';
 
 import Slider, { 
 	SliderHandle, 
@@ -13,8 +14,11 @@ import Slider, {
 } from '../components/Slider';
 
 import Pad, { PadHandle } from '../components/Pad';
+import RadialPad, { RadialPadHandle } from '../components/RadialPad';
 
 import ColorPicker from '../components/ColorPicker';
+
+import './style.css';
 
 
 storiesOf('Slider', module)
@@ -69,10 +73,26 @@ storiesOf('Pad', module)
 		);
 	});
 
+storiesOf('RadialPad', module)
+	.add('Basic RadialPad', () => {
+		return (
+			<RadialPad onChange={action('onChange')}>
+				<RadialPadHandle/>
+			</RadialPad>
+		);
+	});
+
 storiesOf('Surface', module)
 	.add('Basic Surface', () => {
 		return <div style={ {width: '300px', height: '300px', 'background': '#f0f0f0' } }>
 			<Surface onChange={action('onChange')}/>
+		</div>;
+	});
+
+storiesOf('RadialSurface', module)
+	.add('Basic RadialSurface', () => {
+		return <div className='radial-surface-container'>
+			<RadialSurface onChange={action('onChange')}/>
 		</div>;
 	});
 

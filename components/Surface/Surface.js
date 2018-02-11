@@ -18,14 +18,6 @@ class Surface extends React.PureComponent {
 		this.endInteraction = this.endInteraction.bind(this);
 
 		this.state = initial_state;
-
-		this.x_scale = scaleLinear()
-			.range([0, 100])
-			.clamp(true);
-
-		this.y_scale = scaleLinear()
-			.range([0, 100])
-			.clamp(true);
 	}
 
 	register(wrapper) {
@@ -57,8 +49,8 @@ class Surface extends React.PureComponent {
 		if (this.wrapper) {
 			let rect = this.wrapper.getBoundingClientRect();
 			this.props.onChange({
-				x: this.x_scale.domain([rect.left, rect.right])(e.clientX), 
-				y: this.y_scale.domain([rect.top, rect.bottom])(e.clientY)
+				x: this.props.x_scale.domain([rect.left, rect.right])(e.clientX), 
+				y: this.props.y_scale.domain([rect.top, rect.bottom])(e.clientY)
 			});
 		}
 	}
@@ -97,7 +89,9 @@ class Surface extends React.PureComponent {
 Surface.defaultProps = {
 	onStartInteraction: () => {},
 	onEndInteraction: () => {},
-	onChange: ({x, y}) => {}
+	onChange: ({x, y}) => {},
+	x_scale: scaleLinear().range([0, 100]).clamp(true),
+	y_scale: scaleLinear().range([0, 100]).clamp(true)
 };
 
 export default Surface;

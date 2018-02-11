@@ -22,6 +22,10 @@ The project uses a consistent CSS naming system based on the BEM methodology, wh
 
 The project aims to provide the user with useful primitives with which to build they can build their own controls. That means keeping all the components short and sweet, so that rewriting any of them to match your needs is not a hassle. Everything should be swappable.
 
+### Comprehensively documented
+
+Along with its main use as a component library to be used directly, the code should be clear and heavily annotated to provide information on how each component is built, how it works, and how one might implement similar components.
+
 ## Controls
 
 Taking a leaf from [_Atomic Web Design_](bradfrost.com/blog/post/atomic-web-design/), the library provides a set of increasingly complex building blocks:
@@ -68,4 +72,11 @@ Run `yarn storybook:start` and visit [`http://localhost:6006`](http://localhost:
 ### Building the Storybook
 
 Run `yarn storybook:build` to create a static version of the storybook, amenable to publish via Github Pages. You can view it online at [danburzo.github.io/react-controls/storybook-static](https://danburzo.github.io/react-controls/storybook-static/).
+
+## Open Source
+
+This project uses:
+
+* [D3.js](https://github.com/d3)
+* [chroma.js](https://github.com/gka/chroma.js)
 

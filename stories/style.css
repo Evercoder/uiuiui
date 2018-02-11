@@ -1,0 +1,6 @@
+.radial-surface-container {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	background: #f0f0f0;
+}
