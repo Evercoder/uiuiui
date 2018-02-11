@@ -13,6 +13,8 @@ import {
 	OpacitySpectrum
 } from './';
 
+import { Opacity } from '../Spectrum';
+
 const initial_state = {
 	hue: 120,
 	saturation: 50,
@@ -100,6 +102,7 @@ class ColorPicker extends React.Component {
 						onChange={this.onOpacityChanged}
 						increment='1'
 					>
+						<Opacity color={chroma.hsv(hue, saturation/100, value/100).css()}/>
 						<SliderHandle/>
 					</Slider>
 				</div>
