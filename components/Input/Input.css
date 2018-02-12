@@ -7,28 +7,50 @@
 	width: 100%;
 	font-size: 1em;
 	font-family: inherit;
+	border: 1px solid #999;
+}
+
+.rc-input input:focus {
+	outline: none;
+	border-color: #000;
 }
 
 .rc-input__controls {
-	display: flex;
-	flex-direction: column;
 	position: absolute;
-	right: 0;
-	top: 0;
-	height: 100%;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
 	width: 1em;
+	border-left: 1px solid #999;
+}
+
+.rc-input:hover .rc-input__controls {
+	display: block;
 }
 
 .rc-input__control {
+	display: block;
 	background: #f0f0f0;
-	flex: 1 1 0;
 	text-align: center;
+	height: 50%;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
-.rc-input__control--increment:after {
-	content: '+';
+.rc-input__control--increment {
+	border-bottom: 1px solid #999;
 }
 
-.rc-input__control--decrement:after {
-	content: '-';
+.rc-input__controls .rc-icon {
+	stroke: #999;
+	stroke-width: 1.5;
+	fill: none;
+	overflow: visible;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.rc-input__control:hover .rc-icon {
+	stroke: #000;
 }
