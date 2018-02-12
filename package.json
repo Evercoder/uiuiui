@@ -1,8 +1,7 @@
 {
   "name": "uiuiui",
-  "version": "0.2.0",
-  "main": "index.js",
-  "module": "index.js",
+  "version": "0.2.1",
+  "main": "build/index.js",
   "repository": "git@github.com:danburzo/uiuiui.git",
   "author": "Dan Burzo <danburzo@gmail.com>",
   "license": "MIT",
@@ -13,6 +12,9 @@
     "@storybook/react": "^3.3.12",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
@@ -26,6 +28,7 @@
   },
   "scripts": {
     "storybook:start": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "build": "babel components -d build --copy-files"
   }
 }

@@ -1,40 +1,40 @@
 export { 
 	default as ColorPicker 
-} from './components/ColorPicker';
+} from './ColorPicker';
 
 export { 
 	NumericInput 
-} from './components/Input';
+} from './Input';
 
 export {
 	default as Pad,
 	PadGrid,
 	PadHandle
-} from './components/Pad';
+} from './Pad';
 
 export {
 	default as RadialPad,
 	RadialPadGrid,
 	RadialPadHandle
-} from './components/RadialPad';
+} from './RadialPad';
 
 export {
 	default as Surface
-} from './components/Surface';
+} from './Surface';
 
 export {
 	default as RadialSurface
-} from './components/RadialSurface';
+} from './RadialSurface';
 
 export {
 	default as Slider,
 	SliderHandle,
 	SliderProgress,
 	SliderTooltip
-} from './components/Slider';
+} from './Slider';
 
 export {
 	Checkerboard,
 	Hue,
 	Opacity
-} from './components/Spectrum';
+} from './Spectrum';
