@@ -2,7 +2,7 @@ import React from 'react';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step, clamp } from '../util/math';
+import { to_step, clamp, parse_expression } from '../util/math';
 
 class NumericInput extends React.PureComponent {
 	
@@ -86,7 +86,7 @@ class NumericInput extends React.PureComponent {
 	}
 
 	format_user_input() {
-		let value = parseFloat(this.state.transient_value);
+		let value = parse_expression(this.state.transient_value + '');
 		if (!isNaN(value) && isFinite(value)) {
 			return this.format_value(value);
 		} else {
