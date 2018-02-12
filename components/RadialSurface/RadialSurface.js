@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
-import { polar_scale } from '../util/numbers';
+import { polar_scale } from '../util/math';
 
 import Surface from '../Surface';
 

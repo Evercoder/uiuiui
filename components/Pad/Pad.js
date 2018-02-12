@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step } from '../util/numbers';
+import { to_step } from '../util/math';
 
 import './Pad.css';
 

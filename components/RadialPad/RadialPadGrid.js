@@ -3,7 +3,7 @@ import React from 'react';
 import { range } from 'd3-array';
 
 import { arc_from_circle } from '../util/svg';
-import { deg_to_radians } from '../util/numbers';
+import { deg_to_radians } from '../util/math';
 
 class RadialPadGrid extends React.PureComponent {
 	render() {

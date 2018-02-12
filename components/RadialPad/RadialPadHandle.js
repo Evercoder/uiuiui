@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { polar_scale } from '../util/numbers';
+import { polar_scale } from '../util/math';
 
 class RadialPadHandle extends React.Component {
 	render() {

@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 
 import RadialSurface from '../RadialSurface';
 
-import { to_step } from '../util/numbers';
+import { to_step } from '../util/math';
 
 const initial_state = {
 	interacting: false,

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step, clamp } from '../util/numbers';
+import { to_step, clamp } from '../util/math';
 
 const initial_state = {
 	transient_value: null
