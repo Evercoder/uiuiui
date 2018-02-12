@@ -30,7 +30,7 @@ class Surface extends React.PureComponent {
 		this.setState({
 			interacting: true
 		});
-		this.props.onStartInteraction();
+		this.props.onStartInteraction(e);
 		this.onChange(e);
 		e.stopPropagation();
 	}
@@ -44,7 +44,7 @@ class Surface extends React.PureComponent {
 		this.setState({
 			interacting: false
 		});
-		this.props.onEndInteraction();
+		this.props.onEndInteraction(e);
 	}
 
 	onChange(e) {
