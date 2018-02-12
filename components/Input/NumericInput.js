@@ -88,7 +88,11 @@ class NumericInput extends React.PureComponent {
 	}
 
 	format_user_input() {
-		let value = parse_expression(this.state.transient_value + '');
+		
+		let value = this.props.expressions ? 
+			parse_expression(this.state.transient_value + '') :
+			parseFloat(this.state.transient_value);
+
 		if (!isNaN(value) && isFinite(value)) {
 			return this.format_value(value);
 		} else {
@@ -174,7 +178,8 @@ NumericInput.defaultProps = {
 	value: 0,
 	onChange: value => {},
 	property: undefined,
-	controls: true
+	controls: true,
+	expressions: true
 };
 
 export default NumericInput;
