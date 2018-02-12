@@ -1,0 +1,34 @@
+.rc-input {
+	position: relative;
+}
+
+.rc-input input {
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 1em;
+	font-family: inherit;
+}
+
+.rc-input__controls {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 1em;
+}
+
+.rc-input__control {
+	background: #f0f0f0;
+	flex: 1 1 0;
+	text-align: center;
+}
+
+.rc-input__control--increment:after {
+	content: '+';
+}
+
+.rc-input__control--decrement:after {
+	content: '-';
+}

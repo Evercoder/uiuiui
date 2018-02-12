@@ -13,6 +13,8 @@ class NumericInput extends React.PureComponent {
 		this.onKeyDown = this.onKeyDown.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.register = this.register.bind(this);
+		this.increment = this.increment.bind(this);
+		this.decrement = this.decrement.bind(this);
 
 		this.state = {
 			transient_value: props.value
@@ -30,10 +32,10 @@ class NumericInput extends React.PureComponent {
 		let handled = true;
 		switch (e.key) {
 			case 'ArrowUp':
-				this.offset(e, 1);
+				this.increment(e);
 				break;
 			case 'ArrowDown':
-				this.offset(e, -1);
+				this.decrement(e);
 				break;
 			case 'Enter':
 				this.commit();
@@ -112,11 +114,20 @@ class NumericInput extends React.PureComponent {
 		}
 	}
 
+	increment(e) {
+		this.offset(e, 1);
+	}
+
+	decrement(e) {
+		this.offset(e, -1);
+	}
+ 
 	render() {
 
 		let {
 			type,
-			autofocus
+			autofocus,
+			controls
 		} = this.props;
 
 		let {
@@ -124,14 +135,30 @@ class NumericInput extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<input
-				ref={this.register}
-				className='rc-input rc-input--numeric'
-				onKeyDown={this.onKeyDown}
-				onChange={this.onChange}
-				type={type}
-				value={transient_value}
-			/>
+			<div className='rc-input rc-input--numeric'>
+				<input
+					ref={this.register}
+					onKeyDown={this.onKeyDown}
+					onChange={this.onChange}
+					type={type}
+					value={transient_value}
+				/>
+
+				{
+					controls && 
+						<span className='rc-input__controls'>
+							<span 
+								className='rc-input__control rc-input__control--increment'
+								onMouseDown={this.increment}
+							/>
+							
+							<span 
+								className='rc-input__control rc-input__control--decrement'
+								onMouseDown={this.decrement}
+							/>
+						</span>
+				}
+			</div>
 		);
 	}
 }
@@ -146,7 +173,8 @@ NumericInput.defaultProps = {
 	end: 100,
 	value: 0,
 	onChange: value => {},
-	property: undefined
+	property: undefined,
+	controls: true
 };
 
 export default NumericInput;

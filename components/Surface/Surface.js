@@ -47,6 +47,7 @@ class Surface extends React.PureComponent {
 
 	onChange(e) {
 		if (this.wrapper) {
+			// TODO this could be cached on startInteraction() for better performance
 			let rect = this.wrapper.getBoundingClientRect();
 			this.props.onChange({
 				x: this.props.x_scale.domain([rect.left, rect.right])(e.clientX), 
