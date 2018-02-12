@@ -58,7 +58,8 @@ class Surface extends React.PureComponent {
 	render() {
 
 		let {
-			tabIndex
+			tabIndex,
+			className
 		} = this.props;
 
 		let {
@@ -67,7 +68,7 @@ class Surface extends React.PureComponent {
 
 		return (
 			<div 
-				className='rc-surface'
+				className={`rc-surface ${className || ''}`}
 				ref={this.register}
 				onMouseDownCapture={this.startInteraction}
 			>
@@ -87,6 +88,7 @@ class Surface extends React.PureComponent {
 }
 
 Surface.defaultProps = {
+	className: undefined,
 	onStartInteraction: () => {},
 	onEndInteraction: () => {},
 	onChange: ({x, y}) => {},

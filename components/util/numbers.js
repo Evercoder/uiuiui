@@ -5,9 +5,9 @@ export const to_precision = (value, precision = 0) =>
 	) / precision;
 	
 
-export const to_step = (value, step, precision = 0) => 
+export const to_step = (value, step, precision = 0, rounding = 'round') => 
 	to_precision(
-		Math.round(value / step) * step,
+		Math[rounding](value / step) * step,
 		precision
 	);
 
@@ -22,3 +22,12 @@ polar_scale.invert = (r, t) => ({
 });
 
 export const deg_to_radians = deg => deg * Math.PI / 180;
+
+export const clamp = (value, start, end) =>
+	Math.max(
+		Math.min(
+			value, 
+			Math.max(start, end)
+		),
+		Math.min(start, end)
+	);

@@ -65,12 +65,16 @@ class Slider extends React.Component {
 	onStartInteraction() {
 		this.setState({
 			interacting: true
+		}, () => {
+			this.props.onEndInteraction();
 		});
 	}
 
 	onEndInteraction() {
 		this.setState({
 			interacting: false
+		}, () => {
+			this.props.onEndInteraction();
 		});
 	}
 
@@ -164,7 +168,10 @@ Slider.defaultProps = {
 	precision: 0,
 	increment: undefined,
 	value: 0,
-	vertical: false
+	vertical: false,
+	onChange: (value) => {},
+	onStartInteraction: () => {},
+	onEndInteraction: () => {}
 };
 
 export default Slider;

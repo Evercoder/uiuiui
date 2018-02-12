@@ -29,6 +29,7 @@ class RadialSurface extends React.PureComponent {
 	render() {
 		return (
 			<Surface
+				className='rc-surface--radial'
 				onChange={this.onChange}
 				onInteractionStart={this.props.onInteractionStart}
 				onInteractionEnd={this.props.onInteractionEnd}

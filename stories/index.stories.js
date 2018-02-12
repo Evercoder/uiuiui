@@ -7,9 +7,12 @@ import { linkTo } from '@storybook/addon-links';
 import Surface from '../components/Surface';
 import RadialSurface from '../components/RadialSurface';
 
+import { NumericInput } from '../components/Input';
+
 import { 
 	Checkerboard, 
-	Opacity
+	Opacity,
+	Hue
 } from '../components/Spectrum';
 
 import Slider, { 
@@ -42,6 +45,61 @@ storiesOf('Slider', module)
 				<Slider vertical onChange={action('onChange')}>
 					<SliderTooltip/>
 					<SliderHandle/>
+					<SliderProgress/>
+				</Slider>
+			</div>
+		);
+	})
+	.add('Multiple vertical sliders', () => {
+		return (
+			<div className='equalizer'>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				
+				<Slider vertical>
+					<SliderProgress/>
+				</Slider>
+				<Slider vertical>
 					<SliderProgress/>
 				</Slider>
 			</div>
@@ -113,9 +171,20 @@ storiesOf('Spectrum', module)
 		return <div className='spectrum-container'>
 			<Opacity/>
 		</div>;
+	})
+	.add('Hue', () => {
+		return <div className='spectrum-container'>
+			<Hue/>
+		</div>;
 	});
 
 storiesOf('Color Picker', module)
 	.add('Basic Color Picker', () => {
 		return <ColorPicker/>;
-	})
+	});
+
+
+storiesOf('Input', module)
+	.add('NumericInput', () => {
+		return <NumericInput onChange={action('onChange')}/>;
+	});

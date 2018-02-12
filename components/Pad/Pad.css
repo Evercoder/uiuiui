@@ -17,12 +17,12 @@
 	width: 0.5em;
 	height: 0.5em;
 	border-radius: 50%;
-	border: 1px solid #000;
+	border: 1px solid #777;
 	z-index: 100;
 }
 
 .rc-pad:focus .rc-pad__handle {
-	border-color: blue;
+	border-color: #000;
 }
 
 .rc-pad__grid {

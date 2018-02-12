@@ -2,7 +2,6 @@
 	background: #f0f0f0;
 	height: 1em;
 	position: relative;
-	border-radius: 0.5em;
 }
 
 .rc-slider__handle {
@@ -10,24 +9,21 @@
 	top: 50%;
 	left: 0;
 	transform: translate(-50%, -50%);
-	height: 1.5em;
-	width: 1.5em;
-	background: red;
+	height: 1em;
+	width: 1em;
+	background: #777;
 	border-radius: 50%;
 	z-index: 100;
 }
 
+.rc-slider:focus .rc-slider__handle,
 .rc-slider__handle:hover,
 .rc-slider__handle--interacting {
-	background: blue;
+	background: #000;
 }
 
 .rc-slider:focus {
 	outline: none;
-}
-
-.rc-slider:focus .rc-slider__handle {
-	outline: 1px solid #000;
 }
 
 .rc-slider__progress {

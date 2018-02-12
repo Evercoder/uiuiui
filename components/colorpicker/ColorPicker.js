@@ -7,13 +7,9 @@ import Pad, { PadHandle } from '../Pad';
 import Slider, { SliderHandle } from '../Slider';
 
 // ColorPicker-specific Components
-import { 
-	SaturationValueSpectrum,
-	HueSpectrum,
-	OpacitySpectrum
-} from './';
+import { SaturationValueSpectrum } from './';
 
-import { Opacity } from '../Spectrum';
+import { Opacity, Hue } from '../Spectrum';
 
 const initial_state = {
 	hue: 120,
@@ -72,27 +68,22 @@ class ColorPicker extends React.Component {
 					</Pad>
 				</div>
 				<div className='rc-colorpicker__slider'>
-					<HueSpectrum />
+
 
 					<Slider 
 						value={hue}
-						start='360'
-						end='0'
+						start='0'
+						end='360'
 						step='1'
 						onChange={this.onHueChanged}
 					>
+						<Hue/>
 						<SliderHandle/>
 					</Slider>
 				</div>
 
 				<div className='rc-colorpicker__slider'>
 					
-					<OpacitySpectrum 
-						hue={hue} 
-						saturation={saturation} 
-						value={value} 
-					/>
-
 					<Slider 
 						value={opacity}
 						start='0'
