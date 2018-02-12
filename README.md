@@ -1,8 +1,8 @@
-# react-controls
+# uiuiui
 
 Simple, accessible, React controls and form elements.
 
-See an [online demo](https://danburzo.github.io/react-controls/storybook-static) created with [Storybook](https://storybook.js.org).
+See an [online demo](https://danburzo.github.io/uiuiui/storybook-static) created with [Storybook](https://storybook.js.org).
 
 ## Rationale
 
@@ -71,7 +71,7 @@ Run `yarn storybook:start` and visit [`http://localhost:6006`](http://localhost:
 
 ### Building the Storybook
 
-Run `yarn storybook:build` to create a static version of the storybook, amenable to publish via Github Pages. You can view it online at [danburzo.github.io/react-controls/storybook-static](https://danburzo.github.io/react-controls/storybook-static/).
+Run `yarn storybook:build` to create a static version of the storybook, amenable to publish via Github Pages. You can view it online at [danburzo.github.io/uiuiui/storybook-static](https://danburzo.github.io/uiuiui/storybook-static/).
 
 ## Open Source
 

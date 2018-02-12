@@ -2,7 +2,7 @@
 
 `Slider` is a high-level component that provides functionality similar to the HTML [`range` input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range), but with some extra perks.
 
-Take a look at the [Storybook for `Slider`](https://danburzo.github.io/react-controls/storybook-static/?selectedKind=Slider) for some examples.
+Take a look at the [Storybook for `Slider`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Slider) for some examples.
 
 ## How it's built
 

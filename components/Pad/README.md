@@ -1,4 +1,4 @@
 # Pad
 
 
-[Storybook for `Pad`](https://danburzo.github.io/react-controls/storybook-static/?selectedKind=Pad), containing some examples.
+[Storybook for `Pad`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Pad), containing some examples.
