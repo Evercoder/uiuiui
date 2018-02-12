@@ -2,6 +2,8 @@ import React from 'react';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
 
+import { noop } from '../util/functions';
+
 const initial_state = {
 	interacting: false
 };
@@ -88,13 +90,16 @@ class Surface extends React.PureComponent {
 	}
 }
 
+const linear_percentage_x = scaleLinear().range([0, 100]).clamp(true);
+const linear_percentage_y = scaleLinear().range([0, 100]).clamp(true);
+
 Surface.defaultProps = {
 	className: undefined,
-	onStartInteraction: () => {},
-	onEndInteraction: () => {},
-	onChange: ({x, y}) => {},
-	x_scale: scaleLinear().range([0, 100]).clamp(true),
-	y_scale: scaleLinear().range([0, 100]).clamp(true)
+	onStartInteraction: noop,
+	onEndInteraction: noop,
+	onChange: noop,
+	x_scale: linear_percentage_x,
+	y_scale: linear_percentage_y
 };
 
 export default Surface;

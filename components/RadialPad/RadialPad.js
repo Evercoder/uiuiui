@@ -4,6 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import RadialSurface from '../RadialSurface';
 
 import { to_step } from '../util/math';
+import { noop } from '../util/functions';
 
 const initial_state = {
 	interacting: false,
@@ -133,7 +134,7 @@ RadialPad.defaultProps = {
 	t_step: 1,
 	t_precision: 0,
 	t: 0,
-	onChange: ({r, t}) => {},
+	onChange: noop,
 	property: undefined
 };
 

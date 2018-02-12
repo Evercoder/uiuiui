@@ -4,6 +4,7 @@ import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
 
 import { to_step } from '../util/math';
+import { noop } from '../util/functions';
 
 import Surface from '../Surface';
 
@@ -174,9 +175,9 @@ Slider.defaultProps = {
 	increment: undefined,
 	value: 0,
 	vertical: false,
-	onChange: (value) => {},
-	onStartInteraction: () => {},
-	onEndInteraction: () => {}
+	onChange: noop,
+	onStartInteraction: noop,
+	onEndInteraction: noop
 };
 
 export default Slider;

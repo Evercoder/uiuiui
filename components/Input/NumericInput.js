@@ -2,7 +2,8 @@ import React from 'react';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step, clamp, parse_expression } from '../util/math';
+import { to_step, clamp, parse_expression, parse_float } from '../util/math';
+import { noop } from '../util/functions';
 
 class NumericInput extends React.PureComponent {
 	
@@ -89,9 +90,7 @@ class NumericInput extends React.PureComponent {
 
 	format_user_input() {
 		
-		let value = this.props.expressions ? 
-			parse_expression(this.state.transient_value + '') :
-			parseFloat(this.state.transient_value);
+		let value = this.props.parse_value(this.state.transient_value);
 
 		if (!isNaN(value) && isFinite(value)) {
 			return this.format_value(value);
@@ -167,19 +166,22 @@ class NumericInput extends React.PureComponent {
 	}
 }
 
+const increment_bigger_step_on_shift = (e) => e ? (e.shiftKey ? 10 : 1) : undefined;
+
 NumericInput.defaultProps = {
 	type: 'text',
 	autofocus: false,
 	step: 1,
 	precision: 0,
-	increment: (e) => e ? (e.shiftKey ? 10 : 1) : undefined,
+	increment: increment_bigger_step_on_shift,
 	start: 0,
 	end: 100,
 	value: 0,
-	onChange: value => {},
+	onChange: noop,
 	property: undefined,
 	controls: true,
-	expressions: true
+	expressions: true,
+	parse_value: parse_float
 };
 
 export default NumericInput;

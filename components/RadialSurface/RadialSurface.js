@@ -4,6 +4,7 @@ import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
 
 import { polar_scale } from '../util/math';
+import { noop } from '../util/functions';
 
 import Surface from '../Surface';
 
@@ -43,7 +44,7 @@ class RadialSurface extends React.PureComponent {
 }
 
 RadialSurface.defaultProps = {
-	onChange: ({r, t}) => {},
+	onChange: noop,
 	onInteractionStart: undefined,
 	onInteractionEnd: undefined
 };
