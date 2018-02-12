@@ -24,6 +24,11 @@ import Slider, {
 import Pad, { PadHandle, PadGrid } from '../components/Pad';
 import RadialPad, { RadialPadHandle, RadialPadGrid } from '../components/RadialPad';
 
+import {
+	default as BandPad,
+	BandPadProgress
+} from '../components/BandPad';
+
 import ColorPicker from '../components/ColorPicker';
 
 import './style.css';
@@ -183,6 +188,15 @@ storiesOf('RadialPad', module)
 				<RadialPadHandle/>
 				<RadialPadGrid />
 			</RadialPad>
+		);
+	});
+
+storiesOf('BandPad', module)
+	.add('Basic BandPad', () => {
+		return (
+			<BandPad>
+				<BandPadProgress/>
+			</BandPad>
 		);
 	});
 

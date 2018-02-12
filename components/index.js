@@ -38,3 +38,8 @@ export {
 	Hue,
 	Opacity
 } from './Spectrum';
+
+export {
+	default as BandPad,
+	BandPadProgress
+} from './BandPad';

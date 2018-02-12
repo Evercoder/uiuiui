@@ -23,10 +23,12 @@ class RadialPadGrid extends React.PureComponent {
 
 		let r_path = r_steps.map(step => arc_from_circle(cx, cy, step * r_step / 2)).join(' ');
 		let t_path = t_steps.map(step => `
-			M ${cx} ${cy} 
+			M 
+				${ cx + r_step / 2 * Math.cos(deg_to_radians(step * t_step)) } 
+				${ cy + r_step / 2 * Math.sin(deg_to_radians(step * t_step)) }
 			l 
-				${ r * Math.cos(deg_to_radians(step * t_step)) } 
-				${ r * Math.sin(deg_to_radians(step * t_step)) }
+				${ (r - r_step / 2) * Math.cos(deg_to_radians(step * t_step)) } 
+				${ (r - r_step / 2) * Math.sin(deg_to_radians(step * t_step)) }
 		`).join(' ');
 
 		return (
