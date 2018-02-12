@@ -29,13 +29,25 @@ class Slider extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
-		this.setState({
-			transient_value: props.value
-		});
+		if (this.state.transient_value !== props.value) {
+			this.setState({
+				transient_value: props.value
+			});
+		}
 		this.computed_props(props);
 	}
 
 	computed_props(props) {
+
+		if (
+			this.scale &&
+			this.props.vertical === props.vertical &&
+			this.props.start === props.start &&
+			this.props.end === props.end
+		) {
+			return;
+		}
+
 		this.scale = scaleLinear()
 			.domain([0, 100])
 			.range(

@@ -7,7 +7,10 @@ import { linkTo } from '@storybook/addon-links';
 import Surface from '../components/Surface';
 import RadialSurface from '../components/RadialSurface';
 
-import { NumericInput } from '../components/Input';
+import { 
+	NumericInput,
+	NumericInputControls 
+} from '../components/Input';
 
 import { 
 	Checkerboard, 
@@ -239,7 +242,9 @@ storiesOf('Color Picker', module)
 
 storiesOf('Input', module)
 	.add('NumericInput', () => {
-		return <NumericInput onChange={action('onChange')}/>;
+		return <NumericInput onChange={action('onChange')}>
+			<NumericInputControls/>
+		</NumericInput>;
 	})
 	.add('NumericInput, Controlled', () => {
 		return (

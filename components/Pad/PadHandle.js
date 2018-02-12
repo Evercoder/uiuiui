@@ -24,8 +24,4 @@ class PadHandle extends React.PureComponent {
 	}
 }
 
-PadHandle.defaultProps = {
-
-};
-
 export default PadHandle;

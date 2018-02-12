@@ -28,8 +28,4 @@ class SliderTooltip extends React.PureComponent {
 	}
 }
 
-SliderTooltip.defaultProps = {
-
-};
-
 export default SliderTooltip;

@@ -5,7 +5,7 @@ import { Checkerboard } from './';
 
 import { opacityGradient } from '../util/style';
 
-class Opacity extends React.Component {
+class Opacity extends React.PureComponent {
 	render() {
 
 		let {

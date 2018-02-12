@@ -40,6 +40,19 @@ class Pad extends React.PureComponent {
 	}
 
 	computed_props(props) {
+
+		// Avoid unnecessary scale reinitialization
+		if (
+			this.x_scale &&
+			this.y_scale &&
+			this.props.x_start === props.x_start &&
+			this.props.x_end === props.x_end &&
+			this.props.y_start === props.y_start &&
+			this.props.y_end === props.y_end
+		) {
+			return;
+		}
+
 		this.x_scale = scaleLinear()
 			.domain([0, 100])
 			.range([props.x_start, props.x_end])

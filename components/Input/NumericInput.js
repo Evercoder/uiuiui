@@ -75,8 +75,8 @@ class NumericInput extends React.PureComponent {
 		return this.props.increment === undefined ? 
 			this.props.step : 
 			typeof this.props.increment === 'function' ?
-				this.props.increment(e) : 
-				this.props.increment;
+				this.props.increment(e) || this.props.step : 
+				this.props.increment ;
 	}
 
 	format_value(value, increment) {
@@ -146,20 +146,14 @@ class NumericInput extends React.PureComponent {
 					type={type}
 					value={transient_value}
 				/>
-
 				{
-					controls && 
-						<span className='rc-input__controls'>
-							<span 
-								className='rc-input__control rc-input__control--increment'
-								onMouseDown={this.increment}
-							/>
-							
-							<span 
-								className='rc-input__control rc-input__control--decrement'
-								onMouseDown={this.decrement}
-							/>
-						</span>
+					React.Children.map(
+						this.props.children,
+						child => React.cloneElement(child, {
+							increment: this.increment,
+							decrement: this.decrement
+						})
+					)
 				}
 			</div>
 		);
@@ -179,7 +173,6 @@ NumericInput.defaultProps = {
 	value: 0,
 	onChange: noop,
 	property: undefined,
-	controls: true,
 	expressions: true,
 	parse_value: parse_float
 };

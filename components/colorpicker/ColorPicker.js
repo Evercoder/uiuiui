@@ -5,6 +5,7 @@ import chroma from 'chroma-js';
 // Common Components
 import Pad, { PadHandle } from '../Pad';
 import Slider, { SliderHandle } from '../Slider';
+import { NumericInput, NumericInputControls } from '../Input';
 
 // ColorPicker-specific Components
 import { SaturationValueSpectrum } from './';
@@ -94,6 +95,10 @@ class ColorPicker extends React.PureComponent {
 						<Opacity color={chroma.hsv(hue, saturation/100, value/100).css()}/>
 						<SliderHandle/>
 					</Slider>
+
+					<NumericInput start='0' end='100' value={opacity} onChange={this.onOpacityChanged}>
+						<NumericInputControls/>
+					</NumericInput>
 				</div>
 
 				<div 
