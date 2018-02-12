@@ -1,6 +1,6 @@
 {
   "name": "uiuiui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "build/index.js",
   "repository": "git@github.com:danburzo/uiuiui.git",
   "author": "Dan Burzo <danburzo@gmail.com>",

@@ -4,10 +4,6 @@ import { scaleLinear } from 'd3-scale';
 
 import { to_step, clamp } from '../util/math';
 
-const initial_state = {
-	transient_value: null
-};
-
 class NumericInput extends React.PureComponent {
 	
 	constructor(props) {
@@ -15,24 +11,19 @@ class NumericInput extends React.PureComponent {
 		super(props);
 
 		this.onKeyDown = this.onKeyDown.bind(this);
-		this.onBlur = this.onBlur.bind(this);
 		this.onChange = this.onChange.bind(this);
-
 		this.register = this.register.bind(this);
 
 		this.state = {
-			...initial_state,
 			transient_value: props.value
 		};
 
 	}
 
 	componentWillReceiveProps(props) {
-
 		this.setState({
 			transient_value: props.value
 		});
-
 	}
 
 	onKeyDown(e) {
@@ -55,30 +46,20 @@ class NumericInput extends React.PureComponent {
 		}
 	}
 
-	onBlur(e) {
-
-	}
-
 	offset(e, dir) {
-
 		let amount = this.step_amount(e);
-
-		this.commit(() => {
-			this.setState(
-				previous_state => {
-					
-					let proposed_value = previous_state.transient_value
-						+ amount * dir * Math.sign(this.props.end - this.props.start);
-
-					return {
-						transient_value: this.format_value(proposed_value, this.props.step)
-					}
-				},
-				() => {
-					this.commit();
+		this.setState(
+			previous_state => {
+				let proposed_value = this.format_user_input() + 
+					amount * dir * Math.sign(this.props.end - this.props.start);
+				return {
+					transient_value: this.format_value(proposed_value, this.props.step)
 				}
-			);
-		});
+			},
+			() => {
+				this.commit();
+			}
+		);
 	}
 
 	onChange(e) {
@@ -104,26 +85,19 @@ class NumericInput extends React.PureComponent {
 		);
 	}
 
-	commit(callback) {
+	format_user_input() {
 		let value = parseFloat(this.state.transient_value);
-		let proposed_value;
-
 		if (!isNaN(value) && isFinite(value)) {
-			proposed_value = this.format_value(value);
+			return this.format_value(value);
 		} else {
-			proposed_value = this.props.value;
+			return this.props.value;
 		}
+	}
 
+	commit() {
 		this.setState(
-			{
-				transient_value: proposed_value
-			}, 
-			() => {
-				this.props.onChange(this.state.transient_value, this.props.property);
-				if (callback) {
-					callback();
-				}
-			}
+			{ transient_value: this.format_user_input() },
+			() => { this.props.onChange(this.state.transient_value, this.props.property); }
 		);
 	}
 
@@ -154,7 +128,6 @@ class NumericInput extends React.PureComponent {
 				ref={this.register}
 				className='rc-input rc-input--numeric'
 				onKeyDown={this.onKeyDown}
-				onBlur={this.onBlur}	
 				onChange={this.onChange}
 				type={type}
 				value={transient_value}

@@ -18,7 +18,7 @@ const initial_state = {
 	opacity: 100
 };
 
-class ColorPicker extends React.Component {
+class ColorPicker extends React.PureComponent {
 	
 	constructor(props) {
 		super(props);
@@ -48,8 +48,6 @@ class ColorPicker extends React.Component {
 			value,
 			opacity
 		} = this.state;
-
-		console.log(`hsla(${hue}, ${saturation}%, ${value}%, ${opacity/100})`);
 
 		return (
 			<div className='rc-colorpicker'>

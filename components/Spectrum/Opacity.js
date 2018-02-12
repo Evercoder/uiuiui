@@ -14,8 +14,6 @@ class Opacity extends React.Component {
 
 		let hsl = chroma(color).hsl();
 
-		console.log(opacityGradient(hsl));
-
 		return (
 			<div className='rc-spectrum rc-spectrum--opacity'>
 				<Checkerboard/>
