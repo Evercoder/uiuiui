@@ -14,4 +14,7 @@
 	background: #ccc;
 	position: absolute;
 	bottom: 0;
+	border-top: 1px solid #777;
+	border-left: 1px solid #777;
+	box-sizing: border-box;
 }

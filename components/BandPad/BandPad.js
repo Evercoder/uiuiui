@@ -119,8 +119,8 @@ class BandPad extends React.Component {
 
 BandPad.defaultProps = {
 	values: undefined,
-	bands: 12,
-	step: 5,
+	bands: 36,
+	step: 1,
 	precision: 0,
 	onChange: noop,
 	property: undefined
