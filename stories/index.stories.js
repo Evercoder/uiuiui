@@ -28,6 +28,34 @@ import ColorPicker from '../components/ColorPicker';
 
 import './style.css';
 
+class ControlledComponentWrapper extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+
+	render() {
+
+		return (
+			<div>
+				{
+					React.Children.map(
+						this.props.children,
+						child => React.cloneElement(child, {
+							value: this.state[child.props.property] || 0,
+							onChange: (value, property) => {
+								action('ControlledComponentWrapper:onChange')(value, property);
+								this.setState({ [property] : value });
+							}
+						})
+					)
+				}
+			</div>
+		);
+	}
+}
+
 
 storiesOf('Slider', module)
 	.add('Basic Slider', () => {
@@ -37,6 +65,17 @@ storiesOf('Slider', module)
 				<SliderHandle/>
 				<SliderProgress/>
 			</Slider>
+		);
+	})
+	.add('Basic Slider, Controlled', () => {
+		return (
+			<ControlledComponentWrapper>
+				<Slider property='myslider'>
+					<SliderTooltip/>
+					<SliderHandle/>
+					<SliderProgress/>
+				</Slider>
+			</ControlledComponentWrapper>
 		);
 	})
 	.add('Vertical Slider', () => {
@@ -187,4 +226,11 @@ storiesOf('Color Picker', module)
 storiesOf('Input', module)
 	.add('NumericInput', () => {
 		return <NumericInput onChange={action('onChange')}/>;
+	})
+	.add('NumericInput, Controlled', () => {
+		return (
+			<ControlledComponentWrapper>
+				<NumericInput property='some_property'/>
+			</ControlledComponentWrapper>
+		);
 	});
