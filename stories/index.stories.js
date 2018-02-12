@@ -28,6 +28,10 @@ import Pad, { PadHandle, PadGrid } from '../components/Pad';
 import RadialPad, { RadialPadHandle, RadialPadGrid } from '../components/RadialPad';
 
 import {
+	DeltaSurface
+} from '../components/DeltaSurface';
+
+import {
 	default as BandPad,
 	BandPadProgress
 } from '../components/BandPad';
@@ -253,3 +257,8 @@ storiesOf('Input', module)
 			</ControlledComponentWrapper>
 		);
 	});
+
+storiesOf('DeltaSurface', module)
+	.add('Basic DeltaSurface', () => {
+		return <DeltaSurface onChange={action('onChange')}/>;
+	})

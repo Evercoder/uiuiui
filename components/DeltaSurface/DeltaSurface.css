@@ -1,0 +1,8 @@
+.rc-tangle {
+	text-align: center;
+	cursor: ew-resize;
+}
+
+.rc-tangle--vertical {
+	cursor: ns-resize;
+}

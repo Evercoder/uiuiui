@@ -22,6 +22,7 @@
 	bottom: 1px;
 	width: 1em;
 	border-left: 1px solid #999;
+	display: none;
 }
 
 .rc-input:hover .rc-input__controls {

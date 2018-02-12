@@ -3,7 +3,8 @@ export {
 } from './ColorPicker';
 
 export { 
-	NumericInput 
+	NumericInput,
+	NumericInputControls
 } from './Input';
 
 export {
