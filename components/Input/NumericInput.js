@@ -119,7 +119,7 @@ class NumericInput extends React.PureComponent {
 				transient_value: proposed_value
 			}, 
 			() => {
-				this.props.onChange(this.state.transient_value);
+				this.props.onChange(this.state.transient_value, this.props.property);
 				if (callback) {
 					callback();
 				}
@@ -172,7 +172,8 @@ NumericInput.defaultProps = {
 	start: 0,
 	end: 100,
 	value: 0,
-	onChange: value => {}
+	onChange: value => {},
+	property: undefined
 };
 
 export default NumericInput;

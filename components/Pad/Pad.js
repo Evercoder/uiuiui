@@ -67,7 +67,10 @@ class Pad extends React.PureComponent {
 				transient_x: x_val,
 				transient_y: y_val
 			});
-			this.props.onChange({ x: x_val, y: y_val });
+			this.props.onChange({ 
+				x: x_val, 
+				y: y_val 
+			}, this.props.property);
 		}
 	}
 
@@ -101,7 +104,10 @@ class Pad extends React.PureComponent {
 				};
 			},
 			() => {
-				this.props.onChange({ x: this.state.transient_x, y: this.state.transient_y });
+				this.props.onChange({ 
+					x: this.state.transient_x, 
+					y: this.state.transient_y 
+				}, this.props.property);
 			}
 		);
 	}
@@ -124,7 +130,10 @@ class Pad extends React.PureComponent {
 				};
 			},
 			() => {
-				this.props.onChange({ x: this.state.transient_x, y: this.state.transient_y });
+				this.props.onChange({ 
+					x: this.state.transient_x, 
+					y: this.state.transient_y 
+				}, this.props.property);
 			}
 		);
 	}
@@ -200,6 +209,7 @@ class Pad extends React.PureComponent {
 }
 
 Pad.defaultProps = {
+	property: undefined,
 	x_start: 0,
 	x_end: 100,
 	y_start: 0,

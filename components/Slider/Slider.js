@@ -56,8 +56,12 @@ class Slider extends React.Component {
 
 		if (value !== this.state.transient_value) {
 			this.setState(
-				{ transient_value: value }, 
-				() => this.props.onChange(value)
+				{ 
+					transient_value: value 
+				}, 
+				() => {
+					this.props.onChange(value, this.props.property);
+				}
 			);
 		}
 	}
@@ -96,7 +100,7 @@ class Slider extends React.Component {
 				};
 			},
 			() => {
-				this.props.onChange(this.state.transient_value);
+				this.props.onChange(this.state.transient_value, this.props.property);
 			}
 		);
 	}
@@ -162,6 +166,7 @@ class Slider extends React.Component {
 }
 
 Slider.defaultProps = {
+	property: undefined,
 	start: 0,
 	end: 100,
 	step: 1,

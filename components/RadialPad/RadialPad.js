@@ -76,7 +76,7 @@ class RadialPad extends React.PureComponent {
 			this.props.onChange({
 				r: this.state.transient_r, 
 				t: this.state.transient_t 
-			})
+			}, this.props.property)
 		});
 	}
 
@@ -133,7 +133,8 @@ RadialPad.defaultProps = {
 	t_step: 1,
 	t_precision: 0,
 	t: 0,
-	onChange: ({r, t}) => {}
+	onChange: ({r, t}) => {},
+	property: undefined
 };
 
 export default RadialPad;
