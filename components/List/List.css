@@ -1,6 +1,12 @@
-.rc-list {}
+.rc-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
 
-.rc-list__item {}
+.rc-list__item {
+	display: block;
+}
 
 .rc-list__item--selected {
 	font-weight: bold;

@@ -6,23 +6,34 @@ class ListItem extends React.PureComponent {
 	
 	constructor(props) {
 		super(props);
-		this.onSelect = this.onSelect.bind(this);
+		this.select = this.select.bind(this);
+		this.keydown = this.keydown.bind(this);
 	}
 
-	onSelect() {
+	select() {
 		this.props.onSelect(this.props.value);
+	}
+
+	keydown(e) {
+		if (e.key === 'Enter') {
+			this.select();
+			e.preventDefault();
+		}
 	}
 
 	render() {
 
 		let { 
-			selected 
+			selected,
+			tabIndex
 		} = this.props;
 
 		return (
 			<li 
+				tabIndex={tabIndex}
 				className={`rc-list__item ${ selected ? 'rc-list__item--selected' : ''}`}
-				onClick={this.onSelect}
+				onClick={this.select}
+				onKeyDown={this.keydown}
 			>
 				{ this.props.children }
 			</li>

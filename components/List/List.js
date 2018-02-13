@@ -15,17 +15,22 @@ class List extends React.Component {
 	render() {
 
 		let {
-			value
+			value,
+			tabIndex
 		} = this.props;
 
 		return (
-			<ul className='rc-list'>
+			<ul 
+				className='rc-list'
+				tabIndex={tabIndex}
+			>
 				{ 
 					React.Children.map(
 						this.props.children,
 						child => 
 							React.cloneElement(child, {
 								onSelect: this.onSelect,
+								tabIndex: tabIndex,
 								selected: value === child.props.value
 							})
 					) 
@@ -36,6 +41,7 @@ class List extends React.Component {
 }
 
 List.defaultProps = {
+	tabIndex: '0',
 	value: null,
 	onChange: noop,
 	property: undefined
