@@ -37,7 +37,7 @@ export const clamp = (value, start, end) =>
 export const cycle = (value, start, end) => {
 	let min = Math.min(start, end);
 	let max = Math.max(start, end);
-	return value < min ? max : (value > max ? min : value);
+	return value < min ? max : (value > max ? min : value)
 }
 
 const jsep_binary_operations = {

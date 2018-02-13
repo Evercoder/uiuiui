@@ -95,8 +95,7 @@ class NumericInput extends React.PureComponent {
 		return to_step(
 			method(value, this.props.start, this.props.end),
 			increment || this.props.step, 
-			this.props.precision,
-			'floor'
+			this.props.precision
 		);
 	}
 
