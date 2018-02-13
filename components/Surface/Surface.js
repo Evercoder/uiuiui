@@ -56,7 +56,7 @@ class Surface extends React.PureComponent {
 			this.props.onChange({
 				x: this.props.x_scale.domain([rect.left, rect.right])(e.clientX), 
 				y: this.props.y_scale.domain([rect.top, rect.bottom])(e.clientY)
-			});
+			}, this.props.property);
 		}
 	}
 
@@ -64,24 +64,33 @@ class Surface extends React.PureComponent {
 
 		let {
 			tabIndex,
-			className
+			className,
+			passive
 		} = this.props;
 
-		let {
-			interacting
-		} = this.state;
+		let interacting = passive ? 
+			this.props.interacting : 
+			this.state.interacting;
 
 		return (
 			<div 
 				className={`rc-surface ${className || ''}`}
 				ref={this.register}
-				onMouseDownCapture={this.startInteraction}
+				onMouseDownCapture={passive ? null : this.startInteraction}
 			>
 				{
 					interacting &&
 						<EventListener 
 							target='document'
 							onMouseMove={this.doInteraction}
+						/>
+
+				}
+
+				{
+					interacting && !passive &&
+						<EventListener
+							target='document'
 							onMouseUp={this.endInteraction}
 						/>
 				}
@@ -96,12 +105,14 @@ const linear_percentage_x = scaleLinear().range([0, 100]).clamp(true);
 const linear_percentage_y = scaleLinear().range([0, 100]).clamp(true);
 
 Surface.defaultProps = {
+	property: undefined,
 	className: undefined,
 	onStartInteraction: noop,
 	onEndInteraction: noop,
 	onChange: noop,
 	x_scale: linear_percentage_x,
-	y_scale: linear_percentage_y
+	y_scale: linear_percentage_y,
+	passive: false
 };
 
 export default Surface;

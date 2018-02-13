@@ -36,6 +36,7 @@ class RadialSurface extends React.PureComponent {
 				onInteractionEnd={this.props.onInteractionEnd}
 				x_scale={x_scale}
 				y_scale={y_scale}
+				passive={this.props.passive}
 			>
 				{ this.props.children }
 			</Surface>
@@ -46,7 +47,8 @@ class RadialSurface extends React.PureComponent {
 RadialSurface.defaultProps = {
 	onChange: noop,
 	onInteractionStart: undefined,
-	onInteractionEnd: undefined
+	onInteractionEnd: undefined,
+	passive: false
 };
 
 export default RadialSurface;

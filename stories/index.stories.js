@@ -215,6 +215,9 @@ storiesOf('Surface', module)
 		return <div style={ {width: '300px', height: '300px', 'background': '#f0f0f0' } }>
 			<Surface onChange={action('onChange')}/>
 		</div>;
+	})
+	.add('Passive Surface', () => {
+		return <Surface passive></Surface>;
 	});
 
 storiesOf('RadialSurface', module)

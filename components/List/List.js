@@ -9,7 +9,9 @@ class List extends React.Component {
 	}
 
 	onSelect(value) {
-		this.props.onChange(value, this.props.property);
+		if (value !== this.props.value) {
+			this.props.onChange(value, this.props.property);
+		}
 	}
 
 	render() {
