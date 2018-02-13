@@ -260,5 +260,5 @@ storiesOf('Input', module)
 
 storiesOf('DeltaSurface', module)
 	.add('Basic DeltaSurface', () => {
-		return <DeltaSurface onChange={action('onChange')}/>;
+		return <DeltaSurface onChange={action('onChange')}>DeltaSurface</DeltaSurface>;
 	})

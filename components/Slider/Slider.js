@@ -9,7 +9,7 @@ import { noop } from '../util/functions';
 import Surface from '../Surface';
 
 const initial_state = {
-	transient_value: null,
+	value: null,
 	interacting: false
 };
 
@@ -23,18 +23,24 @@ class Slider extends React.Component {
 		this.onEndInteraction = this.onEndInteraction.bind(this);
 		this.state = {
 			...initial_state,
-			transient_value: props.value
+			value: props.value
 		}
 		this.computed_props(props);
 	}
 
 	componentWillReceiveProps(props) {
-		if (this.state.transient_value !== props.value) {
+		if (this.state.value !== props.value) {
 			this.setState({
-				transient_value: props.value
+				value: props.value
 			});
 		}
 		this.computed_props(props);
+	}
+
+	componentDidUpdate(prev_props, prev_state) {
+		if (this.state.value !== prev_state.value) {
+			this.props.onChange(this.state.value, this.props.property);
+		}
 	}
 
 	computed_props(props) {
@@ -63,20 +69,18 @@ class Slider extends React.Component {
 	}
 
 	onChange({x, y}) {
+
 		let value = this.format_value(
 			this.scale(this.props.vertical ? y : x)
 		);
 
-		if (value !== this.state.transient_value) {
-			this.setState(
-				{ 
-					transient_value: value 
-				}, 
-				() => {
-					this.props.onChange(value, this.props.property);
-				}
-			);
-		}
+		this.setState(
+			previous_state => {
+				return value !== previous_state.value ? { 
+					value: value 
+				} : false
+			}
+		);
 	}
 
 	onStartInteraction() {
@@ -96,24 +100,25 @@ class Slider extends React.Component {
 	}
 
 	offset_value(dir) {
+
 		this.setState(
 			previous_state => {
 
 				let amount = this.props.increment === undefined ? this.props.step : this.props.increment;
 
-				let proposed_value = previous_state.transient_value 
+				let proposed_value = previous_state.value 
 					+ amount * dir * Math.sign(this.props.end - this.props.start);
-				return { 
-					transient_value: this.format_value(
-						this.scale(
-							this.scale.invert(proposed_value)
-						),
-						this.props.increment
-					) 
-				};
-			},
-			() => {
-				this.props.onChange(this.state.transient_value, this.props.property);
+
+				let value = this.format_value(
+					this.scale(
+						this.scale.invert(proposed_value)
+					),
+					this.props.increment
+				);
+
+				return value !== previous_state.value ? { 
+					value: value
+				} : false;
 			}
 		);
 	}
@@ -140,7 +145,7 @@ class Slider extends React.Component {
 	render() {
 
 		let {
-			transient_value,
+			value,
 			interacting
 		} = this.state;
 
@@ -163,7 +168,7 @@ class Slider extends React.Component {
 					React.Children.map(
 						this.props.children, 
 						child => React.cloneElement(child, {
-							value: transient_value,
+							value: value,
 							scale: this.scale,
 							interacting: interacting,
 							vertical: vertical,

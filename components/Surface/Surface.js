@@ -11,6 +11,7 @@ const initial_state = {
 class Surface extends React.PureComponent {
 
 	constructor(props) {
+
 		super(props);
 
 		this.register = this.register.bind(this);
@@ -20,6 +21,7 @@ class Surface extends React.PureComponent {
 		this.endInteraction = this.endInteraction.bind(this);
 
 		this.state = initial_state;
+		
 	}
 
 	register(wrapper) {

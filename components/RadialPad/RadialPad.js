@@ -8,13 +8,14 @@ import { noop } from '../util/functions';
 
 const initial_state = {
 	interacting: false,
-	transient_r: null,
-	transient_t: null
+	r: null,
+	t: null
 };
 
 class RadialPad extends React.PureComponent {
 
 	constructor(props) {
+
 		super(props);
 
 		this.onChange = this.onChange.bind(this);
@@ -23,18 +24,19 @@ class RadialPad extends React.PureComponent {
 
 		this.state = {
 			...initial_state,
-			transient_r: props.r,
-			transient_t: props.t
+			r: props.r,
+			t: props.t
 		};
 		
 		this.computed_props(props);
+
 	}
 
 	componentWillReceiveProps(props) {
 
 		this.setState({
-			transient_r: props.r,
-			transient_t: props.t
+			r: props.r,
+			t: props.t
 		});
 
 		this.computed_props(props);
@@ -53,11 +55,15 @@ class RadialPad extends React.PureComponent {
 	}
 
 	onInteractionStart() {
-		this.setState({ interacting: true });
+		this.setState({ 
+			interacting: true 
+		});
 	}
 
 	onInteractionEnd() {
-		this.setState({ interacting: false });
+		this.setState({ 
+			interacting: false 
+		});
 	}
 
 	onChange({ r, t }) {
@@ -66,17 +72,17 @@ class RadialPad extends React.PureComponent {
 		let t_val = to_step(this.t_scale(t), this.props.t_step, this.props.t_precision);
 
 		// don't update state with the same values
-		if (r_val === this.state.transient_r && t_val === this.state.transient_t) {
+		if (r_val === this.state.r && t_val === this.state.t) {
 			return; 
 		}
 
 		this.setState({
-			transient_r: r_val,
-			transient_t: t_val
+			r: r_val,
+			t: t_val
 		}, () => {
 			this.props.onChange({
-				r: this.state.transient_r, 
-				t: this.state.transient_t 
+				r: this.state.r, 
+				t: this.state.t 
 			}, this.props.property)
 		});
 	}
@@ -84,8 +90,8 @@ class RadialPad extends React.PureComponent {
 	render() {
 
 		let {
-			transient_r,
-			transient_t,
+			r,
+			t,
 			interacting
 		} = this.state;
 
@@ -105,8 +111,8 @@ class RadialPad extends React.PureComponent {
 						React.Children.map(
 							this.props.children,
 							child => React.cloneElement(child, {
-								r: transient_r,
-								t: transient_t,
+								r: r,
+								t: t,
 								r_scale: this.r_scale,
 								t_scale: this.t_scale,
 								r_step: r_step,

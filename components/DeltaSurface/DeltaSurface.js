@@ -19,6 +19,7 @@ class DeltaSurface extends React.Component {
 	startInteraction(e) {
 		this._initial_x = e.clientX;
 		this._initial_y = e.clientY;
+		e.preventDefault();
 	}
 
 	doInteraction({x, y}) {

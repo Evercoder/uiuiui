@@ -18,14 +18,16 @@ class NumericInput extends React.PureComponent {
 		this.decrement = this.decrement.bind(this);
 
 		this.state = {
-			transient_value: props.value
+			transient_value: props.value,
+			value: props.value
 		};
 
 	}
 
 	componentWillReceiveProps(props) {
 		this.setState({
-			transient_value: props.value
+			transient_value: props.value,
+			value: props.value
 		});
 	}
 
@@ -55,20 +57,25 @@ class NumericInput extends React.PureComponent {
 			previous_state => {
 				let proposed_value = this.format_user_input() + 
 					amount * dir * Math.sign(this.props.end - this.props.start);
-				return {
-					transient_value: this.format_value(proposed_value, this.props.step)
-				}
-			},
-			() => {
-				this.commit();
-			}
-		);
+				let value = this.format_value(proposed_value, this.props.step);
+
+				return value !== previous_state.transient_value ? {
+					transient_value: value,
+					value: value
+				} : false;
+			});
 	}
 
 	onChange(e) {
 		this.setState({
 			transient_value: e.target.value
 		});
+	}
+
+	componentDidUpdate(prev_props, prev_state) {
+		if (this.state.value !== prev_state.value) {
+			this.props.onChange(this.state.value, this.props.property);
+		}
 	}
 
 	step_amount(e) {
@@ -100,10 +107,13 @@ class NumericInput extends React.PureComponent {
 	}
 
 	commit() {
-		this.setState(
-			{ transient_value: this.format_user_input() },
-			() => { this.props.onChange(this.state.transient_value, this.props.property); }
-		);
+
+		let value = this.format_user_input();
+
+		this.setState({ 
+			transient_value: value,
+			value: value
+		});
 	}
 
 	register(input) {

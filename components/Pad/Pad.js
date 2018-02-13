@@ -10,8 +10,8 @@ import './Pad.css';
 import Surface from '../Surface';
 
 const initial_state = {
-	transient_x: null,
-	transient_y: null,
+	x: null,
+	y: null,
 	interacting: false
 };
 
@@ -25,16 +25,16 @@ class Pad extends React.PureComponent {
 		this.onEndInteraction = this.onEndInteraction.bind(this);
 		this.state = {
 			...initial_state,
-			transient_x: props.x,
-			transient_y: props.y
+			x: props.x,
+			y: props.y
 		}
 		this.computed_props(props);
 	}
 
 	componentWillReceiveProps(props) {
 		this.setState({
-			transient_x: props.x,
-			transient_y: props.y
+			x: props.x,
+			y: props.y
 		});
 		this.computed_props(props);
 	}
@@ -75,10 +75,10 @@ class Pad extends React.PureComponent {
 	onChange({x, y}) {
 		let x_val = this.format_x(this.x_scale(x));
 		let y_val = this.format_y(this.y_scale(y));
-		if (x_val !== this.state.transient_x || y_val !== this.state.transient_y) {
+		if (x_val !== this.state.x || y_val !== this.state.y) {
 			this.setState({
-				transient_x: x_val,
-				transient_y: y_val
+				x: x_val,
+				y: y_val
 			});
 			this.props.onChange({ 
 				x: x_val, 
@@ -106,10 +106,10 @@ class Pad extends React.PureComponent {
 				let amount = this.props.x_increment === undefined ? 
 					this.props.x_step : this.props.x_increment;
 
-				let proposed_value = previous_state.transient_x + 
+				let proposed_value = previous_state.x + 
 					amount * dir * Math.sign(this.props.x_end - this.props.x_start);
 				return { 
-					transient_x: this.format_x(
+					x: this.format_x(
 						this.x_scale(
 							this.x_scale.invert(proposed_value)
 						)
@@ -118,8 +118,8 @@ class Pad extends React.PureComponent {
 			},
 			() => {
 				this.props.onChange({ 
-					x: this.state.transient_x, 
-					y: this.state.transient_y 
+					x: this.state.x, 
+					y: this.state.y 
 				}, this.props.property);
 			}
 		);
@@ -132,10 +132,10 @@ class Pad extends React.PureComponent {
 				let amount = this.props.y_increment === undefined ? 
 					this.props.y_step : this.props.y_increment;
 
-				let proposed_value = previous_state.transient_y + 
+				let proposed_value = previous_state.y + 
 					amount * dir * Math.sign(this.props.y_end - this.props.y_start);
 				return { 
-					transient_y: this.format_y(
+					y: this.format_y(
 						this.y_scale(
 							this.y_scale.invert(proposed_value)
 						)
@@ -144,8 +144,8 @@ class Pad extends React.PureComponent {
 			},
 			() => {
 				this.props.onChange({ 
-					x: this.state.transient_x, 
-					y: this.state.transient_y 
+					x: this.state.x, 
+					y: this.state.y 
 				}, this.props.property);
 			}
 		);
@@ -177,8 +177,8 @@ class Pad extends React.PureComponent {
 	render() {
 
 		let {
-			transient_x,
-			transient_y,
+			x,
+			y,
 			interacting
 		} = this.state;
 
@@ -203,8 +203,8 @@ class Pad extends React.PureComponent {
 						this.props.children, 
 						child => React.cloneElement(child, {
 							
-							x: transient_x,
-							y: transient_y,
+							x: x,
+							y: y,
 							x_scale: this.x_scale,
 							y_scale: this.y_scale,
 							x_step: x_step,
