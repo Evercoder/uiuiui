@@ -63,7 +63,6 @@ class Surface extends React.PureComponent {
 	render() {
 
 		let {
-			tabIndex,
 			className,
 			passive
 		} = this.props;

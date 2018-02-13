@@ -82,10 +82,30 @@ storiesOf('Slider', module)
 			</Slider>
 		);
 	})
+	.add('Basic Slider, Circular', () => {
+		return (
+			<Slider onChange={action('onChange')} circular>
+				<SliderTooltip/>
+				<SliderHandle/>
+				<SliderProgress/>
+			</Slider>
+		);
+	})
 	.add('Basic Slider, Controlled', () => {
 		return (
 			<ControlledComponentWrapper>
 				<Slider property='myslider'>
+					<SliderTooltip/>
+					<SliderHandle/>
+					<SliderProgress/>
+				</Slider>
+			</ControlledComponentWrapper>
+		);
+	})
+	.add('Basic Slider, Circular Controlled', () => {
+		return (
+			<ControlledComponentWrapper>
+				<Slider property='myslider' circular>
 					<SliderTooltip/>
 					<SliderHandle/>
 					<SliderProgress/>
@@ -253,6 +273,18 @@ storiesOf('Color Picker', module)
 storiesOf('Input', module)
 	.add('NumericInput', () => {
 		return <NumericInput onChange={action('onChange')}>
+			<NumericInputControls/>
+		</NumericInput>;
+	})
+	.add('NumericInput, circular', () => {
+		return <NumericInput 
+			onChange={action('onChange')} 
+			circular
+			start='5'
+			end='-5'
+			step='0.1'
+			precision='1'
+		>
 			<NumericInputControls/>
 		</NumericInput>;
 	})

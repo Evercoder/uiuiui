@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step } from '../util/math';
+import { to_step, cycle, clamp } from '../util/math';
 import { noop } from '../util/functions';
 
 import Surface from '../Surface';
@@ -64,8 +64,12 @@ class Slider extends React.Component {
 			.clamp(true);
 	}
 
-	format_value(value, increment) {
-		return to_step(value, increment === undefined ? this.props.step : increment, this.props.precision);
+	format_value(value, increment, method = clamp) {
+		return to_step(
+			method(value, this.props.start, this.props.end), 
+			increment === undefined ? this.props.step : increment, 
+			this.props.precision
+		);
 	}
 
 	onChange({x, y}) {
@@ -116,10 +120,9 @@ class Slider extends React.Component {
 					+ amount * dir * Math.sign(this.props.end - this.props.start);
 
 				let value = this.format_value(
-					this.scale(
-						this.scale.invert(proposed_value)
-					),
-					this.props.increment
+					proposed_value,
+					this.props.increment,
+					this.props.circular ? cycle : clamp
 				);
 
 				// Avoid unnecessary renders when value has not actually changed
@@ -156,15 +159,15 @@ class Slider extends React.Component {
 	render() {
 
 		let {
-			value,
-			interacting,
-			tabIndex,
-			className
-		} = this.state;
+			vertical,
+			tabIndex
+		} = this.props;
 
 		let {
-			vertical
-		} = this.props;
+			value,
+			interacting,
+			className
+		} = this.state;
 
 		return (
 			<div 
@@ -213,7 +216,8 @@ Slider.defaultProps = {
 	vertical: false,
 	onChange: noop,
 	onStartInteraction: noop,
-	onEndInteraction: noop
+	onEndInteraction: noop,
+	circular: false
 };
 
 export default Slider;

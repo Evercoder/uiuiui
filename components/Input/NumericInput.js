@@ -2,7 +2,7 @@ import React from 'react';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step, clamp, parse_expression, parse_float } from '../util/math';
+import { to_step, cycle, clamp, parse_expression, parse_float } from '../util/math';
 import { noop } from '../util/functions';
 
 class NumericInput extends React.PureComponent {
@@ -57,7 +57,12 @@ class NumericInput extends React.PureComponent {
 			previous_state => {
 				let proposed_value = this.format_user_input() + 
 					amount * dir * Math.sign(this.props.end - this.props.start);
-				let value = this.format_value(proposed_value, this.props.step);
+
+				let value = this.format_value(
+					proposed_value, 
+					this.props.step,
+					this.props.circular ? cycle : clamp
+				);
 
 				return value !== previous_state.transient_value ? {
 					transient_value: value,
@@ -82,13 +87,13 @@ class NumericInput extends React.PureComponent {
 		return this.props.increment === undefined ? 
 			this.props.step : 
 			typeof this.props.increment === 'function' ?
-				this.props.increment(e) || this.props.step : 
+				this.props.increment(e, this.props) || this.props.step : 
 				this.props.increment ;
 	}
 
-	format_value(value, increment) {
+	format_value(value, increment, method = clamp) {
 		return to_step(
-			clamp(value, this.props.start, this.props.end),
+			method(value, this.props.start, this.props.end),
 			increment || this.props.step, 
 			this.props.precision,
 			'floor'
@@ -170,7 +175,7 @@ class NumericInput extends React.PureComponent {
 	}
 }
 
-const increment_bigger_step_on_shift = (e) => e ? (e.shiftKey ? 10 : 1) : undefined;
+const increment_bigger_step_on_shift = (e, props) => e ? (e.shiftKey ? 10 : 1) * props.step : undefined;
 
 NumericInput.defaultProps = {
 	type: 'text',
@@ -184,7 +189,8 @@ NumericInput.defaultProps = {
 	onChange: noop,
 	property: undefined,
 	expressions: true,
-	parse_value: parse_float
+	parse_value: parse_float,
+	circular: false
 };
 
 export default NumericInput;
