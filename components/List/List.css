@@ -1,0 +1,7 @@
+.rc-list {}
+
+.rc-list__item {}
+
+.rc-list__item--selected {
+	font-weight: bold;
+}

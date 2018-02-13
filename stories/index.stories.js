@@ -13,6 +13,11 @@ import {
 } from '../components/Input';
 
 import { 
+	List,
+	ListItem 
+} from '../components/List';
+
+import { 
 	Checkerboard, 
 	Opacity,
 	Hue
@@ -45,25 +50,23 @@ class ControlledComponentWrapper extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		this.onChange = this.onChange.bind(this);
+	}
+
+	onChange(value, prop) {
+		action('onChange')(value, prop);
+		this.setState({ [prop]: value });
 	}
 
 	render() {
 
+		let child = React.Children.only(this.props.children);
+		let Component = child.type;
+
+		let value = this.state[child.props.property] || 0;
+
 		return (
-			<div>
-				{
-					React.Children.map(
-						this.props.children,
-						child => React.cloneElement(child, {
-							value: this.state[child.props.property] || 0,
-							onChange: (value, property) => {
-								action('ControlledComponentWrapper:onChange')(value, property);
-								this.setState({ [property] : value });
-							}
-						})
-					)
-				}
-			</div>
+			<Component {...child.props} value={value} onChange={this.onChange}/>
 		);
 	}
 }
@@ -261,4 +264,40 @@ storiesOf('Input', module)
 storiesOf('DeltaSurface', module)
 	.add('Basic DeltaSurface', () => {
 		return <DeltaSurface onChange={action('onChange')}>DeltaSurface</DeltaSurface>;
+	});
+
+storiesOf('List', module)
+	.add('Basic List', () => {
+		return (
+			<ControlledComponentWrapper>
+				<List property="some_property">
+					<ListItem value='hello'>Hello</ListItem>
+					<ListItem value='moto'>Moto</ListItem>
+				</List>
+			</ControlledComponentWrapper>
+		);
 	})
+	.add('List with dynamic items', () => {
+		let items = [
+			{ label: 'Hello', value: 'hello' },
+			{ label: 'Moto', value: 'moto' }
+		];
+
+		return (
+			<ControlledComponentWrapper>
+				<List property="some_property">
+					{ 
+						items.map(
+							item => 
+								<ListItem 
+									key={item.value} 
+									value={item.value}
+								>
+									{item.label}
+								</ListItem>
+						)
+					}
+				</List>
+			</ControlledComponentWrapper>
+		);
+	});

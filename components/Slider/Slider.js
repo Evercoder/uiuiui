@@ -76,9 +76,15 @@ class Slider extends React.Component {
 
 		this.setState(
 			previous_state => {
-				return value !== previous_state.value ? { 
+
+				// Avoid unnecessary renders when value has not actually changed
+				if (value === previous_state.value) {
+					return null;
+				}
+
+				return { 
 					value: value 
-				} : false
+				};
 			}
 		);
 	}
@@ -116,9 +122,14 @@ class Slider extends React.Component {
 					this.props.increment
 				);
 
-				return value !== previous_state.value ? { 
+				// Avoid unnecessary renders when value has not actually changed
+				if (value === previous_state.value) {
+					return null;
+				}
+
+				return { 
 					value: value
-				} : false;
+				};
 			}
 		);
 	}
