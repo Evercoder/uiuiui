@@ -157,7 +157,9 @@ class Slider extends React.Component {
 
 		let {
 			value,
-			interacting
+			interacting,
+			tabIndex,
+			className
 		} = this.state;
 
 		let {
@@ -166,8 +168,12 @@ class Slider extends React.Component {
 
 		return (
 			<div 
-				className={`rc-slider ${vertical ? 'rc-slider--vertical' : '' }`}
-				tabIndex='0'
+				className={`
+					rc-slider 
+					${vertical ? 'rc-slider--vertical' : '' } 
+					${className || ''}
+				`}
+				tabIndex={tabIndex}
 				onKeyDown={this.onKeyDown}
 			>
 				<Surface
@@ -195,6 +201,8 @@ class Slider extends React.Component {
 }
 
 Slider.defaultProps = {
+	className: undefined,
+	tabIndex: 0,
 	property: undefined,
 	start: 0,
 	end: 100,

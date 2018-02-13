@@ -16,12 +16,13 @@ class List extends React.Component {
 
 		let {
 			value,
-			tabIndex
+			tabIndex,
+			className
 		} = this.props;
 
 		return (
 			<ul 
-				className='rc-list'
+				className={`rc-list ${className || ''}`}
 				tabIndex={tabIndex}
 			>
 				{ 
@@ -41,6 +42,7 @@ class List extends React.Component {
 }
 
 List.defaultProps = {
+	className: undefined,
 	tabIndex: '0',
 	value: null,
 	onChange: noop,
