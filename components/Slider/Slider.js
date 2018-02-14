@@ -1,12 +1,9 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 
-import { scaleLinear } from 'd3-scale';
-
-import { to_step, cycle, clamp } from '../util/math';
 import { noop } from '../util/functions';
 
-import { Surface } from '../Surface';
+import { Pad } from '../Pad';
 
 const initial_state = {
 	value: null,
@@ -21,7 +18,6 @@ class Slider extends React.Component {
 
 		// Event handlers
 		this.change = this.change.bind(this);
-		this.keydown = this.keydown.bind(this);
 		this.start = this.start.bind(this);
 		this.end = this.end.bind(this);
 
@@ -30,8 +26,6 @@ class Slider extends React.Component {
 			...initial_state,
 			value: props.value
 		}
-
-		this.computed_props(props);
 	}
 
 	componentWillReceiveProps(props) {
@@ -40,7 +34,6 @@ class Slider extends React.Component {
 				value: props.value
 			});
 		}
-		this.computed_props(props);
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
@@ -49,41 +42,9 @@ class Slider extends React.Component {
 		}
 	}
 
-	computed_props(props) {
-
-		// Avoid unnecessary scale reinitialization
-		if (
-			this.scale &&
-			this.props.vertical === props.vertical &&
-			this.props.start === props.start &&
-			this.props.end === props.end
-		) {
-			return;
-		}
-
-		this.scale = scaleLinear()
-			.domain([0, 100])
-			.range(
-				this.props.vertical ? 
-					[props.end, props.start] : 
-					[props.start, props.end]
-			)
-			.clamp(true);
-	}
-
-	format_value(value, method = clamp) {
-		return to_step(
-			method(value, this.props.start, this.props.end), 
-			this.props.step, 
-			this.props.precision
-		);
-	}
-
 	change({x, y}) {
 
-		let value = this.format_value(
-			this.scale(this.props.vertical ? y : x)
-		);
+		let value = this.props.vertical ? y : x;
 
 		this.setState(
 			previous_state => {
@@ -116,13 +77,38 @@ class Slider extends React.Component {
 			vertical,
 			circular,
 			tabIndex,
-			className
+			className,
+			step,
+			precision,
+			start,
+			end,
+			increment,
+			property
 		} = this.props;
 
 		let {
 			value,
 			interacting
 		} = this.state;
+
+		let pad_props = vertical ? 
+			{
+				y: value,
+				y_start: end,
+				y_end: start,
+				y_step: step,
+				y_precision: precision,
+				y_increment: increment
+			}
+			:
+			{
+				x: value,
+				x_start: start,
+				x_end: end,
+				x_step: step,
+				x_precision: precision,
+				x_increment: increment
+			};
 
 		return (
 			<div 
@@ -136,72 +122,24 @@ class Slider extends React.Component {
 				tabIndex={tabIndex}
 				onKeyDown={this.keydown}
 			>
-				<Surface
+				<Pad
 					onStart={this.start}
 					onEnd={this.end} 
 					onChange={this.change}
+					property={property}
+					{...pad_props}
 				>
 					{ 
 						React.Children.map(
-							this.props.children, 
-							child => React.cloneElement(child, {
-								value: value,
-								scale: this.scale,
-								interacting: interacting,
-								vertical: vertical,
-								...child.props
-							})
-						) 
+							this.props.children,
+							child => 
+								React.cloneElement(child, {
+									vertical: vertical
+								})
+						)
 					}
-				</Surface>
+				</Pad>
 			</div>
-		);
-	}
-
-	/*
-		Keyboard handling
-		----------------------------------------------------------------
-	*/
-
-	keydown(e) {
-		let handled = true;
-		switch (e.key) {
-			case 'ArrowUp':
-			case 'ArrowRight':
-				this.offset(e, 1);
-				break;
-			case 'ArrowDown':
-			case 'ArrowLeft':
-				this.offset(e, -1);
-				break;
-			default:
-				handled = false;
-		}
-		if (handled) {
-			e.preventDefault();
-		}
-	}
-
-	step_amount(e) {
-		return (
-			typeof this.props.increment === 'function' ? 
-				this.props.increment(e, this.props) : this.props.increment
-		) || this.props.step;
-	}
-
-	offset(e, dir) {
-		let amount = this.step_amount(e) * dir * Math.sign(this.props.end - this.props.start);
-		this.setState(
-			previous_state => {
-				let value = this.format_value(
-					previous_state.value + amount,
-					this.props.circular ? cycle : clamp
-				);
-
-				// Avoid unnecessary renders 
-				// when value has not actually changed
-				return value === previous_state.value ? null : { value: value };
-			}
 		);
 	}
 }

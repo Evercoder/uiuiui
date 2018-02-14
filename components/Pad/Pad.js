@@ -140,7 +140,9 @@ class Pad extends React.PureComponent {
 			tabIndex,
 			className,
 			x_step,
-			y_step
+			y_step,
+			x_precision,
+			y_precision
 		} = this.props;
 
 		let {
@@ -175,6 +177,8 @@ class Pad extends React.PureComponent {
 							y_scale: this.y_scale,
 							x_step: x_step,
 							y_step: y_step,
+							x_precision: x_precision,
+							y_precision: y_precision,
 							interacting: interacting,
 							...child.props
 						})

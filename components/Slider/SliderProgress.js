@@ -3,17 +3,19 @@ import React from 'react';
 class SliderProgress extends React.PureComponent {
 	render() {
 		let {
-			value,
-			scale,
+			x,
+			y,
+			x_scale,
+			y_scale,
 			vertical,
 			interacting
 		} = this.props;
 
 		let style = {};
 		if (vertical) {
-			style['height'] = (100 - scale.invert(value)) + '%';
+			style['height'] = (100 - y_scale.invert(y)) + '%';
 		} else {
-			style['width'] = scale.invert(value) + '%';
+			style['width'] = x_scale.invert(x) + '%';
 		}
 
 		return (

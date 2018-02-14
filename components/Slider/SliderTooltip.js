@@ -3,8 +3,10 @@ import React from 'react';
 class SliderTooltip extends React.PureComponent {
 	render() {
 		let {
-			value,
-			scale,
+			x,
+			y,
+			x_scale,
+			y_scale,
 			interacting,
 			vertical
 		} = this.props;
@@ -14,12 +16,12 @@ class SliderTooltip extends React.PureComponent {
 		}
 
 		let style = {
-			[vertical ? 'top' : 'left']: scale.invert(value) + '%'
+			[vertical ? 'top' : 'left']: (vertical ? y_scale.invert(y) : x_scale.invert(x)) + '%'
 		};
 
 		return (
 			<span className='rc-slider__tooltip' style={style}>
-				{value}
+				{vertical ? y : x}
 			</span>
 		);
 	}

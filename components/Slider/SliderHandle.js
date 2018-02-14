@@ -3,14 +3,18 @@ import React from 'react';
 class SliderHandle extends React.PureComponent {
 	render() {
 		let {
-			value,
-			scale,
+			x,
+			y,
+			x_scale,
+			y_scale,
 			vertical,
 			interacting
 		} = this.props;
 
 		let style = {
-			[vertical ? 'top' : 'left']: scale.invert(value) + '%'
+			[vertical ? 'top' : 'left']: (
+				vertical ? y_scale.invert(y) : x_scale.invert(x) 
+			) + '%'
 		};
 
 		return (
