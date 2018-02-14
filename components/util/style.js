@@ -27,3 +27,18 @@ export const hueGradient = (direction) => `
 		hsl(360, 100%, 50%)
 	)
 `;
+
+export const gradient = (stops) => `
+	${linear_gradient}(
+		to right, 
+		${
+			stops
+				.slice()
+				.sort((a, b) => a.position - b.position)
+				.map(
+					stop => 
+						`${stop.color} ${stop.position}%`
+				).join(', ')
+		}
+	)
+`

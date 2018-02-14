@@ -1,0 +1,22 @@
+.rc-multislider {
+	height: 1em;
+	background: #f0f0f0;
+	position: relative;
+}
+
+.rc-multislider .rc-surface {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.rc-multislider__handle {
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	top: 50%;
+	left: 0;
+	transform: translate(-50%, -50%);
+	background: red;
+	border-radius: 50%;
+}

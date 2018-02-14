@@ -20,6 +20,8 @@ class Surface extends React.PureComponent {
 		this.doInteraction = this.doInteraction.bind(this);
 		this.endInteraction = this.endInteraction.bind(this);
 
+		this.insert = this.insert.bind(this);
+
 		this.state = initial_state;
 		
 	}
@@ -49,15 +51,23 @@ class Surface extends React.PureComponent {
 		this.props.onEndInteraction(e);
 	}
 
-	onChange(e) {
+	scale(e) {
 		if (this.wrapper) {
 			// TODO this could be cached on startInteraction() for better performance
 			let rect = this.wrapper.getBoundingClientRect();
-			this.props.onChange({
+			return {
 				x: this.props.x_scale.domain([rect.left, rect.right])(e.clientX), 
 				y: this.props.y_scale.domain([rect.top, rect.bottom])(e.clientY)
-			}, this.props.property);
+			}
 		}
+	}
+
+	onChange(e) {
+		this.props.onChange(this.scale(e), this.props.property);
+	}
+
+	insert(e) {
+		this.props.onInsert(this.scale(e), this.props.property);
 	}
 
 	render() {
@@ -76,6 +86,7 @@ class Surface extends React.PureComponent {
 				className={`rc-surface ${className || ''}`}
 				ref={this.register}
 				onMouseDownCapture={passive ? null : this.startInteraction}
+				onDoubleClick={passive ? this.insert : null}
 			>
 				{
 					interacting &&
@@ -109,6 +120,7 @@ Surface.defaultProps = {
 	onStartInteraction: noop,
 	onEndInteraction: noop,
 	onChange: noop,
+	onInsert: noop,
 	x_scale: linear_percentage_x,
 	y_scale: linear_percentage_y,
 	passive: false

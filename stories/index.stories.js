@@ -43,6 +43,15 @@ import {
 
 import ColorPicker from '../components/ColorPicker';
 
+import {
+	MultiSlider,
+	MultiSliderHandle
+} from '../components/MultiSlider';
+
+import {
+	Gradient
+} from '../components/Gradient';
+
 import './style.css';
 
 class ControlledComponentWrapper extends React.Component {
@@ -335,4 +344,17 @@ storiesOf('List', module)
 				</List>
 			</ControlledComponentWrapper>
 		);
+	});
+
+storiesOf('MultiSlider', module)
+	.add('Basic MultiSlider', () => {
+		return <MultiSlider onChange={action('onChange')}>
+			<MultiSliderHandle property='prop1'/>
+			<MultiSliderHandle property='prop2'/>
+		</MultiSlider>
+	});
+
+storiesOf('Gradient', module)
+	.add('Basic Gradient', () => {
+		return <Gradient/>;
 	});
