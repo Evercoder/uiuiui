@@ -2,6 +2,8 @@ import React from 'react';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
 
+import { Position } from '../Position';
+
 import { noop } from '../util/functions';
 
 const initial_state = {
@@ -41,7 +43,7 @@ class Surface extends React.PureComponent {
 
 	doInteraction(e) {
 		this.onChange(e);
-		e.preventDefault();
+		e.event.preventDefault();
 	}
 
 	endInteraction(e) {
@@ -56,8 +58,8 @@ class Surface extends React.PureComponent {
 			// TODO this could be cached on startInteraction() for better performance
 			let rect = this.wrapper.getBoundingClientRect();
 			return {
-				x: this.props.x_scale.domain([rect.left, rect.right])(e.clientX), 
-				y: this.props.y_scale.domain([rect.top, rect.bottom])(e.clientY)
+				x: this.props.x_scale.domain([rect.left, rect.right])(e.x || e.clientX), 
+				y: this.props.y_scale.domain([rect.top, rect.bottom])(e.y || e.clientY)
 			}
 		}
 	}
@@ -88,14 +90,10 @@ class Surface extends React.PureComponent {
 				onMouseDownCapture={passive ? null : this.startInteraction}
 				onDoubleClick={passive ? this.insert : null}
 			>
-				{
-					interacting &&
-						<EventListener 
-							target='document'
-							onMouseMove={this.doInteraction}
-						/>
-
-				}
+				<Position 
+					interacting={interacting} 
+					onChange={this.doInteraction}
+				/>
 
 				{
 					interacting && !passive &&
