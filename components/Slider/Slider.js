@@ -6,7 +6,7 @@ import { scaleLinear } from 'd3-scale';
 import { to_step, cycle, clamp } from '../util/math';
 import { noop } from '../util/functions';
 
-import Surface from '../Surface';
+import { Surface } from '../Surface';
 
 const initial_state = {
 	value: null,
@@ -16,15 +16,20 @@ const initial_state = {
 class Slider extends React.Component {
 
 	constructor(props) {
+
 		super(props);
-		this.onChange = this.onChange.bind(this);
-		this.onKeyDown = this.onKeyDown.bind(this);
-		this.onStartInteraction = this.onStartInteraction.bind(this);
-		this.onEndInteraction = this.onEndInteraction.bind(this);
+
+		// Event handlers
+		this.change = this.change.bind(this);
+		this.keydown = this.keydown.bind(this);
+		this.start = this.start.bind(this);
+		this.end = this.end.bind(this);
+
 		this.state = {
 			...initial_state,
 			value: props.value
 		}
+
 		this.computed_props(props);
 	}
 
@@ -64,15 +69,15 @@ class Slider extends React.Component {
 			.clamp(true);
 	}
 
-	format_value(value, increment, method = clamp) {
+	format_value(value, method = clamp) {
 		return to_step(
 			method(value, this.props.start, this.props.end), 
-			increment === undefined ? this.props.step : increment, 
+			this.props.step, 
 			this.props.precision
 		);
 	}
 
-	onChange({x, y}) {
+	change({x, y}) {
 
 		let value = this.format_value(
 			this.scale(this.props.vertical ? y : x)
@@ -80,73 +85,91 @@ class Slider extends React.Component {
 
 		this.setState(
 			previous_state => {
-
-				// Avoid unnecessary renders when value has not actually changed
-				if (value === previous_state.value) {
-					return null;
-				}
-
-				return { 
-					value: value 
-				};
+				// Avoid unnecessary renders 
+				// when value has not actually changed
+				return value === previous_state.value ? null : { value: value }
 			}
 		);
 	}
 
-	onStartInteraction() {
+	start(e) {
 		this.setState({
 			interacting: true
 		}, () => {
-			this.props.onEndInteraction();
+			this.props.onStart(e);
 		});
 	}
 
-	onEndInteraction() {
+	end(e) {
 		this.setState({
 			interacting: false
 		}, () => {
-			this.props.onEndInteraction();
+			this.props.onEnd(e);
 		});
 	}
 
-	offset_value(dir) {
+	render() {
 
-		this.setState(
-			previous_state => {
+		let {
+			vertical,
+			circular,
+			tabIndex,
+			className
+		} = this.props;
 
-				let amount = this.props.increment === undefined ? this.props.step : this.props.increment;
+		let {
+			value,
+			interacting
+		} = this.state;
 
-				let proposed_value = previous_state.value 
-					+ amount * dir * Math.sign(this.props.end - this.props.start);
-
-				let value = this.format_value(
-					proposed_value,
-					this.props.increment,
-					this.props.circular ? cycle : clamp
-				);
-
-				// Avoid unnecessary renders when value has not actually changed
-				if (value === previous_state.value) {
-					return null;
-				}
-
-				return { 
-					value: value
-				};
-			}
+		return (
+			<div 
+				className={`
+					rc-slider 
+					${vertical ? 'rc-slider--vertical' : '' } 
+					${circular ? 'rc-slider--circular' : '' } 
+					${className || ''}
+				`}
+				tabIndex={tabIndex}
+				onKeyDown={this.keydown}
+			>
+				<Surface
+					onStart={this.start}
+					onEnd={this.end} 
+					onChange={this.change}
+				>
+					{ 
+						React.Children.map(
+							this.props.children, 
+							child => React.cloneElement(child, {
+								value: value,
+								scale: this.scale,
+								interacting: interacting,
+								vertical: vertical,
+								...child.props
+							})
+						) 
+					}
+				</Surface>
+			</div>
 		);
 	}
 
-	onKeyDown(e) {
+	/*
+		Keyboard handling
+		----------------------------------------------------------------
+	*/
+
+	keydown(e) {
 		let handled = true;
 		switch (e.key) {
 			case 'ArrowUp':
 			case 'ArrowRight':
-				this.offset_value(1);
+				this.offset(e, 1);
 				break;
 			case 'ArrowDown':
 			case 'ArrowLeft':
-				this.offset_value(-1);
+				this.offset(e, -1);
 				break;
 			default:
 				handled = false;
@@ -156,68 +179,50 @@ class Slider extends React.Component {
 		}
 	}
 
-	render() {
-
-		let {
-			vertical,
-			tabIndex
-		} = this.props;
-
-		let {
-			value,
-			interacting,
-			className
-		} = this.state;
-
+	step_amount(e) {
 		return (
-			<div 
-				className={`
-					rc-slider 
-					${vertical ? 'rc-slider--vertical' : '' } 
-					${className || ''}
-				`}
-				tabIndex={tabIndex}
-				onKeyDown={this.onKeyDown}
-			>
-				<Surface
-					onStartInteraction={this.onStartInteraction}
-					onEndInteraction={this.onEndInteraction} 
-					onChange={this.onChange}
-				>
-				{ 
-					React.Children.map(
-						this.props.children, 
-						child => React.cloneElement(child, {
-							value: value,
-							scale: this.scale,
-							interacting: interacting,
-							vertical: vertical,
+			typeof this.props.increment === 'function' ? 
+				this.props.increment(e, this.props) : this.props.increment
+		) || this.props.step;
+	}
 
-							...child.props
-						})
-					) 
-				}
-				</Surface>
-			</div>
+	offset(e, dir) {
+		let amount = this.step_amount(e) * dir * Math.sign(this.props.end - this.props.start);
+		this.setState(
+			previous_state => {
+				let value = this.format_value(
+					previous_state.value + amount,
+					this.props.circular ? cycle : clamp
+				);
+
+				// Avoid unnecessary renders 
+				// when value has not actually changed
+				return value === previous_state.value ? null : { value: value };
+			}
 		);
 	}
 }
 
 Slider.defaultProps = {
+
 	className: undefined,
-	tabIndex: 0,
 	property: undefined,
+	tabIndex: 0,
+	
+	vertical: false,
+	circular: false,
+	
+	value: 0,
 	start: 0,
 	end: 100,
 	step: 1,
 	precision: 0,
 	increment: undefined,
-	value: 0,
-	vertical: false,
+
 	onChange: noop,
-	onStartInteraction: noop,
-	onEndInteraction: noop,
-	circular: false
+	onStart: noop,
+	onEnd: noop
+
 };
 
 export default Slider;

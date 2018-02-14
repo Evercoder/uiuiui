@@ -10,7 +10,7 @@ class MultiSliderHandle extends React.PureComponent {
 	}
 
 	startInteraction(e) {
-		this.props.onStartInteraction(e, this.props.property);
+		this.props.onStart(e, this.props.property);
 	}
 
 	render() {
@@ -35,7 +35,7 @@ class MultiSliderHandle extends React.PureComponent {
 }
 
 MultiSliderHandle.defaultProps = {
-	onStartInteraction: noop,
+	onStart: noop,
 	property: undefined
 };
 

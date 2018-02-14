@@ -5,25 +5,25 @@ class SliderHandle extends React.PureComponent {
 		let {
 			value,
 			scale,
-			interacting,
-			vertical
+			vertical,
+			interacting
 		} = this.props;
 
-		let handle_styles = {};
-		handle_styles[vertical ? 'top' : 'left'] = scale.invert(value) + '%';
+		let style = {
+			[vertical ? 'top' : 'left']: scale.invert(value) + '%'
+		};
 
 		return (
 			<span
-				className={`rc-slider__handle ${ interacting ? 'rc-slider__handle--interacting': ''}`}
-				style={handle_styles}
+				className={`
+					rc-slider__handle 
+					${ interacting ? 'rc-slider__handle--interacting' : '' }
+				`}
+				style={style}
 			/>
 			
 		);
 	}
 }
-
-SliderHandle.defaultProps = {
-
-};
 
 export default SliderHandle;

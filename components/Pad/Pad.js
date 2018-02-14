@@ -7,7 +7,7 @@ import { to_step } from '../util/math';
 
 import './Pad.css';
 
-import Surface from '../Surface';
+import { Surface } from '../Surface';
 
 const initial_state = {
 	x: null,
@@ -21,8 +21,8 @@ class Pad extends React.PureComponent {
 		super(props);
 		this.onChange = this.onChange.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
-		this.onStartInteraction = this.onStartInteraction.bind(this);
-		this.onEndInteraction = this.onEndInteraction.bind(this);
+		this.onStart = this.onStart.bind(this);
+		this.onEnd = this.onEnd.bind(this);
 		this.state = {
 			...initial_state,
 			x: props.x,
@@ -87,13 +87,13 @@ class Pad extends React.PureComponent {
 		}
 	}
 
-	onStartInteraction() {
+	onStart() {
 		this.setState({
 			interacting: true
 		});
 	}
 
-	onEndInteraction() {
+	onEnd() {
 		this.setState({
 			interacting: false
 		});
@@ -194,8 +194,8 @@ class Pad extends React.PureComponent {
 				onKeyDown={this.onKeyDown}
 			>
 				<Surface
-					onStartInteraction={this.onStartInteraction}
-					onEndInteraction={this.onEndInteraction} 
+					onStart={this.onStart}
+					onEnd={this.onEnd} 
 					onChange={this.onChange}
 				>
 				{ 

@@ -1,6 +1,12 @@
-export { 
-	default as ColorPicker 
-} from './ColorPicker';
+export {
+	Position
+} from './Position';
+
+export {
+	Surface,
+	RadialSurface,
+	DeltaSurface
+} from './Surface';
 
 export { 
 	NumericInput,
@@ -8,42 +14,32 @@ export {
 } from './Input';
 
 export {
-	default as Pad,
-	PadGrid,
-	PadHandle
-} from './Pad';
-
-export {
-	default as RadialPad,
-	RadialPadGrid,
-	RadialPadHandle
-} from './RadialPad';
-
-export {
-	default as Surface
-} from './Surface';
-
-export {
-	default as RadialSurface
-} from './RadialSurface';
-
-export {
-	default as Slider,
+	Slider,
 	SliderHandle,
 	SliderProgress,
 	SliderTooltip
 } from './Slider';
 
 export {
+	Pad,
+	PadGrid,
+	PadHandle,
+	RadialPad,
+	RadialPadGrid,
+	RadialPadHandle,
+	BandPad,
+	BandPadProgress
+} from './Pad';
+
+export { 
+	default as ColorPicker 
+} from './ColorPicker';
+
+export {
 	Checkerboard,
 	Hue,
 	Opacity
 } from './Spectrum';
-
-export {
-	default as BandPad,
-	BandPadProgress
-} from './BandPad';
 
 export {
 	List,

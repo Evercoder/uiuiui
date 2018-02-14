@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { scaleIdentity } from 'd3-scale';
 
-import Surface from '../Surface';
+import { Surface } from '../Surface';
 
 import { noop } from '../util/functions';
 
@@ -12,17 +12,17 @@ class DeltaSurface extends React.Component {
 	constructor(props) {
 		super(props);
 		
-		this.startInteraction = this.startInteraction.bind(this);
-		this.doInteraction = this.doInteraction.bind(this);
+		this.start = this.start.bind(this);
+		this.change = this.change.bind(this);
 	}
 
-	startInteraction(e) {
+	start(e) {
 		this._initial_x = e.clientX;
 		this._initial_y = e.clientY;
 		e.preventDefault();
 	}
 
-	doInteraction({x, y}) {
+	change({x, y}) {
 		this.props.onChange({
 			x: x - this._initial_x,
 			y: y - this._initial_y
@@ -32,11 +32,13 @@ class DeltaSurface extends React.Component {
 	render() {
 		return (
 			<Surface 
-				className='rc-deltasurface'
-				x_scale={identity_scale}
-				y_scale={identity_scale}
-				onStartInteraction={this.startInteraction}
-				onChange={this.doInteraction}
+				className='rc-surface--delta'
+				x_scale={scale_identity}
+				y_scale={scale_identity}
+				onStart={this.start}
+				onChange={this.change}
+				passive={this.props.passive}
+				interacting={this.props.interacting}
 			>
 				{ this.props.children }
 			</Surface>
@@ -44,10 +46,12 @@ class DeltaSurface extends React.Component {
 	}
 }
 
-const identity_scale = scaleIdentity();
+const scale_identity = scaleIdentity();
 
 DeltaSurface.defaultProps = {
-	onChange: noop
+	onChange: noop,
+	passive: false,
+	interacting: false
 };
 
 export default DeltaSurface;

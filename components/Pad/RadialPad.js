@@ -1,7 +1,7 @@
 import React from 'react';
 import { scaleLinear } from 'd3-scale';
 
-import RadialSurface from '../RadialSurface';
+import { RadialSurface } from '../Surface';
 
 import { to_step } from '../util/math';
 import { noop } from '../util/functions';
@@ -19,8 +19,8 @@ class RadialPad extends React.PureComponent {
 		super(props);
 
 		this.onChange = this.onChange.bind(this);
-		this.onInteractionStart = this.onInteractionStart.bind(this);
-		this.onInteractionEnd = this.onInteractionEnd.bind(this);
+		this.onStart = this.onStart.bind(this);
+		this.onEnd = this.onEnd.bind(this);
 
 		this.state = {
 			...initial_state,
@@ -54,13 +54,13 @@ class RadialPad extends React.PureComponent {
 			.clamp(true);
 	}
 
-	onInteractionStart() {
+	onStart() {
 		this.setState({ 
 			interacting: true 
 		});
 	}
 
-	onInteractionEnd() {
+	onEnd() {
 		this.setState({ 
 			interacting: false 
 		});
@@ -104,8 +104,8 @@ class RadialPad extends React.PureComponent {
 			<div className='rc-radialpad'>
 				<RadialSurface 
 					onChange={this.onChange}
-					onInteractionStart={this.onInteractionStart}
-					onInteractionEnd={this.onInteractionEnd}
+					onStart={this.onStart}
+					onEnd={this.onEnd}
 				>
 					{
 						React.Children.map(

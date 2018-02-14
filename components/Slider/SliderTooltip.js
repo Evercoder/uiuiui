@@ -13,17 +13,14 @@ class SliderTooltip extends React.PureComponent {
 			return null;
 		}
 
-		let handle_styles = {};
-		handle_styles[vertical ? 'top' : 'left'] = scale.invert(value) + '%';
+		let style = {
+			[vertical ? 'top' : 'left']: scale.invert(value) + '%'
+		};
 
 		return (
-			<span
-				className='rc-slider__tooltip'
-				style={handle_styles}
-			>
+			<span className='rc-slider__tooltip' style={style}>
 				{value}
 			</span>
-			
 		);
 	}
 }

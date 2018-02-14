@@ -3,8 +3,8 @@ import React from 'react';
 import chroma from 'chroma-js';
 
 // Common Components
-import Pad, { PadHandle } from '../Pad';
-import Slider, { SliderHandle } from '../Slider';
+import { Pad, PadHandle } from '../Pad';
+import { Slider, SliderHandle } from '../Slider';
 import { NumericInput, NumericInputControls } from '../Input';
 
 // ColorPicker-specific Components

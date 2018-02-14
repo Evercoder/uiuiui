@@ -29,7 +29,7 @@
     "react-event-listener": "^0.5.3"
   },
   "scripts": {
-    "storybook:start": "start-storybook -p 6006",
+    "storybook:start": "start-storybook -p 6006 & open http://localhost:6006",
     "storybook:build": "build-storybook",
     "build": "babel components -d build --copy-files"
   }

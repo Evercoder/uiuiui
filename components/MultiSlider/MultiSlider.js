@@ -1,7 +1,7 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 
-import Surface from '../Surface';
+import { Surface } from '../Surface';
 
 import { noop } from '../util/functions';
 
@@ -13,21 +13,21 @@ class MultiSlider extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.onStartInteraction = this.onStartInteraction.bind(this);
-		this.onEndInteraction = this.onEndInteraction.bind(this);
+		this.onStart = this.onStart.bind(this);
+		this.onEnd = this.onEnd.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onInsert = this.onInsert.bind(this);
 		this.state = initial_state;
 	}
 
-	onStartInteraction(e, property) {
+	onStart(e, property) {
 		this.setState({
 			interacting: true,
 			interacting_property: property
 		});
 	}
 
-	onEndInteraction(e) {
+	onEnd(e) {
 		this.setState({
 			interacting: false,
 			interacting_property: null
@@ -56,7 +56,7 @@ class MultiSlider extends React.Component {
 					interacting={interacting}
 					onChange={this.onChange}
 					onInsert={this.onInsert}
-					onEndInteraction={this.onEndInteraction}
+					onEnd={this.onEnd}
 				>
 
 				{
@@ -64,7 +64,7 @@ class MultiSlider extends React.Component {
 						this.props.children,
 						child => 
 							React.cloneElement(child, {
-								onStartInteraction: this.onStartInteraction
+								onStart: this.onStart
 							})
 					)
 				}

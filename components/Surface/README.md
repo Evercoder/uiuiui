@@ -13,20 +13,20 @@ The `Surface` component uses a scale from the [`d3-scale`](https://github.com/d3
 Property | Type | Default value | Notes
 -------- | ---- | ------------- | -----
 `onChange` | `function` | `({x, y}) => {}` | A callback that is invoked each time the X/Y coordinates are changed based on user interaction.
-`onInteractionStart` | `function` | `() => {}` | A callback that is invoked when the user starts an interaction (e.g. MouseDown on the Surface)
-`onInteractionEnd` | `function` | `() => {}` | A callback that is invoked when the user ends an interaction (e.g. on MouseUp)
+`onStart` | `function` | `() => {}` | A callback that is invoked when the user starts an interaction (e.g. MouseDown on the Surface)
+`onEnd` | `function` | `() => {}` | A callback that is invoked when the user ends an interaction (e.g. on MouseUp)
 
 ### `onChange`
 
 The `onChange` callback receives an object containing `x` and `y` coordinates expressed in percentages in the interval `[0..100]` describing the user's position on the surface.
 
-### `onInteractionStart`
+### `onStart`
 
-This is provided for symmetry with `onInteractionEnd`.
+This is provided for symmetry with `onEnd`.
 
-### `onInteractionEnd`
+### `onEnd`
 
-The `onInteractionEnd` callback is useful when you need to know that the user has finished interacting with the surface. While you might stage a transient value on the `onChange` callback, you can use `onInteractionEnd` to commit that value.
+The `onEnd` callback is useful when you need to know that the user has finished interacting with the surface. While you might stage a transient value on the `onChange` callback, you can use `onEnd` to commit that value.
 
 ## CSS
 

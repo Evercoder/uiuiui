@@ -4,8 +4,11 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import Surface from '../components/Surface';
-import RadialSurface from '../components/RadialSurface';
+import { 
+	Surface,
+	RadialSurface,
+	DeltaSurface
+} from '../components/Surface';
 
 import { 
 	NumericInput,
@@ -23,23 +26,23 @@ import {
 	Hue
 } from '../components/Spectrum';
 
-import Slider, { 
-	SliderHandle, 
-	SliderProgress, 
-	SliderTooltip 
+import {
+	Slider,
+	SliderHandle,
+	SliderProgress,
+	SliderTooltip
 } from '../components/Slider';
 
-import Pad, { PadHandle, PadGrid } from '../components/Pad';
-import RadialPad, { RadialPadHandle, RadialPadGrid } from '../components/RadialPad';
-
 import {
-	DeltaSurface
-} from '../components/DeltaSurface';
-
-import {
-	default as BandPad,
+	Pad,
+	PadGrid,
+	PadHandle,
+	RadialPad,
+	RadialPadGrid,
+	RadialPadHandle,
+	BandPad,
 	BandPadProgress
-} from '../components/BandPad';
+} from '../components/Pad';
 
 import ColorPicker from '../components/ColorPicker';
 
@@ -247,13 +250,14 @@ storiesOf('Surface', module)
 	})
 	.add('Passive Surface', () => {
 		return <Surface passive></Surface>;
-	});
-
-storiesOf('RadialSurface', module)
+	})
 	.add('Basic RadialSurface', () => {
 		return <div className='radial-surface-container'>
 			<RadialSurface onChange={action('onChange')}/>
 		</div>;
+	})
+	.add('Basic DeltaSurface', () => {
+		return <DeltaSurface onChange={action('onChange')}>DeltaSurface</DeltaSurface>;
 	});
 
 storiesOf('Spectrum', module)
@@ -303,11 +307,6 @@ storiesOf('Input', module)
 				<NumericInput property='some_property'/>
 			</ControlledComponentWrapper>
 		);
-	});
-
-storiesOf('DeltaSurface', module)
-	.add('Basic DeltaSurface', () => {
-		return <DeltaSurface onChange={action('onChange')}>DeltaSurface</DeltaSurface>;
 	});
 
 storiesOf('List', module)

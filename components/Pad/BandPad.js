@@ -5,7 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import { to_step } from '../util/math';
 import { noop } from '../util/functions';
 
-import Surface from '../Surface';
+import { Surface } from '../Surface';
 
 const initial_state = {
 	interacting: false,
@@ -18,8 +18,8 @@ class BandPad extends React.Component {
 
 		super(props);
 
-		this.onInteractionStart = this.onInteractionStart.bind(this);
-		this.onInteractionEnd = this.onInteractionEnd.bind(this);
+		this.onStart = this.onStart.bind(this);
+		this.onEnd = this.onEnd.bind(this);
 		this.onChange = this.onChange.bind(this);
 
 		this.state = {
@@ -46,13 +46,13 @@ class BandPad extends React.Component {
 
 	}
 
-	onInteractionStart() {
+	onStart() {
 		this.setState({
 			interacting: true
 		});
 	}
 
-	onInteractionEnd() {
+	onEnd() {
 		this.setState({
 			interacting: false
 		});
@@ -94,8 +94,8 @@ class BandPad extends React.Component {
 		return (
 			<div className='rc-bandpad'>
 				<Surface
-					onInteractionStart={this.onInteractionStart}
-					onInteractionEnd={this.onInteractionEnd}
+					onStart={this.onStart}
+					onEnd={this.onEnd}
 					onChange={this.onChange}
 				>
 

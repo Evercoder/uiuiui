@@ -3,12 +3,25 @@ import EventListener from 'react-event-listener';
 
 import { noop } from '../util/functions';
 
+/*
+	Component: Position
+	------------------------------------------
+
+	This low-level component will relay the user coordinates
+	on the `onChange` callback, as long as it is enabled
+	through the `interacting` boolean property.
+
+	It will also relay the end of the interaction 
+	on the `onEnd` callback.
+
+*/
+
 class Position extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
 		this.onChange = this.onChange.bind(this);
-		this.onDone = this.onDone.bind(this);
+		this.onEnd = this.onEnd.bind(this);
 	}
 
 	onChange(e) {
@@ -16,15 +29,16 @@ class Position extends React.PureComponent {
 			x: e.clientX,
 			y: e.clientY,
 			event: e
-		});
+		}, this.props.property);
+		e.preventDefault();
 	}
 
-	onDone(e) {
-		this.props.onDone({
+	onEnd(e) {
+		this.props.onEnd({
 			x: e.clientX,
 			y: e.clientY,
 			event: e
-		});
+		}, this.props.property);
 	}
 
 	render() {
@@ -33,15 +47,16 @@ class Position extends React.PureComponent {
 				<EventListener
 					target='document'
 					onMouseMove={this.onChange} 
-					onMouseUp={this.onDone}
+					onMouseUp={this.onEnd}
 				/> : null
-		)
+		);
 	}
 }
 
 Position.defaultProps = {
 	onChange: noop,
-	onDone: noop
+	onEnd: noop,
+	property: undefined
 };
 
 export default Position;

@@ -34,6 +34,7 @@ Taking a leaf from [_Atomic Web Design_](bradfrost.com/blog/post/atomic-web-desi
 
 These low-level components, not meant for public consumption, may form the basis of new high-level components:
 
+* [Position](./components/Position/README.md)
 * [Surface](./components/Surface/README.md)
 
 ### Molecules (High-level components)

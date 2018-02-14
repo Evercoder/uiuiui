@@ -5,28 +5,28 @@ class SliderProgress extends React.PureComponent {
 		let {
 			value,
 			scale,
-			vertical
+			vertical,
+			interacting
 		} = this.props;
 
-		let handle_styles = {};
+		let style = {};
 		if (vertical) {
-			handle_styles['height'] = (100 - scale.invert(value)) + '%';
+			style['height'] = (100 - scale.invert(value)) + '%';
 		} else {
-			handle_styles['width'] = scale.invert(value) + '%';
+			style['width'] = scale.invert(value) + '%';
 		}
 
 		return (
 			<span
-				className='rc-slider__progress'
-				style={handle_styles}
+				className={`
+					rc-slider__progress 
+					${ interacting ? 'rc-slider__progress--interacting' : '' }
+				`}
+				style={style}
 			/>
 			
 		);
 	}
 }
-
-SliderProgress.defaultProps = {
-
-};
 
 export default SliderProgress;
