@@ -221,9 +221,7 @@ storiesOf('Pad', module)
 				<PadGrid x_step='10' y_step='10'/>
 			</Pad>
 		);
-	});
-
-storiesOf('RadialPad', module)
+	})
 	.add('Basic RadialPad', () => {
 		return (
 			<RadialPad onChange={action('onChange')} r_step='10' t_step='10'>
@@ -231,9 +229,7 @@ storiesOf('RadialPad', module)
 				<RadialPadGrid />
 			</RadialPad>
 		);
-	});
-
-storiesOf('BandPad', module)
+	})
 	.add('Basic BandPad', () => {
 		return (
 			<BandPad>

@@ -25,6 +25,7 @@ class Slider extends React.Component {
 		this.start = this.start.bind(this);
 		this.end = this.end.bind(this);
 
+		// Initial state
 		this.state = {
 			...initial_state,
 			value: props.value
@@ -50,6 +51,7 @@ class Slider extends React.Component {
 
 	computed_props(props) {
 
+		// Avoid unnecessary scale reinitialization
 		if (
 			this.scale &&
 			this.props.vertical === props.vertical &&
@@ -128,6 +130,7 @@ class Slider extends React.Component {
 					rc-slider 
 					${vertical ? 'rc-slider--vertical' : '' } 
 					${circular ? 'rc-slider--circular' : '' } 
+					${interacting ? 'rc-slider--interacting' : '' } 
 					${className || ''}
 				`}
 				tabIndex={tabIndex}

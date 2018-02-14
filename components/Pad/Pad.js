@@ -3,7 +3,8 @@ import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
 
-import { to_step } from '../util/math';
+import { noop } from '../util/functions';
+import { to_step, clamp, cycle } from '../util/math';
 
 import './Pad.css';
 
@@ -18,25 +19,42 @@ const initial_state = {
 class Pad extends React.PureComponent {
 
 	constructor(props) {
+
 		super(props);
-		this.onChange = this.onChange.bind(this);
-		this.onKeyDown = this.onKeyDown.bind(this);
-		this.onStart = this.onStart.bind(this);
-		this.onEnd = this.onEnd.bind(this);
+		
+		// Event handlers
+		this.change = this.change.bind(this);
+		this.keydown = this.keydown.bind(this);
+		this.start = this.start.bind(this);
+		this.end = this.end.bind(this);
+
+		// Initial state
 		this.state = {
 			...initial_state,
 			x: props.x,
 			y: props.y
 		}
+
 		this.computed_props(props);
 	}
 
 	componentWillReceiveProps(props) {
-		this.setState({
-			x: props.x,
-			y: props.y
-		});
+		if (this.state.x !== props.x || this.state.y !== props.y) {
+			this.setState({
+				x: props.x,
+				y: props.y
+			});
+		}
 		this.computed_props(props);
+	}
+
+	componentDidUpdate(prev_props, prev_state) {
+		if (this.state.x !== prev_state.x || this.state.y !== prev_state.y) {
+			this.props.onChange({
+				x: this.state.x,
+				y: this.state.y
+			}, this.props.property);
+		}
 	}
 
 	computed_props(props) {
@@ -64,117 +82,66 @@ class Pad extends React.PureComponent {
 			.clamp(true);
 	}
 
-	format_x(value, increment) {
-		return to_step(value, increment === undefined ? this.props.x_step : increment, this.props.x_precision);
+	format_x(value, method = clamp) {
+		return to_step(
+			method(value, this.props.x_start, this.props.x_end),
+			this.props.x_step, 
+			this.props.x_precision
+		);
 	}
 
-	format_y(value, increment) {
-		return to_step(value, increment === undefined ? this.props.y_step : increment, this.props.y_precision);
+	format_y(value, method = clamp) {
+		return to_step(
+			method(value, this.props.y_start, this.props.y_end),
+			this.props.y_step, 
+			this.props.y_precision
+		);
 	}
 
-	onChange({x, y}) {
+	change({x, y}) {
 		let x_val = this.format_x(this.x_scale(x));
 		let y_val = this.format_y(this.y_scale(y));
-		if (x_val !== this.state.x || y_val !== this.state.y) {
-			this.setState({
-				x: x_val,
-				y: y_val
-			});
-			this.props.onChange({ 
-				x: x_val, 
-				y: y_val 
-			}, this.props.property);
-		}
+
+		this.setState(
+			previous_state => {
+				// Avoid unnecessary renders 
+				// when values have not actually changed
+				return (
+					x_val === previous_state.x &&
+					y_val === previous_state.y
+				) ? null : { 
+					x: x_val,
+					y: y_val 
+				};
+			}
+		);
 	}
 
-	onStart() {
+	start(e) {
 		this.setState({
 			interacting: true
+		}, () => {
+			this.props.onStart(e);
 		});
 	}
 
-	onEnd() {
+	end(e) {
 		this.setState({
 			interacting: false
+		}, () => {
+			this.props.onEnd(e);
 		});
-	}
-
-	offset_x(dir) {
-		this.setState(
-			previous_state => {
-
-				let amount = this.props.x_increment === undefined ? 
-					this.props.x_step : this.props.x_increment;
-
-				let proposed_value = previous_state.x + 
-					amount * dir * Math.sign(this.props.x_end - this.props.x_start);
-				return { 
-					x: this.format_x(
-						this.x_scale(
-							this.x_scale.invert(proposed_value)
-						)
-					) 
-				};
-			},
-			() => {
-				this.props.onChange({ 
-					x: this.state.x, 
-					y: this.state.y 
-				}, this.props.property);
-			}
-		);
-	}
-
-	offset_y(dir) {
-		this.setState(
-			previous_state => {
-
-				let amount = this.props.y_increment === undefined ? 
-					this.props.y_step : this.props.y_increment;
-
-				let proposed_value = previous_state.y + 
-					amount * dir * Math.sign(this.props.y_end - this.props.y_start);
-				return { 
-					y: this.format_y(
-						this.y_scale(
-							this.y_scale.invert(proposed_value)
-						)
-					) 
-				};
-			},
-			() => {
-				this.props.onChange({ 
-					x: this.state.x, 
-					y: this.state.y 
-				}, this.props.property);
-			}
-		);
-	}
-
-	onKeyDown(e) {
-		let handled = true;
-		switch (e.key) {
-			case 'ArrowUp':
-				this.offset_y(-1);
-				break;
-			case 'ArrowDown':
-				this.offset_y(1);
-				break;
-			case 'ArrowLeft':
-				this.offset_x(-1);
-				break;
-			case 'ArrowRight':
-				this.offset_x(1);
-				break;
-			default:
-				handled = false;
-		}
-		if (handled) {
-			e.preventDefault();
-		}
 	}
 
 	render() {
+
+		let {
+			circular,
+			tabIndex,
+			className,
+			x_step,
+			y_step
+		} = this.props;
 
 		let {
 			x,
@@ -182,27 +149,26 @@ class Pad extends React.PureComponent {
 			interacting
 		} = this.state;
 
-		let {
-			x_step,
-			y_step
-		} = this.props;
-
 		return (
 			<div 
-				className='rc-pad'
-				tabIndex='0'
-				onKeyDown={this.onKeyDown}
+				className={`
+					rc-pad 
+					${circular ? 'rc-pad--circular' : '' } 
+					${interacting ? 'rc-pad--interacting' : '' } 
+					${className || ''}
+				`}
+				tabIndex={tabIndex}
+				onKeyDown={this.keydown}
 			>
 				<Surface
-					onStart={this.onStart}
-					onEnd={this.onEnd} 
-					onChange={this.onChange}
+					onStart={this.start}
+					onEnd={this.end} 
+					onChange={this.change}
 				>
 				{ 
 					React.Children.map(
 						this.props.children, 
 						child => React.cloneElement(child, {
-							
 							x: x,
 							y: y,
 							x_scale: this.x_scale,
@@ -210,7 +176,6 @@ class Pad extends React.PureComponent {
 							x_step: x_step,
 							y_step: y_step,
 							interacting: interacting,
-
 							...child.props
 						})
 					) 
@@ -218,6 +183,69 @@ class Pad extends React.PureComponent {
 				</Surface>
 			</div>
 		);
+	}
+
+	step_x_amount(e) {
+		return (
+			typeof this.props.x_increment === 'function' ? 
+				this.props.x_increment(e, this.props) : this.props.x_increment
+		) || this.props.x_step;
+	}
+
+	step_y_amount(e) {
+		return (
+			typeof this.props.y_increment === 'function' ? 
+				this.props.y_increment(e, this.props) : this.props.y_increment
+		) || this.props.y_step;
+	}
+
+	offset_x(e, dir) {
+		let amount = this.step_x_amount(e) * dir * Math.sign(this.props.x_end - this.props.x_start);
+		this.setState(
+			previous_state => {
+				return { 
+					x: this.format_x(
+						previous_state.x + amount,
+						this.props.circular ? cycle : clamp
+					) 
+				};
+			});
+	}
+
+	offset_y(e, dir) {
+		let amount = this.step_y_amount(e) * dir * Math.sign(this.props.y_end - this.props.y_start);
+		this.setState(
+			previous_state => {
+				return { 
+					y: this.format_y(
+						previous_state.y + amount,
+						this.props.circular ? cycle : clamp
+					) 
+				};
+			});
+	}
+
+	keydown(e) {
+		let handled = true;
+		switch (e.key) {
+			case 'ArrowUp':
+				this.offset_y(e, -1);
+				break;
+			case 'ArrowDown':
+				this.offset_y(e, 1);
+				break;
+			case 'ArrowLeft':
+				this.offset_x(e, -1);
+				break;
+			case 'ArrowRight':
+				this.offset_x(e, 1);
+				break;
+			default:
+				handled = false;
+		}
+		if (handled) {
+			e.preventDefault();
+		}
 	}
 }
 
@@ -234,7 +262,12 @@ Pad.defaultProps = {
 	x_increment: undefined,
 	y_increment: undefined,
 	x: 50,
-	y: 50
+	y: 50,
+	tabIndex: 0,
+	className: undefined,
+	circular: false,
+	onStart: noop,
+	onEnd: noop
 };
 
 export default Pad;
