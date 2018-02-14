@@ -7,7 +7,8 @@ class PadHandle extends React.PureComponent {
 			y,
 			x_scale,
 			y_scale,
-			interacting
+			interacting,
+			className
 		} = this.props;
 
 		let style = {
@@ -20,11 +21,16 @@ class PadHandle extends React.PureComponent {
 				className={`
 					rc-pad__handle 
 					${ interacting ? 'rc-pad__handle--interacting': '' }
+					${ className || '' }
 				`}
 				style={style}
 			/>
 		);
 	}
 }
+
+PadHandle.defaultProps = {
+	className: undefined
+};
 
 export default PadHandle;
