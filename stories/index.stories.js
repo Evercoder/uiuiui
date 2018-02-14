@@ -139,55 +139,14 @@ storiesOf('Slider', module)
 	.add('Multiple vertical sliders', () => {
 		return (
 			<div className='equalizer'>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
-				<Slider vertical>
-					<SliderProgress/>
-				</Slider>
+				{
+					(new Array(16)).fill(0).map(
+						(v, idx) => 
+							<Slider key={idx} vertical>
+								<SliderProgress/>
+							</Slider>
+					)
+				}
 			</div>
 		);
 	})

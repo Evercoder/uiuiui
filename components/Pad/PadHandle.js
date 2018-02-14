@@ -10,16 +10,19 @@ class PadHandle extends React.PureComponent {
 			interacting
 		} = this.props;
 
-		let handle_styles = {};
-		handle_styles['left'] = x_scale.invert(x) + '%';
-		handle_styles['top'] = y_scale.invert(y) + '%';
+		let style = {
+			left: x_scale.invert(x) + '%',
+			top: y_scale.invert(y) + '%'
+		};
 
 		return (
 			<span
-				className={`rc-pad__handle ${ interacting ? 'rc-pad__handle--interacting': ''}`}
-				style={handle_styles}
+				className={`
+					rc-pad__handle 
+					${ interacting ? 'rc-pad__handle--interacting': '' }
+				`}
+				style={style}
 			/>
-			
 		);
 	}
 }

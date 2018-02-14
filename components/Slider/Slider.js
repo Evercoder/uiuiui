@@ -91,24 +91,21 @@ class Slider extends React.Component {
 			interacting
 		} = this.state;
 
-		let pad_props = vertical ? 
-			{
-				y: value,
-				y_start: end,
-				y_end: start,
-				y_step: step,
-				y_precision: precision,
-				y_increment: increment
-			}
-			:
-			{
-				x: value,
-				x_start: start,
-				x_end: end,
-				x_step: step,
-				x_precision: precision,
-				x_increment: increment
-			};
+		let pad_props = vertical ? {
+			y: value,
+			y_start: end,
+			y_end: start,
+			y_step: step,
+			y_precision: precision,
+			y_increment: increment
+		} : {
+			x: value,
+			x_start: start,
+			x_end: end,
+			x_step: step,
+			x_precision: precision,
+			x_increment: increment
+		};
 
 		return (
 			<div 
@@ -124,9 +121,10 @@ class Slider extends React.Component {
 			>
 				<Pad
 					onStart={this.start}
-					onEnd={this.end} 
 					onChange={this.change}
+					onEnd={this.end} 
 					property={property}
+					circular={circular}
 					{...pad_props}
 				>
 					{ 
