@@ -93,15 +93,8 @@ class Surface extends React.PureComponent {
 				<Position 
 					interacting={interacting} 
 					onChange={this.doInteraction}
+					onDone={this.endInteraction}
 				/>
-
-				{
-					interacting && !passive &&
-						<EventListener
-							target='document'
-							onMouseUp={this.endInteraction}
-						/>
-				}
 
 				{ this.props.children }
 			</div>

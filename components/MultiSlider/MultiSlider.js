@@ -56,6 +56,7 @@ class MultiSlider extends React.Component {
 					interacting={interacting}
 					onChange={this.onChange}
 					onInsert={this.onInsert}
+					onEndInteraction={this.onEndInteraction}
 				>
 
 				{
@@ -68,14 +69,6 @@ class MultiSlider extends React.Component {
 					)
 				}
 				</Surface>
-
-				{
-					interacting &&
-						<EventListener
-							target='document'
-							onMouseUp={this.onEndInteraction}
-						/>
-				}
 			</div>
 		);
 	}
