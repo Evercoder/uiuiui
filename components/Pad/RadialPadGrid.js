@@ -32,20 +32,20 @@ class RadialPadGrid extends React.PureComponent {
 		`).join(' ');
 
 		return (
-			<svg className='rc-radialpad__grid' viewBox={`0 0 ${size} ${size}`}>
+			<svg className='uiuiui-radialpad__grid' viewBox={`0 0 ${size} ${size}`}>
 				<rect 
-					className='rc-radialpad__grid-background'
+					className='uiuiui-radialpad__grid-background'
 					x='0' 
 					y='0' 
 					width='100%' 
 					height='100%'
 				/>
 				<path 
-					className='rc-radialpad__grid-lines rc-radialpad__grid-lines--r'
+					className='uiuiui-radialpad__grid-lines uiuiui-radialpad__grid-lines--r'
 					d={r_path}
 				/>
 				<path 
-					className='rc-radialpad__grid-lines rc-radialpad__grid-lines--t'
+					className='uiuiui-radialpad__grid-lines uiuiui-radialpad__grid-lines--t'
 					d={t_path}
 				/>
 			</svg>

@@ -10,8 +10,8 @@ class SliderHandle extends React.PureComponent {
 		return (
 			<PadHandle 
 				className={`
-					rc-slider__handle
-					${ this.props.interacting ? 'rc-slider__handle--interacting' : '' }
+					uiuiui-slider__handle
+					${ this.props.interacting ? 'uiuiui-slider__handle--interacting' : '' }
 				`}
 				{...this.props} 
 				{...slider_props} 

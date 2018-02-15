@@ -13,7 +13,7 @@ class BandPadProgress extends React.PureComponent {
 		console.log(values);
 
 		return (
-			<div className='rc-bandpad__progress'>
+			<div className='uiuiui-bandpad__progress'>
 				{
 					range(bands).map(idx => {
 						let band_style = {
@@ -25,7 +25,7 @@ class BandPadProgress extends React.PureComponent {
 						return (
 							<div 
 								key={idx}
-								className='rc-bandpad__progress-band'
+								className='uiuiui-bandpad__progress-band'
 								style={band_style}
 							/>
 						);

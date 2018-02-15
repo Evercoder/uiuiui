@@ -21,8 +21,8 @@ class SliderProgress extends React.PureComponent {
 		return (
 			<span
 				className={`
-					rc-slider__progress 
-					${ interacting ? 'rc-slider__progress--interacting' : '' }
+					uiuiui-slider__progress 
+					${ interacting ? 'uiuiui-slider__progress--interacting' : '' }
 				`}
 				style={style}
 			/>

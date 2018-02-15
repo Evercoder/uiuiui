@@ -14,7 +14,7 @@ class Gradient extends React.PureComponent {
 		};
 
 		return (
-			<div className='rc-spectrum rc-spectrum--gradient' style={style}></div>
+			<div className='uiuiui-spectrum uiuiui-spectrum--gradient' style={style}></div>
 		);
 	}
 }

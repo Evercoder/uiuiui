@@ -101,7 +101,7 @@ class RadialPad extends React.PureComponent {
 		} = this.props;
 
 		return (
-			<div className='rc-radialpad'>
+			<div className='uiuiui-radialpad'>
 				<RadialSurface 
 					onChange={this.onChange}
 					onStart={this.onStart}

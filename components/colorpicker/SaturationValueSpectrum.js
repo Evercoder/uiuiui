@@ -8,7 +8,7 @@ class SaturationValueSpectrum extends React.PureComponent {
 		let { hue } = this.props;
 		return (
 			<div 
-				className='rc-spectrum rc-spectrum--saturation-value'
+				className='uiuiui-spectrum uiuiui-spectrum--saturation-value'
 				style={{ background: valueSaturationGradient(hue) }}
 			>
 

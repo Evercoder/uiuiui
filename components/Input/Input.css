@@ -1,8 +1,8 @@
-.rc-input {
+.uiuiui-input {
 	position: relative;
 }
 
-.rc-input input {
+.uiuiui-input input {
 	box-sizing: border-box;
 	width: 100%;
 	font-size: 1em;
@@ -10,12 +10,12 @@
 	border: 1px solid #999;
 }
 
-.rc-input input:focus {
+.uiuiui-input input:focus {
 	outline: none;
 	border-color: #000;
 }
 
-.rc-input__controls {
+.uiuiui-input__controls {
 	position: absolute;
 	right: 1px;
 	top: 1px;
@@ -25,11 +25,11 @@
 	display: none;
 }
 
-.rc-input:hover .rc-input__controls {
+.uiuiui-input:hover .uiuiui-input__controls {
 	display: block;
 }
 
-.rc-input__control {
+.uiuiui-input__control {
 	display: block;
 	background: #f0f0f0;
 	text-align: center;
@@ -38,11 +38,11 @@
 	overflow: hidden;
 }
 
-.rc-input__control--increment {
+.uiuiui-input__control--increment {
 	border-bottom: 1px solid #999;
 }
 
-.rc-input__controls .rc-icon {
+.uiuiui-input__controls .uiuiui-icon {
 	stroke: #999;
 	stroke-width: 1.5;
 	fill: none;
@@ -52,6 +52,6 @@
 	display: block;
 }
 
-.rc-input__control:hover .rc-icon {
+.uiuiui-input__control:hover .uiuiui-icon {
 	stroke: #000;
 }

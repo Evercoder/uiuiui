@@ -98,7 +98,7 @@ class NumericInput extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<div className='rc-input rc-input--numeric'>
+			<div className='uiuiui-input uiuiui-input--numeric'>
 				<input
 					ref={this.register}
 					onKeyDown={this.keydown}

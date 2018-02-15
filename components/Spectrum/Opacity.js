@@ -15,10 +15,10 @@ class Opacity extends React.PureComponent {
 		let hsl = chroma(color).hsl();
 
 		return (
-			<div className='rc-spectrum rc-spectrum--opacity'>
+			<div className='uiuiui-spectrum uiuiui-spectrum--opacity'>
 				<Checkerboard/>
 				<div 
-					className='rc-spectrum'
+					className='uiuiui-spectrum'
 					style={
 						{
 							background: opacityGradient(hsl)

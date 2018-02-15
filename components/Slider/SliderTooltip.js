@@ -20,7 +20,7 @@ class SliderTooltip extends React.PureComponent {
 		};
 
 		return (
-			<span className='rc-slider__tooltip' style={style}>
+			<span className='uiuiui-slider__tooltip' style={style}>
 				{vertical ? y : x}
 			</span>
 		);

@@ -26,7 +26,7 @@ Property | Type | Default value | Notes
 
 ### Class name
 
-The `Slider` component has the class name `rc-slider`. 
+The `Slider` component has the class name `uiuiui-slider`. 
 
 ### Dimensions
 
@@ -56,7 +56,7 @@ This component displays a handle positioned at the slider value's position. Usag
 import { SliderHandle } from './components/Slider';
 ```
 
-It has the class name `rc-slider__handle`.
+It has the class name `uiuiui-slider__handle`.
 
 #### `SliderProgress`
 
@@ -67,7 +67,7 @@ This component fills part of the slider with a different color, depending on its
 import { SliderProgress } from './components/Slider';
 ```
 
-It has the class name `rc-slider__progress`.
+It has the class name `uiuiui-slider__progress`.
 
 #### `SliderTooltip`
 
@@ -78,4 +78,4 @@ This component displays the slider's value above the slider. Usage:
 import { SliderTooltip } from './components/Slider';
 ```
 
-It has the class name `rc-slider__tooltip`.
+It has the class name `uiuiui-slider__tooltip`.

@@ -1,17 +1,17 @@
-.rc-colorpicker {}
+.uiuiui-colorpicker {}
 
-.rc-colorpicker__pad {
+.uiuiui-colorpicker__pad {
 	width: 256px;
 	height: 256px;
 	position: relative;
 }
 
-.rc-colorpicker__pad .rc-spectrum {
+.uiuiui-colorpicker__pad .uiuiui-spectrum {
 	width: 100%;
 	height: 100%;
 }
 
-.rc-colorpicker__pad .rc-pad {
+.uiuiui-colorpicker__pad .uiuiui-pad {
 	background: transparent;
 	position: absolute;
 	z-index: 10;
@@ -21,26 +21,26 @@
 	height: 100%;
 }
 
-.rc-colorpicker__pad .rc-pad__handle {
+.uiuiui-colorpicker__pad .uiuiui-pad__handle {
 	border: 1px solid #fff;
 }
 
-.rc-colorpicker__pad .rc-pad:focus .rc-pad__handle {
+.uiuiui-colorpicker__pad .uiuiui-pad:focus .uiuiui-pad__handle {
 	border-color: red;
 }
 
-.rc-colorpicker__slider {
+.uiuiui-colorpicker__slider {
 	width: 256px;
 	height: 20px;
 }
 
-.rc-colorpicker__slider .rc-slider {
+.uiuiui-colorpicker__slider .uiuiui-slider {
 	width: 100%;
 	height: 100%;
 	border-radius: 0;
 }
 
-.rc-colorpicker__slider .rc-slider__handle {
+.uiuiui-colorpicker__slider .uiuiui-slider__handle {
 	background: transparent;
 	border: 1px solid #fff;
 	border-radius: 0.25em;
@@ -48,7 +48,7 @@
 	height: 120%;
 }
 
-.rc-colorpicker__slider .rc-slider:focus .rc-slider__handle {
+.uiuiui-colorpicker__slider .uiuiui-slider:focus .uiuiui-slider__handle {
 	outline: none;
 	border-color: red;
 }

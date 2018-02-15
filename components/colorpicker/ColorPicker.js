@@ -51,8 +51,8 @@ class ColorPicker extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<div className='rc-colorpicker'>
-				<div className='rc-colorpicker__pad'>
+			<div className='uiuiui-colorpicker'>
+				<div className='uiuiui-colorpicker__pad'>
 					
 					<SaturationValueSpectrum hue={hue} />
 
@@ -66,7 +66,7 @@ class ColorPicker extends React.PureComponent {
 						<PadHandle/>
 					</Pad>
 				</div>
-				<div className='rc-colorpicker__slider'>
+				<div className='uiuiui-colorpicker__slider'>
 
 
 					<Slider 
@@ -81,7 +81,7 @@ class ColorPicker extends React.PureComponent {
 					</Slider>
 				</div>
 
-				<div className='rc-colorpicker__slider'>
+				<div className='uiuiui-colorpicker__slider'>
 					
 					<Slider 
 						value={opacity}
@@ -102,7 +102,7 @@ class ColorPicker extends React.PureComponent {
 				</div>
 
 				<div 
-					className='rc-colorpicker__swatch'
+					className='uiuiui-colorpicker__swatch'
 					style={
 						{
 							width: '100px',

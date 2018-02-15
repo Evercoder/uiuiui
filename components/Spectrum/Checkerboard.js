@@ -4,7 +4,7 @@ class Checkerboard extends React.PureComponent {
 	render() {
 		return (
 			<svg 
-				className='rc-spectrum rc-spectrum--checkerboard'
+				className='uiuiui-spectrum uiuiui-spectrum--checkerboard'
 			>
 				<defs>
 					<pattern 

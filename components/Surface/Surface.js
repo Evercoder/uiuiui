@@ -109,7 +109,7 @@ class Surface extends React.PureComponent {
 
 		return (
 			<div 
-				className={`rc-surface ${className || ''}`}
+				className={`uiuiui-surface ${className || ''}`}
 				ref={this.register}
 				{...events}
 			>

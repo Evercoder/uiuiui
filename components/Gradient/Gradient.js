@@ -58,7 +58,7 @@ class Gradient extends React.Component {
 		} = this.state;
 
 		return (
-			<div className='rc-gradient'>
+			<div className='uiuiui-gradient'>
 				<GradientSpectrum stops={stops}/>
 				<MultiSlider 
 					onChange={this.onChange}

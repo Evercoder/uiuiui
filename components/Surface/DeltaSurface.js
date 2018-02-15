@@ -32,7 +32,7 @@ class DeltaSurface extends React.Component {
 	render() {
 		return (
 			<Surface 
-				className='rc-surface--delta'
+				className='uiuiui-surface--delta'
 				x_scale={scale_identity}
 				y_scale={scale_identity}
 				onStart={this.start}
