@@ -75,7 +75,7 @@ class Slider extends React.Component {
 
 		let {
 			vertical,
-			circular,
+			cyclical,
 			tabIndex,
 			className,
 			step,
@@ -112,7 +112,7 @@ class Slider extends React.Component {
 				className={`
 					uiuiui-slider 
 					${vertical ? 'uiuiui-slider--vertical' : '' } 
-					${circular ? 'uiuiui-slider--circular' : '' } 
+					${cyclical ? 'uiuiui-slider--cyclical' : '' } 
 					${interacting ? 'uiuiui-slider--interacting' : '' } 
 					${className || ''}
 				`}
@@ -124,7 +124,7 @@ class Slider extends React.Component {
 					onChange={this.change}
 					onEnd={this.end} 
 					property={property}
-					circular={circular}
+					cyclical={cyclical}
 					{...pad_props}
 				>
 					{ 
@@ -149,7 +149,7 @@ Slider.defaultProps = {
 	tabIndex: 0,
 	
 	vertical: false,
-	circular: false,
+	cyclical: false,
 	
 	value: 0,
 	start: 0,

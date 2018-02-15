@@ -136,7 +136,7 @@ class Pad extends React.PureComponent {
 	render() {
 
 		let {
-			circular,
+			cyclical,
 			tabIndex,
 			className,
 			x_step,
@@ -155,7 +155,7 @@ class Pad extends React.PureComponent {
 			<div 
 				className={`
 					uiuiui-pad 
-					${circular ? 'uiuiui-pad--circular' : '' } 
+					${cyclical ? 'uiuiui-pad--cyclical' : '' } 
 					${interacting ? 'uiuiui-pad--interacting' : '' } 
 					${className || ''}
 				`}
@@ -210,7 +210,7 @@ class Pad extends React.PureComponent {
 				return { 
 					x: this.format_x(
 						previous_state.x + amount,
-						this.props.circular ? cycle : clamp
+						this.props.cyclical ? cycle : clamp
 					) 
 				};
 			});
@@ -223,7 +223,7 @@ class Pad extends React.PureComponent {
 				return { 
 					y: this.format_y(
 						previous_state.y + amount,
-						this.props.circular ? cycle : clamp
+						this.props.cyclical ? cycle : clamp
 					) 
 				};
 			});
@@ -269,7 +269,7 @@ Pad.defaultProps = {
 	y: 50,
 	tabIndex: 0,
 	className: undefined,
-	circular: false,
+	cyclical: false,
 	onStart: noop,
 	onEnd: noop
 };

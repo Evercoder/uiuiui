@@ -158,7 +158,7 @@ class NumericInput extends React.PureComponent {
 			previous_state => {
 				let value = this.format_value(
 					this.format_user_input(previous_state) + amount, 
-					this.props.circular ? cycle : clamp
+					this.props.cyclical ? cycle : clamp
 				);
 
 				// Avoid unnecessary renders 
@@ -195,7 +195,7 @@ NumericInput.defaultProps = {
 	property: undefined,
 	expressions: true,
 	parse_value: parse_float,
-	circular: false
+	cyclical: false
 };
 
 export default NumericInput;

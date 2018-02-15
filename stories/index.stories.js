@@ -107,9 +107,9 @@ storiesOf('Slider', module)
 			</Slider>
 		);
 	})
-	.add('Basic Slider, Circular', () => {
+	.add('Basic Slider, cyclical', () => {
 		return (
-			<Slider onChange={action('onChange')} circular>
+			<Slider onChange={action('onChange')} cyclical>
 				<SliderTooltip/>
 				<SliderHandle/>
 				<SliderProgress/>
@@ -127,10 +127,10 @@ storiesOf('Slider', module)
 			</ControlledComponentWrapper>
 		);
 	})
-	.add('Basic Slider, Circular Controlled', () => {
+	.add('Basic Slider, cyclical Controlled', () => {
 		return (
 			<ControlledComponentWrapper>
-				<Slider property='myslider' circular>
+				<Slider property='myslider' cyclical>
 					<SliderTooltip/>
 					<SliderHandle/>
 					<SliderProgress/>
@@ -259,10 +259,10 @@ storiesOf('Input', module)
 			<NumericInputControls/>
 		</NumericInput>;
 	})
-	.add('NumericInput, circular', () => {
+	.add('NumericInput, cyclical', () => {
 		return <NumericInput 
 			onChange={action('onChange')} 
-			circular
+			cyclical
 			start='5'
 			end='-5'
 			step='0.1'
