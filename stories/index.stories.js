@@ -30,7 +30,8 @@ import {
 	Slider,
 	SliderHandle,
 	SliderProgress,
-	SliderTooltip
+	SliderTooltip,
+	SliderGrid
 } from '../components/Slider';
 
 import {
@@ -91,6 +92,17 @@ storiesOf('Slider', module)
 				<SliderTooltip/>
 				<SliderHandle/>
 				<SliderProgress/>
+				<SliderGrid/>
+			</Slider>
+		);
+	})
+	.add('Basic Slider With Grid', () => {
+		return (
+			<Slider onChange={action('onChange')} step='10'>
+				<SliderTooltip/>
+				<SliderHandle/>
+				<SliderProgress/>
+				<SliderGrid/>
 			</Slider>
 		);
 	})
@@ -128,10 +140,11 @@ storiesOf('Slider', module)
 	.add('Vertical Slider', () => {
 		return (
 			<div style={{ height: '200px'}}>
-				<Slider vertical onChange={action('onChange')}>
+				<Slider vertical onChange={action('onChange')} >
 					<SliderTooltip/>
 					<SliderHandle/>
 					<SliderProgress/>
+					<SliderGrid y_step='4'/>
 				</Slider>
 			</div>
 		);

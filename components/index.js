@@ -17,7 +17,8 @@ export {
 	Slider,
 	SliderHandle,
 	SliderProgress,
-	SliderTooltip
+	SliderTooltip,
+	SliderGrid
 } from './Slider';
 
 export {

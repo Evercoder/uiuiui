@@ -6,7 +6,8 @@ class PadGrid extends React.PureComponent {
 	render() {
 		let {
 			x_step,
-			y_step
+			y_step,
+			className
 		} = this.props;
 
 		let width = 100;
@@ -19,7 +20,14 @@ class PadGrid extends React.PureComponent {
 		let y_path = y_steps.map(step => `M 0 ${step * y_step} h ${width}`).join(' ');
 
 		return (
-			<svg className='uiuiui-pad__grid' viewBox={`0 0 ${width} ${height}`}>
+			<svg 
+				className={`
+					uiuiui-pad__grid
+					${className || ''}
+				`}
+				viewBox={`0 0 ${width} ${height}`}
+				preserveAspectRatio='none'
+			>
 				<rect 
 					className='uiuiui-pad__grid-background'
 					x='0' 
