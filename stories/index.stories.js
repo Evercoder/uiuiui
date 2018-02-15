@@ -38,6 +38,7 @@ import {
 	Pad,
 	PadGrid,
 	PadHandle,
+	PadTooltip,
 	RadialPad,
 	RadialPadGrid,
 	RadialPadHandle,
@@ -191,6 +192,7 @@ storiesOf('Pad', module)
 			<Pad onChange={action('onChange')}>
 				<PadHandle/>
 				<PadGrid x_step='10' y_step='10'/>
+				<PadTooltip/>
 			</Pad>
 		);
 	})

@@ -7,6 +7,7 @@ import './RadialPad.css';
 export { default as Pad } from './Pad';
 export { default as PadHandle } from './PadHandle';
 export { default as PadGrid } from './PadGrid';
+export { default as PadTooltip } from './PadTooltip';
 
 export { default as RadialPad } from './RadialPad';
 export { default as RadialPadHandle } from './RadialPadHandle';

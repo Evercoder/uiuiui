@@ -1,28 +1,23 @@
 import React from 'react';
 
+import { PadTooltip } from '../Pad';
+
+const show_x = (x, y) => x;
+const show_y = (x, y) => y;
+
 class SliderTooltip extends React.PureComponent {
 	render() {
-		let {
-			x,
-			y,
-			x_scale,
-			y_scale,
-			interacting,
-			vertical
-		} = this.props;
-
-		if (!interacting) {
-			return null;
-		}
-
-		let style = {
-			[vertical ? 'top' : 'left']: (vertical ? y_scale.invert(y) : x_scale.invert(x)) + '%'
+		let slider_props = {
+			[this.props.vertical ? 'x' : 'y'] : 50,
+			label: this.props.vertical ? show_y : show_x
 		};
 
 		return (
-			<span className='uiuiui-slider__tooltip' style={style}>
-				{vertical ? y : x}
-			</span>
+			<PadTooltip 
+				className='uiuiui-slider__tooltip' 
+				{...this.props}
+				{...slider_props}
+			/>
 		);
 	}
 }

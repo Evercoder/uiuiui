@@ -25,6 +25,7 @@ export {
 	Pad,
 	PadGrid,
 	PadHandle,
+	PadTooltip,
 	RadialPad,
 	RadialPadGrid,
 	RadialPadHandle,

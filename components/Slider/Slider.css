@@ -41,19 +41,6 @@
 	pointer-events: none;
 }
 
-.uiuiui-slider__tooltip {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	transform: translate(-50%, 0);
-	background: #222;
-	color: #fff;
-	padding: 0.25em;
-	pointer-events: none;
-	user-select: none;
-	z-index: 1000;
-}
-
 .uiuiui-slider--vertical {
 	height: 100%;
 	width: 1em;
@@ -71,10 +58,14 @@
 	bottom: 0;
 }
 
+.uiuiui-slider .uiuiui-slider__tooltip {
+	transform: translate(-50%, 75%);
+}
+
 .uiuiui-slider--vertical .uiuiui-slider__tooltip {
 	left: 100%;
 	top: 0;
-	transform: translate(0, -50%);
+	transform: translate(75%, -50%);
 }
 
 .uiuiui-slider__grid {
