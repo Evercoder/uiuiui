@@ -31,7 +31,7 @@ class ListItem extends React.PureComponent {
 		return (
 			<li 
 				tabIndex={tabIndex}
-				className={`uiuiui-list__item ${ selected ? 'uiuiui-list__item--selected' : ''}`}
+				className={`uix-list__item ${ selected ? 'uix-list__item--selected' : ''}`}
 				onClick={this.select}
 				onKeyDown={this.keydown}
 			>

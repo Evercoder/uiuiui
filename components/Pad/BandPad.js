@@ -92,7 +92,7 @@ class BandPad extends React.Component {
 		} = this.state;
 
 		return (
-			<div className='uiuiui-bandpad'>
+			<div className='uix-bandpad'>
 				<Surface
 					onStart={this.onStart}
 					onEnd={this.onEnd}

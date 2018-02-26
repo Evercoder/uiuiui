@@ -154,9 +154,9 @@ class Pad extends React.PureComponent {
 		return (
 			<div 
 				className={`
-					uiuiui-pad 
-					${cyclical ? 'uiuiui-pad--cyclical' : '' } 
-					${interacting ? 'uiuiui-pad--interacting' : '' } 
+					uix-pad 
+					${cyclical ? 'uix-pad--cyclical' : '' } 
+					${interacting ? 'uix-pad--interacting' : '' } 
 					${className || ''}
 				`}
 				tabIndex={tabIndex}

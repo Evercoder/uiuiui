@@ -1,15 +1,15 @@
-.uiuiui-slider {
+.uix-slider {
 	background: #f0f0f0;
 	height: 1em;
 	position: relative;
 }
 
-.uiuiui-slider .uiuiui-pad {
+.uix-slider .uix-pad {
 	width: 100%;
 	height: 100%;
 }
 
-.uiuiui-slider__handle {
+.uix-slider__handle {
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -21,17 +21,17 @@
 	z-index: 100;
 }
 
-.uiuiui-slider:focus .uiuiui-slider__handle,
-.uiuiui-slider__handle:hover,
-.uiuiui-slider__handle--interacting {
+.uix-slider:focus .uix-slider__handle,
+.uix-slider__handle:hover,
+.uix-slider__handle--interacting {
 	background: #000;
 }
 
-.uiuiui-slider:focus {
+.uix-slider:focus {
 	outline: none;
 }
 
-.uiuiui-slider__progress {
+.uix-slider__progress {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -41,40 +41,40 @@
 	pointer-events: none;
 }
 
-.uiuiui-slider--vertical {
+.uix-slider--vertical {
 	height: 100%;
 	width: 1em;
 }
 
-.uiuiui-slider--vertical .uiuiui-slider__handle {
+.uix-slider--vertical .uix-slider__handle {
 	left: 50%;
 	top: 0;
 }
 
-.uiuiui-slider--vertical .uiuiui-slider__progress {
+.uix-slider--vertical .uix-slider__progress {
 	left: 0;
 	right: 0;
 	top: auto;
 	bottom: 0;
 }
 
-.uiuiui-slider .uiuiui-slider__tooltip {
+.uix-slider .uix-slider__tooltip {
 	transform: translate(-50%, 75%);
 }
 
-.uiuiui-slider--vertical .uiuiui-slider__tooltip {
+.uix-slider--vertical .uix-slider__tooltip {
 	left: 100%;
 	top: 0;
 	transform: translate(75%, -50%);
 }
 
-.uiuiui-slider__grid {
+.uix-slider__grid {
 	top: 100%;
 	height: 0.5em;
 	z-index: 1;
 }
 
-.uiuiui-slider--vertical .uiuiui-slider__grid {
+.uix-slider--vertical .uix-slider__grid {
 	width: 0.5em;
 	height: 100%;
 	top: auto;

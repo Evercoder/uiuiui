@@ -24,7 +24,7 @@ class List extends React.Component {
 
 		return (
 			<ul 
-				className={`uiuiui-list ${className || ''}`}
+				className={`uix-list ${className || ''}`}
 				tabIndex={tabIndex}
 			>
 				{ 

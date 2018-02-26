@@ -110,10 +110,10 @@ class Slider extends React.Component {
 		return (
 			<div 
 				className={`
-					uiuiui-slider 
-					${vertical ? 'uiuiui-slider--vertical' : '' } 
-					${cyclical ? 'uiuiui-slider--cyclical' : '' } 
-					${interacting ? 'uiuiui-slider--interacting' : '' } 
+					uix-slider 
+					${vertical ? 'uix-slider--vertical' : '' } 
+					${cyclical ? 'uix-slider--cyclical' : '' } 
+					${interacting ? 'uix-slider--interacting' : '' } 
 					${className || ''}
 				`}
 				tabIndex={tabIndex}

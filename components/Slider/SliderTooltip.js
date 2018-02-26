@@ -14,7 +14,7 @@ class SliderTooltip extends React.PureComponent {
 
 		return (
 			<PadTooltip 
-				className='uiuiui-slider__tooltip' 
+				className='uix-slider__tooltip' 
 				{...this.props}
 				{...slider_props}
 			/>

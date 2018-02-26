@@ -16,8 +16,8 @@ class SliderGrid extends React.PureComponent {
 
 		return <PadGrid 
 			className={`
-				uiuiui-slider__grid
-				${ this.props.interacting ? 'uiuiui-slider__grid--interacting' : '' }
+				uix-slider__grid
+				${ this.props.interacting ? 'uix-slider__grid--interacting' : '' }
 			`}
 			{...this.props} 
 			{...slider_props} 

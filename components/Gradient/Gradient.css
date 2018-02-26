@@ -1,10 +1,10 @@
-.uiuiui-gradient {
+.uix-gradient {
 	height: 1em;
 	position: relative;
 }
 
-.uiuiui-gradient .uiuiui-spectrum,
-.uiuiui-gradient .uiuiui-slider {
+.uix-gradient .uix-spectrum,
+.uix-gradient .uix-slider {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -14,6 +14,6 @@
 	right: auto;
 }
 
-.uiuiui-gradient .uiuiui-multislider {
+.uix-gradient .uix-multislider {
 	background: transparent;
 }

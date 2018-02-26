@@ -1,8 +1,8 @@
-.uiuiui-input {
+.uix-input {
 	position: relative;
 }
 
-.uiuiui-input input {
+.uix-input input {
 	box-sizing: border-box;
 	width: 100%;
 	font-size: 1em;
@@ -10,12 +10,12 @@
 	border: 1px solid #999;
 }
 
-.uiuiui-input input:focus {
+.uix-input input:focus {
 	outline: none;
 	border-color: #000;
 }
 
-.uiuiui-input__controls {
+.uix-input__controls {
 	position: absolute;
 	right: 1px;
 	top: 1px;
@@ -25,11 +25,11 @@
 	display: none;
 }
 
-.uiuiui-input:hover .uiuiui-input__controls {
+.uix-input:hover .uix-input__controls {
 	display: block;
 }
 
-.uiuiui-input__control {
+.uix-input__control {
 	display: block;
 	background: #f0f0f0;
 	text-align: center;
@@ -38,11 +38,11 @@
 	overflow: hidden;
 }
 
-.uiuiui-input__control--increment {
+.uix-input__control--increment {
 	border-bottom: 1px solid #999;
 }
 
-.uiuiui-input__controls .uiuiui-icon {
+.uix-input__controls .uix-icon {
 	stroke: #999;
 	stroke-width: 1.5;
 	fill: none;
@@ -52,6 +52,6 @@
 	display: block;
 }
 
-.uiuiui-input__control:hover .uiuiui-icon {
+.uix-input__control:hover .uix-icon {
 	stroke: #000;
 }

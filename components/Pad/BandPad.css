@@ -1,15 +1,15 @@
-.uiuiui-bandpad {
+.uix-bandpad {
 	width: 300px;
 	height: 300px;
 	background: #f0f0f0;
 	position: relative;
 }
 
-.uiuiui-bandpad__progress {
+.uix-bandpad__progress {
 	pointer-events: none;
 }
 
-.uiuiui-bandpad__progress-band {
+.uix-bandpad__progress-band {
 	flex: 1 1 0;
 	background: #ccc;
 	position: absolute;

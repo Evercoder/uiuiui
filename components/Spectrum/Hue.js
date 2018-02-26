@@ -11,7 +11,7 @@ class Hue extends React.PureComponent {
 
 		return (
 			<div 
-				className='uiuiui-spectrum uiuiui-spectrum--hue'
+				className='uix-spectrum uix-spectrum--hue'
 				style={
 					{
 						background: hueGradient(direction)

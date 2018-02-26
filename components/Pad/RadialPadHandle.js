@@ -21,7 +21,7 @@ class RadialPadHandle extends React.Component {
 
 		return (
 			<div 
-				className='uiuiui-radialpad__handle'
+				className='uix-radialpad__handle'
 				style={handle_styles}
 			>
 

@@ -77,12 +77,12 @@ class NumericInputControls extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<span className='uiuiui-input__controls'>
+			<span className='uix-input__controls'>
 				<span 
-					className='uiuiui-input__control uiuiui-input__control--increment'
+					className='uix-input__control uix-input__control--increment'
 					onMouseDown={this.startIncrement}
 				>
-					<svg viewBox='0 0 20 9' className='uiuiui-icon uiuiui-icon--uparrow'>
+					<svg viewBox='0 0 20 9' className='uix-icon uix-icon--uparrow'>
 						<path d='M 5 7 L 10 2 L 15 7'/>
 					</svg>
 				</span>
@@ -96,10 +96,10 @@ class NumericInputControls extends React.PureComponent {
 				}
 				
 				<span 
-					className='uiuiui-input__control uiuiui-input__control--decrement'
+					className='uix-input__control uix-input__control--decrement'
 					onMouseDown={this.startDecrement}
 				>
-					<svg viewBox='0 0 20 9' className='uiuiui-icon uiuiui-icon--downarrow'>
+					<svg viewBox='0 0 20 9' className='uix-icon uix-icon--downarrow'>
 						<path d='M 5 2 L 10 7 L 15 2'/>
 					</svg>
 				</span>

@@ -24,7 +24,7 @@ class PadTooltip extends React.PureComponent {
 		return (
 			<span 
 				className={`
-					uiuiui-pad__tooltip ${className || ''}
+					uix-pad__tooltip ${className || ''}
 				`}
 				style={style}
 			>

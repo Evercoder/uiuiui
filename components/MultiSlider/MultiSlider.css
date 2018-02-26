@@ -1,16 +1,16 @@
-.uiuiui-multislider {
+.uix-multislider {
 	height: 1em;
 	background: #f0f0f0;
 	position: relative;
 }
 
-.uiuiui-multislider .uiuiui-surface {
+.uix-multislider .uix-surface {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
-.uiuiui-multislider__handle {
+.uix-multislider__handle {
 	position: absolute;
 	width: 1em;
 	height: 1em;

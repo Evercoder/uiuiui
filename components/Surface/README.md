@@ -32,11 +32,11 @@ The `onEnd` callback is useful when you need to know that the user has finished 
 
 ### Class Name
 
-The `Surface` component has the class name __`uiuiui-surface`__.
+The `Surface` component has the class name __`uix-surface`__.
 
 ### Dimensions
 
-`Surface` components have no intrinsic dimensions, and by default will expand to fill the full width and height of its parent. To work as expected, make sure that the parent component has intrinsic dimensions. Alternatively, you can style `.uiuiui-surface` to provide it with an explicit width and height.
+`Surface` components have no intrinsic dimensions, and by default will expand to fill the full width and height of its parent. To work as expected, make sure that the parent component has intrinsic dimensions. Alternatively, you can style `.uix-surface` to provide it with an explicit width and height.
 
 ## Children 
 

@@ -49,7 +49,7 @@ class MultiSlider extends React.Component {
 		} = this.state;
 
 		return (
-			<div className='uiuiui-multislider'>
+			<div className='uix-multislider'>
 
 				<Surface 
 					passive 

@@ -25,7 +25,7 @@ class MultiSliderHandle extends React.PureComponent {
 
 		return (
 			<div 
-				className='uiuiui-multislider__handle'
+				className='uix-multislider__handle'
 				onMouseDown={this.startInteraction}
 				style={styles}
 			>

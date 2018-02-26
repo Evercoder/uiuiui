@@ -1,4 +1,4 @@
-.uiuiui-radialpad {
+.uix-radialpad {
 	width: 300px;
 	height: 300px;
 	background: #f0f0f0;
@@ -6,11 +6,11 @@
 	border-radius: 50%;
 }
 
-.uiuiui-radialpad:focus {
+.uix-radialpad:focus {
 	outline: none;
 }
 
-.uiuiui-radialpad__handle {
+.uix-radialpad__handle {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -22,22 +22,22 @@
 	z-index: 100;
 }
 
-.uiuiui-radialpad:focus .uiuiui-radialpad__handle {
+.uix-radialpad:focus .uix-radialpad__handle {
 	border-color: blue;
 }
 
-.uiuiui-radialpad__grid {
+.uix-radialpad__grid {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	z-index: 10;
 }
 
-.uiuiui-radialpad__grid-background {
+.uix-radialpad__grid-background {
 	fill: none;
 }
 
-.uiuiui-radialpad__grid-lines {
+.uix-radialpad__grid-lines {
 	stroke: #ccc;
 	stroke-width: 1;
 	vector-effect: non-scaling-stroke;

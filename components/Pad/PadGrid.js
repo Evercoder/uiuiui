@@ -22,26 +22,26 @@ class PadGrid extends React.PureComponent {
 		return (
 			<svg 
 				className={`
-					uiuiui-pad__grid
+					uix-pad__grid
 					${className || ''}
 				`}
 				viewBox={`0 0 ${width} ${height}`}
 				preserveAspectRatio='none'
 			>
 				<rect 
-					className='uiuiui-pad__grid-background'
+					className='uix-pad__grid-background'
 					x='0' 
 					y='0' 
 					width='100%' 
 					height='100%'
 				/>
 				<path 
-					className='uiuiui-pad__grid-lines uiuiui-pad__grid-lines--x'
+					className='uix-pad__grid-lines uix-pad__grid-lines--x'
 					d={x_path}
 				/>
 
 				<path 
-					className='uiuiui-pad__grid-lines uiuiui-pad__grid-lines--y'
+					className='uix-pad__grid-lines uix-pad__grid-lines--y'
 					d={y_path}
 				/>
 			</svg>

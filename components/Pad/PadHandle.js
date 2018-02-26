@@ -19,8 +19,8 @@ class PadHandle extends React.PureComponent {
 		return (
 			<span
 				className={`
-					uiuiui-pad__handle 
-					${ interacting ? 'uiuiui-pad__handle--interacting': '' }
+					uix-pad__handle 
+					${ interacting ? 'uix-pad__handle--interacting': '' }
 					${ className || '' }
 				`}
 				style={style}
