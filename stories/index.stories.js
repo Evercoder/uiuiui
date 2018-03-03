@@ -57,6 +57,8 @@ import {
 	Gradient
 } from '../components/Gradient';
 
+import Polynomial from '../components/wip/polynomial';
+
 import './style.css';
 
 class ControlledComponentWrapper extends React.Component {
@@ -327,3 +329,58 @@ storiesOf('Gradient', module)
 	.add('Basic Gradient', () => {
 		return <Gradient/>;
 	});
+
+storiesOf('onselect', module)
+	.add('onselect', () => {
+		class MyCo extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					rects: null
+				};
+			}
+
+			select(e) {
+				let sel = window.getSelection();
+				let rects = sel.getRangeAt(0).getClientRects();
+				this.setState({
+					rects: rects
+				})
+			}
+			render() {
+
+				let rects = this.state.rects;
+
+				let tooltips = null;
+				if (rects) {
+					tooltips = rects.map(rect => <div style={
+						{
+							width: rect.width + 'px',
+							height: rect.height + 'px',
+							top: rect.top + 'px',
+							left: rect.left + 'px',
+							position: 'absolute',
+							pointerEvents: 'none',
+							border: '1px solid red'
+						}
+					}>
+						
+					</div>);
+				}
+
+				return (
+					<div>
+						<div tabIndex='0' onSelect={this.select.bind(this)}>
+							<p>It is a long established fact that a reader will be distracted</p>
+							<p>by the readable content of a page when looking at its layout. </p>
+							<p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></div>
+						{ tooltips }
+					</div>
+				)
+			}
+		}
+
+		return <MyCo/>
+	})
+
+storiesOf('Polynomial', module).add('basic', () => <Polynomial/>);
