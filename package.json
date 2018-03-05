@@ -27,6 +27,7 @@
     "d3-shape": "^1.2.0",
     "everpolate": "^0.0.3",
     "jsep": "^0.3.3",
+    "mathjs": "^4.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-event-listener": "^0.5.3"
