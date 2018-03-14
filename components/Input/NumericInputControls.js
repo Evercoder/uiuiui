@@ -22,6 +22,8 @@ class NumericInputControls extends React.PureComponent {
 		this.doDecrement = this.doDecrement.bind(this);
 		this.stopDecrement = this.stopDecrement.bind(this);
 
+		this.end = this.end.bind(this);
+
 		this.state = initial_state;
 	}
 
@@ -44,7 +46,13 @@ class NumericInputControls extends React.PureComponent {
 	stopIncrement(e) {
 		this.setState({
 			incrementing: false
-		});
+		}, this.end);
+	}
+
+	end() {
+		if (this.props.end) {
+			this.props.end();
+		}
 	}
 
 	startDecrement(e) {
@@ -66,7 +74,7 @@ class NumericInputControls extends React.PureComponent {
 	stopDecrement(e) {
 		this.setState({
 			decrementing: false
-		});
+		}, this.end);
 	} 
 
 	render() {

@@ -13,9 +13,11 @@ class NumericInput extends React.PureComponent {
 
 		this.keydown = this.keydown.bind(this);
 		this.change = this.change.bind(this);
+		this.end = this.end.bind(this);
 		this.register = this.register.bind(this);
 		this.increment = this.increment.bind(this);
 		this.decrement = this.decrement.bind(this);
+		this.blur = this.blur.bind(this);
 
 		this.state = {
 			transient_value: props.value,
@@ -35,6 +37,16 @@ class NumericInput extends React.PureComponent {
 		this.setState({
 			transient_value: e.target.value
 		});
+	}
+
+	blur(e) {
+		this.end();
+	}
+
+	end() {
+		if (this.props.onEnd) {
+			this.props.onEnd();
+		}
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
@@ -70,6 +82,8 @@ class NumericInput extends React.PureComponent {
 					transient_value: value,
 					value: value
 				} : null
+			}, () => { 
+				this.end();
 			}
 		);
 	}
@@ -103,6 +117,7 @@ class NumericInput extends React.PureComponent {
 					ref={this.register}
 					onKeyDown={this.keydown}
 					onChange={this.change}
+					onBlur={this.blur}
 					type={type}
 					value={transient_value}
 				/>
@@ -111,7 +126,8 @@ class NumericInput extends React.PureComponent {
 						this.props.children,
 						child => React.cloneElement(child, {
 							increment: this.increment,
-							decrement: this.decrement
+							decrement: this.decrement,
+							end: this.end
 						})
 					)
 				}
