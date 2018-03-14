@@ -5,7 +5,7 @@ import React from 'react';
 import { polynomial } from 'everpolate';
 import cubicspline from 'cubic-spline';
 import mathjs from 'mathjs';
-import curveNatural2 from './natural';
+import curveNatural2, {solve} from './natural';
 
 const poly = coefficients =>  x => coefficients.reduce((sum, coef, idx, arr) => sum + coef * Math.pow(x, arr.length - 1 - idx), 0);
 
@@ -14,8 +14,8 @@ class Polynomial extends React.Component {
 
 		let controls = [
 			[0, 0],
-			[40, 100],
-			[128, 180],
+			[20, 160],
+			[128, 100],
 			[192, 170],
 			[256, 240]
 		];
@@ -77,9 +77,36 @@ class Polynomial extends React.Component {
 
 		let basis = basis_func(range(0, controls.length));
 
+		let x_solve = solve(x_coords);
+		let y_solve = solve(y_coords);
+
 		let interpolating_basis_func = line()
-			.x((d, i) => xScale(x_coords[i]))
-			.y((d, i) => yScale(y_coords[i]));
+			.x((d, i) => xScale(x_solve[i]))
+			.y((d, i) => yScale(y_solve[i]));
+
+		let beziers = controls.map((c, i) => {
+			if (i === 0) return '';
+			return `
+				M ${xScale(controls[i-1][0])} ${yScale(controls[i-1][1])}
+				L ${xScale((2 * x_solve[i-1] + x_solve[i]) / 3)} ${yScale((2 * y_solve[i-1] + y_solve[i]) / 3)}
+				M ${xScale(controls[i][0])} ${yScale(controls[i][1])}
+				L ${xScale((x_solve[i-1] + 2 * x_solve[i]) / 3)} ${yScale((y_solve[i-1] + 2 * y_solve[i]) / 3)}
+			`;
+		}).join(' ');
+
+		let mytry = controls.map((c, i) => {
+			if (i === 0) return `M ${xScale(c[0])} ${yScale(c[1])}`;
+			return `
+				M ${xScale(controls[i-1][0])} ${yScale(controls[i-1][1])}
+				L ${xScale((controls[i-1][0] + 3 * controls[i][0]) / 6)} ${yScale((controls[i-1][1] + 3 * controls[i][1]) / 6)}
+				M ${xScale(controls[i][0])} ${yScale(controls[i][1])}
+				L ${xScale((3 * controls[i-1][0] + controls[i][0]) / 6)} ${yScale((3 * controls[i-1][1] + controls[i][1]) / 6)}
+
+
+
+
+			`;
+		}).join(' ');
 
 		let interpolating_basis = interpolating_basis_func(range(0, controls.length));
 
@@ -118,7 +145,7 @@ class Polynomial extends React.Component {
 
 				<line x1='0' y1='100%' x2='100%' y2='0'  stroke='#ccc'/>
 
-				<path d={natural} fill='none' stroke='blue' />
+				{/*<path d={natural} fill='none' stroke='blue' />*/}
 				<text fill='blue' x='110%' y='20'>natural</text>
 				<text fill='black' x='110%' y='40'>cubic</text>
 
@@ -126,19 +153,22 @@ class Polynomial extends React.Component {
 					{/*<path d={basis} fill='none' stroke='red' />
 					<text fill='red' x='110%' y='40'>basis</text>*/}
 
-					<path d={interpolating_basis} fill='none' stroke='fuchsia' />
+					{/*<path d={interpolating_basis} fill='none' stroke='fuchsia' />*/}
+
+					{/*<path d={beziers} fill='none' stroke='fuchsia' strokeDasharray='2 2'/>*/}
+
 					<path d={interpolating_basis_2} fill='none' stroke='green' />
-
-{/*
-					<path d={monotonex} fill='none' stroke='green' />
 					<text fill='green' x='110%' y='80'>monotone x</text>
-
+{/*
 					<path d={catmull} fill='none' stroke='orange' />
 					<text fill='orange' x='110%' y='100'>catmull</text>
 */}
 				</g>
 
-				{/*<path d={path} fill='none' stroke='#000'/>*/}
+				<path d={path} fill='none' stroke='#000'/>
+
+
+				<path d={mytry} fill='none' stroke='orange' />
 
 				{ 
 					controls.map(
