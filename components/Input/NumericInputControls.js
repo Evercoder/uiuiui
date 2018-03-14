@@ -1,6 +1,8 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 
+import { noop } from '../util/functions';
+
 const initial_state = {
 	incrementing: false,
 	decrementing: false
@@ -31,6 +33,7 @@ class NumericInputControls extends React.PureComponent {
 		this.setState({
 			incrementing: true
 		}, () => {
+			this.start(e);
 			this.doIncrement(repeat_delay);
 		});
 		e.preventDefault();
@@ -46,19 +49,22 @@ class NumericInputControls extends React.PureComponent {
 	stopIncrement(e) {
 		this.setState({
 			incrementing: false
-		}, this.end);
+		}, () => { this.end(e) });
 	}
 
-	end() {
-		if (this.props.end) {
-			this.props.end();
-		}
+	start(e) {
+		this.props.start(e);
+	}
+
+	end(e) {
+		this.props.end(e);
 	}
 
 	startDecrement(e) {
 		this.setState({
 			decrementing: true
 		}, () => {
+			this.start(e);
 			this.doDecrement(repeat_delay);
 		});
 		e.preventDefault();
@@ -74,7 +80,7 @@ class NumericInputControls extends React.PureComponent {
 	stopDecrement(e) {
 		this.setState({
 			decrementing: false
-		}, this.end);
+		}, () => { this.end(e) });
 	} 
 
 	render() {
@@ -122,6 +128,13 @@ class NumericInputControls extends React.PureComponent {
 			</span>
 		);
 	}
+};
+
+NumericInputControls.defaultProps = {
+	increment: noop,
+	decrement: noop,
+	end: noop,
+	start: noop
 };
 
 export default NumericInputControls;

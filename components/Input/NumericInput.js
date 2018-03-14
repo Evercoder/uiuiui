@@ -14,10 +14,12 @@ class NumericInput extends React.PureComponent {
 		this.keydown = this.keydown.bind(this);
 		this.change = this.change.bind(this);
 		this.end = this.end.bind(this);
+		this.start = this.start.bind(this);
 		this.register = this.register.bind(this);
 		this.increment = this.increment.bind(this);
 		this.decrement = this.decrement.bind(this);
 		this.blur = this.blur.bind(this);
+		this.focus = this.focus.bind(this);
 
 		this.state = {
 			transient_value: props.value,
@@ -39,14 +41,20 @@ class NumericInput extends React.PureComponent {
 		});
 	}
 
-	blur(e) {
-		this.end();
+	focus(e) {
+		this.start(e);
 	}
 
-	end() {
-		if (this.props.onEnd) {
-			this.props.onEnd();
-		}
+	blur(e) {
+		this.end(e);
+	}
+
+	start(e) {
+		this.props.onStart(e);
+	}
+
+	end(e) {
+		this.props.onEnd(e);
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
@@ -117,6 +125,7 @@ class NumericInput extends React.PureComponent {
 					ref={this.register}
 					onKeyDown={this.keydown}
 					onChange={this.change}
+					onFocus={this.focus}
 					onBlur={this.blur}
 					type={type}
 					value={transient_value}
@@ -127,7 +136,8 @@ class NumericInput extends React.PureComponent {
 						child => React.cloneElement(child, {
 							increment: this.increment,
 							decrement: this.decrement,
-							end: this.end
+							end: this.end,
+							start: this.start
 						})
 					)
 				}
@@ -208,6 +218,8 @@ NumericInput.defaultProps = {
 	end: 100,
 	value: 0,
 	onChange: noop,
+	onStart: noop,
+	onEnd: noop,
 	property: undefined,
 	expressions: true,
 	parse_value: parse_float,
