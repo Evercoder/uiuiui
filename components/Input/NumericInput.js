@@ -90,7 +90,8 @@ class NumericInput extends React.PureComponent {
 		let {
 			type,
 			autofocus,
-			controls
+			controls,
+			className
 		} = this.props;
 
 		let {
@@ -98,7 +99,7 @@ class NumericInput extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<div className='uix-input uix-input--numeric'>
+			<div className={`uix-input uix-input--numeric ${className || ''}`}>
 				<input
 					ref={this.register}
 					onKeyDown={this.keydown}
@@ -195,7 +196,8 @@ NumericInput.defaultProps = {
 	property: undefined,
 	expressions: true,
 	parse_value: parse_float,
-	cyclical: false
+	cyclical: false,
+	className: undefined
 };
 
 export default NumericInput;
