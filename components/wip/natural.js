@@ -2,7 +2,7 @@ function Natural(context) {
   this._context = context;
 };
 
-function solve(v) {
+export function solve(v) {
   var i,
     n = v.length - 1,
     c = new Array(n),
@@ -14,6 +14,9 @@ function solve(v) {
   for (i = n-2; i > 0; --i) sol[i] = _v[i] - c[i] * sol[i+1];
   return sol;
 };
+
+const t = (val, arr) => (val - Math.min.apply(Math, arr)) / (Math.max.apply(Math, arr) - Math.min.apply(Math, arr));
+const xt = (t, arr) => t * (Math.max.apply(Math, arr) - Math.min.apply(Math, arr)) + Math.min.apply(Math, arr);
 
 Natural.prototype = {
   areaStart: function() {
@@ -35,13 +38,16 @@ Natural.prototype = {
       if (n === 2) {
         this._context.lineTo(x[1], y[1]);
       } else {
-        var px = solve(x),
-        py = solve(y);
+        var ts = x.map(v => t(v, x));
+        var px = solve(ts),
+        // var px = solve(x),
+        // py = solve(y);
+        py = solve(y.map((v,i) => v * ts[i]));
         for (var i = 1; i < n; ++i) {
           this._context.bezierCurveTo(
             (2 * px[i-1] + px[i]) / 3, (2 * py[i-1] + py[i]) / 3, 
             (px[i-1] + 2 * px[i]) / 3, (py[i-1] + py[i] * 2) / 3,
-            x[i], y[i]
+            x[i], y[i] * ts[i]
           );
         }
       }
