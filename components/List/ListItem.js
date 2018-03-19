@@ -25,13 +25,14 @@ class ListItem extends React.PureComponent {
 
 		let { 
 			selected,
-			tabIndex
+			tabIndex,
+			className
 		} = this.props;
 
 		return (
 			<li 
 				tabIndex={tabIndex}
-				className={`uix-list__item ${ selected ? 'uix-list__item--selected' : ''}`}
+				className={`uix-list__item ${ selected ? 'uix-list__item--selected' : ''}  ${className || ''}`}
 				onClick={this.select}
 				onKeyDown={this.keydown}
 			>
@@ -44,7 +45,8 @@ class ListItem extends React.PureComponent {
 ListItem.defaultProps = {
 	value: null,
 	selected: false,
-	onSelect: noop
+	onSelect: noop,
+	className: undefined
 };
 
 export default ListItem;
