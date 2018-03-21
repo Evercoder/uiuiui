@@ -83,21 +83,19 @@ class Pad extends React.PureComponent {
 	}
 
 	format_x(value, method = clamp) {
-		return value 
-			? to_step(
-				method(value, this.props.x_start, this.props.x_end),
-				this.props.x_step, 
-				this.props.x_precision)
-			: value;
+		return value !== undefined ? to_step(
+			method(value, this.props.x_start, this.props.x_end),
+			this.props.x_step, 
+			this.props.x_precision
+		) : undefined;
 	}
 
 	format_y(value, method = clamp) {
-		return value
-			? to_step(
-				method(value, this.props.y_start, this.props.y_end),
-				this.props.y_step, 
-				this.props.y_precision)
-			: value;
+		return value !== undefined ? to_step(
+			method(value, this.props.y_start, this.props.y_end),
+			this.props.y_step, 
+			this.props.y_precision)
+		: undefined;
 	}
 
 	change({x, y}) {
@@ -267,8 +265,8 @@ Pad.defaultProps = {
 	y_precision: 0,
 	x_increment: undefined,
 	y_increment: undefined,
-	x: 0,
-	y: 0,
+	x: undefined,
+	y: undefined,
 	tabIndex: 0,
 	className: undefined,
 	cyclical: false,
