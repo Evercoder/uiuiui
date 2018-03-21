@@ -182,8 +182,11 @@ class NumericInput extends React.PureComponent {
 		let amount = this.step_amount(e) * dir * Math.sign(this.props.end - this.props.start);
 		this.setState(
 			previous_state => {
+
+				let current_value = this.format_user_input(previous_state);
+
 				let value = this.format_value(
-					this.format_user_input(previous_state) + amount, 
+					(current_value === undefined ? this.props.start : current_value) + amount, 
 					this.props.cyclical ? cycle : clamp
 				);
 

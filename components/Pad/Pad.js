@@ -209,11 +209,12 @@ class Pad extends React.PureComponent {
 			previous_state => {
 				return { 
 					x: this.format_x(
-						previous_state.x + amount,
+						(previous_state.x === undefined ? this.props.x_start : previous_state.x) + amount,
 						this.props.cyclical ? cycle : clamp
 					) 
 				};
-			});
+			}
+		);
 	}
 
 	offset_y(e, dir) {
@@ -222,11 +223,12 @@ class Pad extends React.PureComponent {
 			previous_state => {
 				return { 
 					y: this.format_y(
-						previous_state.y + amount,
+						(previous_state.y === undefined ? this.props.y_start : previous_state.y) + amount,
 						this.props.cyclical ? cycle : clamp
 					) 
 				};
-			});
+			}
+		);
 	}
 
 	keydown(e) {
