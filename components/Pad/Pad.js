@@ -83,19 +83,19 @@ class Pad extends React.PureComponent {
 	}
 
 	format_x(value, method = clamp) {
-		return to_step(
+		return value !== undefined ? to_step(
 			method(value, this.props.x_start, this.props.x_end),
 			this.props.x_step, 
 			this.props.x_precision
-		);
+		) : undefined;
 	}
 
 	format_y(value, method = clamp) {
-		return to_step(
+		return value !== undefined ? to_step(
 			method(value, this.props.y_start, this.props.y_end),
 			this.props.y_step, 
-			this.props.y_precision
-		);
+			this.props.y_precision)
+		: undefined;
 	}
 
 	change({x, y}) {
@@ -209,11 +209,12 @@ class Pad extends React.PureComponent {
 			previous_state => {
 				return { 
 					x: this.format_x(
-						previous_state.x + amount,
+						(previous_state.x === undefined ? this.props.x_start : previous_state.x) + amount,
 						this.props.cyclical ? cycle : clamp
 					) 
 				};
-			});
+			}
+		);
 	}
 
 	offset_y(e, dir) {
@@ -222,11 +223,12 @@ class Pad extends React.PureComponent {
 			previous_state => {
 				return { 
 					y: this.format_y(
-						previous_state.y + amount,
+						(previous_state.y === undefined ? this.props.y_start : previous_state.y) + amount,
 						this.props.cyclical ? cycle : clamp
 					) 
 				};
-			});
+			}
+		);
 	}
 
 	keydown(e) {
@@ -265,8 +267,8 @@ Pad.defaultProps = {
 	y_precision: 0,
 	x_increment: undefined,
 	y_increment: undefined,
-	x: 50,
-	y: 50,
+	x: undefined,
+	y: undefined,
 	tabIndex: 0,
 	className: undefined,
 	cyclical: false,

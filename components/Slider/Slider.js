@@ -151,7 +151,7 @@ Slider.defaultProps = {
 	vertical: false,
 	cyclical: false,
 	
-	value: 0,
+	value: undefined,
 	start: 0,
 	end: 100,
 	step: 1,

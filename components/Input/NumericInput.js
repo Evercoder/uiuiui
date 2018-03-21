@@ -6,7 +6,7 @@ import { to_step, cycle, clamp, parse_expression, parse_float } from '../util/ma
 import { noop } from '../util/functions';
 
 class NumericInput extends React.PureComponent {
-	
+
 	constructor(props) {
 
 		super(props);
@@ -72,7 +72,6 @@ class NumericInput extends React.PureComponent {
 	}
 
 	format_user_input(state) {
-		
 		let value = this.props.parse_value(state.transient_value);
 
 		if (!isNaN(value) && isFinite(value)) {
@@ -183,8 +182,11 @@ class NumericInput extends React.PureComponent {
 		let amount = this.step_amount(e) * dir * Math.sign(this.props.end - this.props.start);
 		this.setState(
 			previous_state => {
+
+				let current_value = this.format_user_input(previous_state);
+
 				let value = this.format_value(
-					this.format_user_input(previous_state) + amount, 
+					(current_value === undefined ? this.props.start : current_value) + amount, 
 					this.props.cyclical ? cycle : clamp
 				);
 
@@ -217,7 +219,7 @@ NumericInput.defaultProps = {
 	increment: increment_bigger_step_on_shift,
 	start: 0,
 	end: 100,
-	value: 0,
+	value: '',
 	onChange: noop,
 	onStart: noop,
 	onEnd: noop,
