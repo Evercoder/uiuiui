@@ -18,6 +18,7 @@ class ListItem extends React.PureComponent {
 		if (e.key === 'Enter') {
 			this.select();
 			e.preventDefault();
+			e.stopPropagation();
 		}
 	}
 
