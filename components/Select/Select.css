@@ -16,10 +16,11 @@
 	transform: translate(0, -50%);
 }
 
-.uix-select .uix-dropdown {
+.uix-select .uix-popup {
 	width: 100%;
 	background: #f0f0f0;
 	border: 1px solid currentColor;
+	user-select: none;
 }
 
 .uix-select .uix-list__item {

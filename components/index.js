@@ -49,8 +49,8 @@ export {
 } from './List';
 
 export {
-	Dropdown
-} from './Dropdown';
+	Popup
+} from './Popup';
 
 export {
 	Select

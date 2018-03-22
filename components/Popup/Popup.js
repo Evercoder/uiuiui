@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { noop } from '../util/functions';
 
-class Dropdown extends React.Component {
+class Popup extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -25,18 +25,25 @@ class Dropdown extends React.Component {
 
 	register(el) {
 		this._el = el;
+		if (el && this.props.autofocus) {
+			el.focus();
+		}
 	}
 
 	render() {
 
-		let { className } = this.props;
+		let { 
+			className,
+			tabIndex
+		} = this.props;
 
 		return (
 			<div 
 				className={`
-					uix-dropdown
+					uix-popup
 					${ className || '' } 
 				`}
+				tabIndex={tabIndex}
 				ref={this.register}
 			>
 				<EventListener
@@ -53,9 +60,11 @@ class Dropdown extends React.Component {
 	}
 }
 
-Dropdown.defaultProps = {
+Popup.defaultProps = {
+	autofocus: false,
+	tabIndex: 0,
 	className: undefined,
 	onClose: noop
 };
 
-export default Dropdown;
+export default Popup;

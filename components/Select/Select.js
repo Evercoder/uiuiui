@@ -2,7 +2,7 @@ import React from 'react';
 
 import { noop, invariant } from '../util/functions';
 
-import { Dropdown } from '../Dropdown';
+import { Popup } from '../Popup';
 
 class Select extends React.Component {
 
@@ -82,7 +82,7 @@ class Select extends React.Component {
 			>
 				<div
 					className='uix-select__current' 
-					onClick={ this.open }
+					onMouseDown={ this.open }
 				>
 					<div className='uix-select__value'>
 						{ this.props.current(this.props.value) }
@@ -94,7 +94,10 @@ class Select extends React.Component {
 
 				{
 					interacting && 
-						<Dropdown onClose={this.close}>
+						<Popup
+							autofocus 
+							onClose={this.close}
+						>
 							{ 
 								close =>
 									React.Children.map(
@@ -105,7 +108,7 @@ class Select extends React.Component {
 										})
 									)
 							}
-						</Dropdown>
+						</Popup>
 				}
 				
 			</div>

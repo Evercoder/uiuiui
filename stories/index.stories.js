@@ -58,8 +58,8 @@ import {
 } from '../components/Gradient';
 
 import {
-	Dropdown
-} from '../components/Dropdown';
+	Popup
+} from '../components/Popup';
 
 import {
 	Select
@@ -393,13 +393,13 @@ storiesOf('onselect', module)
 
 storiesOf('Polynomial', module).add('basic', () => <Polynomial/>);
 
-storiesOf('Dropdown', module).add('basic', () => 
-	<Dropdown property='some_property' onClose={action('onClose')}>
+storiesOf('Popup', module).add('basic', () => 
+	<Popup property='some_property' onClose={action('onClose')}>
 		<List>
 			<ListItem>one</ListItem>
 			<ListItem>two</ListItem>
 		</List>
-	</Dropdown>
+	</Popup>
 );
 
 storiesOf('Select', module).add('basic', () => {
