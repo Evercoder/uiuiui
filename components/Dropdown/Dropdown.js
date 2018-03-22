@@ -1,49 +1,33 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 
+import { noop } from '../util/functions';
+
 class Dropdown extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.open = this.open.bind(this);
 		this.close = this.close.bind(this);
-		this.possibly_close = this.possibly_close.bind(this);
-		this.register_dropdown_contents = this.register_dropdown_contents.bind(this);
-		this.state = {
-			expanded: false,
-			position: 'bottom'
-		};
-	}
-
-	open(e) {
-		this.setState({
-			expanded: true
-		})
+		this.close_on_click_outside = this.close_on_click_outside.bind(this);
+		this.register = this.register.bind(this);
 	}
 
 	close(e) {
-		this.setState({
-			expanded: false
-		});
+		this.props.onClose(this.props.property);
 	}
 
-	possibly_close(e) {
-		if (!this._dropdown_contents_el) {
-			return;
-		}
-		if (this._dropdown_contents_el === e.target || this._dropdown_contents_el.contains(e.target)) {
+	close_on_click_outside(e) {
+		if (!this._el || this._el === e.target || this._el.contains(e.target)) {
 			return;
 		}
 		this.close(e);
 	}
 
-	register_dropdown_contents(el) {
-		this._dropdown_contents_el = el;
+	register(el) {
+		this._el = el;
 	}
 
 	render() {
-
-		let { expanded, position } = this.state;
 
 		let { className } = this.props;
 
@@ -51,35 +35,18 @@ class Dropdown extends React.Component {
 			<div 
 				className={`
 					uix-dropdown
-					${ expanded ? 'uix-dropdown--expanded' : '' }
 					${ className || '' } 
 				`}
+				ref={this.register}
 			>
+				<EventListener
+					target='document'
+					onMouseDown={this.close_on_click_outside}
+				/>
 				{ 
-					this.props.trigger(this.open) 
-				}
-
-				{
-					expanded &&
-						<div 
-							className={`
-								uix-dropdown__contents
-								uix-dropdown__contents--${position}
-							`}
-							ref={this.register_dropdown_contents}
-						>
-							
-							<EventListener
-								target='document'
-								onMouseDown={this.possibly_close}
-							/>
-
-							{ 
-								typeof this.props.children === 'function' ?
-									this.props.children(this.close) :
-									this.props.children
-							}
-						</div>
+					typeof this.props.children === 'function' ?
+						this.props.children(this.close) :
+						this.props.children
 				}
 			</div>
 		);
@@ -88,7 +55,7 @@ class Dropdown extends React.Component {
 
 Dropdown.defaultProps = {
 	className: undefined,
-	trigger: open => <button onClick={open}>Dropdown</button>
+	onClose: noop
 };
 
 export default Dropdown;

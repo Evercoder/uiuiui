@@ -8,16 +8,37 @@ class Select extends React.Component {
 
 	constructor(props) {
 		super(props);
+		
 		this.select = this.select.bind(this);
 		this.focus = this.focus.bind(this);
 		this.register = this.register.bind(this);
-		this.onEnter = this.onEnter.bind(this);
+		this.handleKeys = this.handleKeys.bind(this);
+		this.open = this.open.bind(this);
+		this.close = this.close.bind(this);
+
+		this.state = {
+			interacting: false
+		}
 	}
 
 	select(value) {
+		this.close();
+		this.focus();
 		if (value !== this.props.value) {
 			this.props.onChange(value, this.props.property);
 		}
+	}
+
+	open() {
+		this.setState({
+			interacting: true
+		});
+	}
+
+	close() {
+		this.setState({
+			interacting: false
+		});
 	}
 
 	focus() {
@@ -30,13 +51,11 @@ class Select extends React.Component {
 		this._el = el;
 	}
 
-	onEnter(callback) {
-		return e => {
-			switch(e.key) {
-				case 'Enter':
-					callback();
-					break;
-			}
+	handleKeys(e) {
+		switch(e.key) {
+			case 'Enter':
+				this.open(e);
+				break;
 		}
 	}
 
@@ -47,6 +66,10 @@ class Select extends React.Component {
 			tabIndex 
 		} = this.props;
 
+		let {
+			interacting
+		} = this.state;
+
 		return (
 			<div
 				className={`
@@ -54,40 +77,37 @@ class Select extends React.Component {
 					${ className || '' }
 				`}
 				ref={this.register}
+				tabIndex={ tabIndex }
+				onKeyDown={ this.handleKeys }
 			>
-				<Dropdown
-					trigger={
-						open => 
-							<div
-								className='uix-select__current' 
-								onClick={ open }
-								tabIndex={ tabIndex }
-								onKeyDown={ this.onEnter(open) }
-							>
-								<div className='uix-select__value'>
-									{ this.props.current(this.props.value) }
-								</div>
-								<div className='uix-select__button'>
-									<button tabIndex="-1">↓</button>
-								</div>
-							</div>
-					}
+				<div
+					className='uix-select__current' 
+					onClick={ this.open }
 				>
-					{ 
-						close =>
-							React.Children.map(
-								this.props.children,
-								child => React.cloneElement(child, {
-									value: this.props.value,
-									onSelect: value => {
-										this.select(value);
-										close();
-										this.focus();
-									}
-								})
-							)
-					}
-				</Dropdown>
+					<div className='uix-select__value'>
+						{ this.props.current(this.props.value) }
+					</div>
+					<div className='uix-select__button'>
+						<button tabIndex="-1">↓</button>
+					</div>
+				</div>
+
+				{
+					interacting && 
+						<Dropdown onClose={this.close}>
+							{ 
+								close =>
+									React.Children.map(
+										this.props.children,
+										child => React.cloneElement(child, {
+											value: this.props.value,
+											onSelect: this.select
+										})
+									)
+							}
+						</Dropdown>
+				}
+				
 			</div>
 		);
 	}

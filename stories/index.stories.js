@@ -394,7 +394,7 @@ storiesOf('onselect', module)
 storiesOf('Polynomial', module).add('basic', () => <Polynomial/>);
 
 storiesOf('Dropdown', module).add('basic', () => 
-	<Dropdown>
+	<Dropdown property='some_property' onClose={action('onClose')}>
 		<List>
 			<ListItem>one</ListItem>
 			<ListItem>two</ListItem>
