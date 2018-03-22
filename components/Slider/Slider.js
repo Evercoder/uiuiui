@@ -37,7 +37,8 @@ class Slider extends React.Component {
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
-		if (this.state.value !== prev_state.value) {
+		// If update occured because of outside props, don't trigger onChange
+		if (this.state.value !== prev_state.value && prev_props.value === this.props.value) {
 			this.props.onChange(this.state.value, this.props.property);
 		}
 	}
