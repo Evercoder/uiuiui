@@ -1,0 +1,5 @@
+.uix-dropdown__contents {
+	position: absolute;
+	background: #fff;
+	box-sizing: border-box;
+}

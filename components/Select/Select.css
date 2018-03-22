@@ -1,0 +1,31 @@
+.uix-select {
+	border: 1px solid #999;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.uix-select:focus {
+	border-color: #000;
+}
+
+.uix-select__button {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.uix-select .uix-dropdown__contents {
+	width: 100%;
+	background: #f0f0f0;
+	border: 1px solid currentColor;
+}
+
+.uix-select .uix-list__item {
+	padding: 0em 0.5em;
+}
+
+.uix-select .uix-list__item:hover {
+	background: #000;
+	color: #fff;
+}

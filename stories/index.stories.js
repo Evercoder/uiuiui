@@ -57,6 +57,14 @@ import {
 	Gradient
 } from '../components/Gradient';
 
+import {
+	Dropdown
+} from '../components/Dropdown';
+
+import {
+	Select
+} from '../components/Select';
+
 import Polynomial from '../components/wip/polynomial';
 
 import './style.css';
@@ -384,3 +392,41 @@ storiesOf('onselect', module)
 	})
 
 storiesOf('Polynomial', module).add('basic', () => <Polynomial/>);
+
+storiesOf('Dropdown', module).add('basic', () => 
+	<Dropdown>
+		<List>
+			<ListItem>one</ListItem>
+			<ListItem>two</ListItem>
+		</List>
+	</Dropdown>
+);
+
+storiesOf('Select', module).add('basic', () => {
+
+	let items = [{ value: 1, label: 'one' }, { value: 2, label: 'two' }];
+
+	return (
+		<ControlledComponentWrapper>
+			<Select 
+				property='some_property'
+				current={ item => item ? item.label : 'Placeholder' }
+			>
+				<List>
+					{ 
+						items.map(
+							item => 
+								<ListItem 
+									key={item.value} 
+									value={item}
+								>
+									{item.label}
+								</ListItem>
+						)
+					}
+				</List>
+			</Select>
+		</ControlledComponentWrapper>
+	);
+}
+)

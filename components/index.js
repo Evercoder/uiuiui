@@ -47,3 +47,11 @@ export {
 	List,
 	ListItem
 } from './List';
+
+export {
+	Dropdown
+} from './Dropdown';
+
+export {
+	Select
+} from './Select';
