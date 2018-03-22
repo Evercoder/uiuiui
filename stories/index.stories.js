@@ -4,6 +4,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
+// helpers
+import ControlledComponentWrapper from './helpers/ControlledComponentWrapper';
+import CustomSelectionUI from './helpers/CustomSelectionUI';
+
 import { 
 	Surface,
 	RadialSurface,
@@ -68,32 +72,6 @@ import {
 import Polynomial from '../components/wip/polynomial';
 
 import './style.css';
-
-class ControlledComponentWrapper extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {};
-		this.onChange = this.onChange.bind(this);
-	}
-
-	onChange(value, prop) {
-		action('onChange')(value, prop);
-		this.setState({ [prop]: value });
-	}
-
-	render() {
-
-		let child = React.Children.only(this.props.children);
-		let Component = child.type;
-
-		let value = this.state[child.props.property] || 0;
-
-		return (
-			<Component {...child.props} value={value} onChange={this.onChange}/>
-		);
-	}
-}
 
 
 storiesOf('Slider', module)
@@ -459,6 +437,18 @@ storiesOf('Select', module)
 							)
 						}
 					</List>
+				</Select>
+			</ControlledComponentWrapper>
+		);
+	})
+	.add('with arbitrary contents', () => {
+		return (
+			<ControlledComponentWrapper>
+				<Select 
+					property='some_property'
+					current={ item => item ? item : 'Placeholder' }
+				>
+					<CustomSelectionUI/>
 				</Select>
 			</ControlledComponentWrapper>
 		);
