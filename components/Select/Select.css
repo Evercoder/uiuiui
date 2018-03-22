@@ -6,6 +6,7 @@
 
 .uix-select:focus {
 	border-color: #000;
+	outline: none;
 }
 
 .uix-select__button {

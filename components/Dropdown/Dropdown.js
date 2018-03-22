@@ -74,7 +74,11 @@ class Dropdown extends React.Component {
 								onMouseDown={this.possibly_close}
 							/>
 
-							{ this.props.children }
+							{ 
+								typeof this.props.children === 'function' ?
+									this.props.children(this.close) :
+									this.props.children
+							}
 						</div>
 				}
 			</div>

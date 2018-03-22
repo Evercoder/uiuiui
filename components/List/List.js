@@ -5,10 +5,11 @@ import { noop } from '../util/functions';
 class List extends React.Component {
 	constructor(props) {
 		super(props);
-		this.onSelect = this.onSelect.bind(this);
+		this.select = this.select.bind(this);
 	}
 
-	onSelect(value) {
+	select(value) {
+		this.props.onSelect(value, this.props.property);
 		if (value !== this.props.value) {
 			this.props.onChange(value, this.props.property);
 		}
@@ -32,7 +33,7 @@ class List extends React.Component {
 						this.props.children,
 						child => 
 							React.cloneElement(child, {
-								onSelect: this.onSelect,
+								onSelect: this.select,
 								tabIndex: tabIndex,
 								selected: value === child.props.value
 							})
@@ -48,6 +49,7 @@ List.defaultProps = {
 	tabIndex: '0',
 	value: null,
 	onChange: noop,
+	onSelect: noop,
 	property: undefined
 };
 
