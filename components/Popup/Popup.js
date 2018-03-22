@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 
 import { noop } from '../util/functions';
@@ -34,7 +35,8 @@ class Popup extends React.Component {
 
 		let { 
 			className,
-			tabIndex
+			tabIndex,
+			target
 		} = this.props;
 
 		return (
@@ -64,7 +66,8 @@ Popup.defaultProps = {
 	autofocus: false,
 	tabIndex: 0,
 	className: undefined,
-	onClose: noop
+	onClose: noop,
+	target: undefined
 };
 
 export default Popup;

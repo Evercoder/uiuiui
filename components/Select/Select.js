@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { noop, invariant } from '../util/functions';
 
@@ -63,7 +64,8 @@ class Select extends React.Component {
 
 		let { 
 			className,
-			tabIndex 
+			tabIndex,
+			target
 		} = this.props;
 
 		let {
@@ -75,6 +77,7 @@ class Select extends React.Component {
 				className={`
 					uix-select
 					${ className || '' }
+					${ target ? 'uix-select--portal' : '' }
 				`}
 				ref={this.register}
 				tabIndex={ tabIndex }
@@ -94,21 +97,34 @@ class Select extends React.Component {
 
 				{
 					interacting && 
-						<Popup
-							autofocus 
-							onClose={this.close}
-						>
-							{ 
-								close =>
-									React.Children.map(
-										this.props.children,
-										child => React.cloneElement(child, {
-											value: this.props.value,
-											onSelect: this.select
-										})
-									)
-							}
-						</Popup>
+						(target !== undefined ? 
+							ReactDOM.createPortal : 
+							invariant
+						)(
+							<Popup
+								autofocus 
+								onClose={this.close}
+								className={` 
+									uix-select__popup
+									${ target ? 'uix-select__popup--portal' : '' }
+								`}
+							>
+								{ 
+									close =>
+										React.Children.map(
+											this.props.children,
+											child => React.cloneElement(child, {
+												className: `
+													${child.props.className || ""}
+													uix-select__popup-content
+												`,
+												value: this.props.value,
+												onSelect: this.select
+											})
+										)
+								}
+							</Popup>
+						, target)
 				}
 				
 			</div>
@@ -120,9 +136,9 @@ Select.defaultProps = {
 	value: null,
 	className: undefined,
 	tabIndex: 0,
-	current: invariant,
 	onChange: noop,
-	property: undefined
+	property: undefined,
+	target: undefined
 };
 
 export default Select;

@@ -16,18 +16,23 @@
 	transform: translate(0, -50%);
 }
 
-.uix-select .uix-popup {
+.uix-select__popup {
 	width: 100%;
 	background: #f0f0f0;
 	border: 1px solid currentColor;
 	user-select: none;
 }
 
-.uix-select .uix-list__item {
+.uix-select__popup--portal {
+	position: fixed;
+	width: auto;
+}
+
+.uix-select__popup-content .uix-list__item {
 	padding: 0em 0.5em;
 }
 
-.uix-select .uix-list__item:hover {
+.uix-select__popup-content .uix-list__item:hover {
 	background: #000;
 	color: #fff;
 }
