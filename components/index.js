@@ -45,3 +45,8 @@ export {
 export {
 	Select
 } from './Select';
+
+export {
+	MultiSlider,
+	MultiSliderHandle
+} from './MultiSlider';
