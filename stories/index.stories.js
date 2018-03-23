@@ -57,8 +57,6 @@ import {
 	Select
 } from '../components/Select';
 
-import Polynomial from '../components/wip/polynomial';
-
 import './style.css';
 
 
@@ -329,8 +327,6 @@ storiesOf('onselect', module)
 
 		return <MyCo/>
 	})
-
-storiesOf('Polynomial', module).add('basic', () => <Polynomial/>);
 
 storiesOf('Popup', module)
 	.add('basic', () => 
