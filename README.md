@@ -49,6 +49,7 @@ These are components usable in a project, based on _Atoms_:
 See:
 
 * [uiuiui-color](https://github.com/danburzo/uiuiui-color)
+* [uiuiui-music](https://github.com/danburzo/uiuiui-music)
 
 ## Development
 
