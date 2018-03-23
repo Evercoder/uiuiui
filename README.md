@@ -46,11 +46,9 @@ These are components usable in a project, based on _Atoms_:
 
 ### Organisms (Components using other components)
 
-These are pre-built interfaces using _Molecules_:
+See:
 
-* [ColorPicker](./components/ColorPicker/README.md)
-
-They're provided both as examples on how to put together controls harmoniously, and as interfaces usable in your project.
+* [uiuiui-color](https://github.com/danburzo/uiuiui-color)
 
 ## Development
 
@@ -61,5 +59,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 This project uses:
 
 * [D3.js](https://github.com/d3)
-* [chroma.js](https://github.com/gka/chroma.js)
 
