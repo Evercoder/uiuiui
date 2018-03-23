@@ -33,16 +33,6 @@ export {
 	BandPadProgress
 } from './Pad';
 
-export { 
-	default as ColorPicker 
-} from './ColorPicker';
-
-export {
-	Checkerboard,
-	Hue,
-	Opacity
-} from './Spectrum';
-
 export {
 	List,
 	ListItem

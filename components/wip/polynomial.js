@@ -2,9 +2,7 @@ import { line, curveBasis, curveCatmullRom, curveCardinal, curveNatural, curveMo
 import { range, zip } from 'd3-array';
 import { scaleLinear, scalePoint, scaleQuantize } from 'd3-scale';
 import React from 'react';
-import { polynomial } from 'everpolate';
-import cubicspline from 'cubic-spline';
-import mathjs from 'mathjs';
+// import cubicspline from 'cubic-spline';
 import curveNatural2, {solve} from './natural';
 
 const poly = coefficients =>  x => coefficients.reduce((sum, coef, idx, arr) => sum + coef * Math.pow(x, arr.length - 1 - idx), 0);
@@ -34,34 +32,16 @@ class Polynomial extends React.Component {
 
 		let sample_input = range(0, samp_num).map(i => sample_scale(i));
 
-		function polynomial_interpolation_for(value) {
-			let control_idx = controls.indexOf(controls.find(c => c[0] >= value)) - 1;
-			let start_ctrl = control_idx - 1;
-			let end_ctrl = control_idx + 1;
-
-			if (start_ctrl < 0) {
-				end_ctrl += 0 - start_ctrl;
-				start_ctrl = 0;
-			} else if (end_ctrl > controls.length - 1) {
-				start_ctrl = start_ctrl - (end_ctrl - controls.length + 1);
-				end_ctrl = controls.length - 1;
-			}
-
-			// console.log(value, control_idx, start_ctrl, end_ctrl);
-			
-			return polynomial(value, x_coords.slice(start_ctrl, end_ctrl + 1), y_coords.slice(start_ctrl, end_ctrl + 1));
-		}
-
 		// let sample_output = polynomial(sample_input, zip(...controls)[0], zip(...controls)[1]);
 
 		let xScale = scaleLinear().domain([0, 256]).range([0, w]);
 		let yScale = scaleLinear().domain([0, 256]).range([h, 0]);
 
-		let path_func = line()
-			.x(d => xScale(d))
-			.y(d => yScale(cubicspline(d, x_coords, y_coords)));
+		// let path_func = line()
+		// 	.x(d => xScale(d))
+		// 	.y(d => yScale(cubicspline(d, x_coords, y_coords)));
 
-		let path = path_func(sample_input);
+		// let path = path_func(sample_input);
 
 		let natural_func = line()
 			.x((d, i) => xScale(controls[i][0]))
@@ -165,7 +145,7 @@ class Polynomial extends React.Component {
 */}
 				</g>
 
-				<path d={path} fill='none' stroke='#000'/>
+				{/*<path d={path} fill='none' stroke='#000'/>*/}
 
 
 				<path d={mytry} fill='none' stroke='orange' />

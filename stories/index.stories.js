@@ -24,12 +24,6 @@ import {
 	ListItem 
 } from '../components/List';
 
-import { 
-	Checkerboard, 
-	Opacity,
-	Hue
-} from '../components/Spectrum';
-
 import {
 	Slider,
 	SliderHandle,
@@ -50,16 +44,10 @@ import {
 	BandPadProgress
 } from '../components/Pad';
 
-import ColorPicker from '../components/ColorPicker';
-
 import {
 	MultiSlider,
 	MultiSliderHandle
 } from '../components/MultiSlider';
-
-import {
-	Gradient
-} from '../components/Gradient';
 
 import {
 	Popup
@@ -218,28 +206,6 @@ storiesOf('Surface', module)
 		return <DeltaSurface onChange={action('onChange')}>DeltaSurface</DeltaSurface>;
 	});
 
-storiesOf('Spectrum', module)
-	.add('Checkerboard', () => {
-		return <div className='spectrum-container'>
-			<Checkerboard/>
-		</div>;
-	})
-	.add('Opacity', () => {
-		return <div className='spectrum-container'>
-			<Opacity/>
-		</div>;
-	})
-	.add('Hue', () => {
-		return <div className='spectrum-container'>
-			<Hue/>
-		</div>;
-	});
-
-storiesOf('Color Picker', module)
-	.add('Basic Color Picker', () => {
-		return <ColorPicker/>;
-	});
-
 
 storiesOf('Input', module)
 	.add('NumericInput', () => {
@@ -309,11 +275,6 @@ storiesOf('MultiSlider', module)
 			<MultiSliderHandle property='prop1'/>
 			<MultiSliderHandle property='prop2'/>
 		</MultiSlider>
-	});
-
-storiesOf('Gradient', module)
-	.add('Basic Gradient', () => {
-		return <Gradient/>;
 	});
 
 storiesOf('onselect', module)
