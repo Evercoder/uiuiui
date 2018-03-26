@@ -8,6 +8,7 @@
 	font-size: 1em;
 	font-family: inherit;
 	border: 1px solid #999;
+	height: 100%;
 }
 
 .uix-input input:focus {

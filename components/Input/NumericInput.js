@@ -56,6 +56,7 @@ class NumericInput extends React.PureComponent {
 			type,
 			autofocus,
 			className,
+			tabIndex,
 			onStart,
 			onEnd
 		} = this.props;
@@ -65,8 +66,12 @@ class NumericInput extends React.PureComponent {
 		} = this.state;
 
 		return (
-			<div className={`uix-input uix-input--numeric ${className || ''}`}>
 				<TextInput
+					className={`
+						uix-input--numeric 
+						${ className || '' }
+					`}
+					tabIndex={tabIndex}
 					valid={valid_float}
 					format={this.format_user_input}
 					value={value}
@@ -76,19 +81,19 @@ class NumericInput extends React.PureComponent {
 					onStart={onStart}
 					onEnd={onEnd}
 					autofocus={autofocus}
-				/>
-				{
-					React.Children.map(
-						this.props.children,
-						child => React.cloneElement(child, {
-							increase: this.increase,
-							decrease: this.decrease,
-							start: onStart,
-							end: onEnd
-						})
-					)
-				}
-			</div>
+				>
+					{
+						React.Children.map(
+							this.props.children,
+							child => React.cloneElement(child, {
+								increase: this.increase,
+								decrease: this.decrease,
+								start: onStart,
+								end: onEnd
+							})
+						)
+					}
+				</TextInput>
 		);
 	}
 
