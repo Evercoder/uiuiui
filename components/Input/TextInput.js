@@ -9,6 +9,7 @@ class TextInput extends React.Component {
 		this.change = this.change.bind(this);
 		this.handleKeys = this.handleKeys.bind(this);
 		this.register = this.register.bind(this);
+		this.commit = this.commit.bind(this);
 
 		this.state = {
 			value: props.value,
@@ -51,7 +52,7 @@ class TextInput extends React.Component {
 		let handled = true;
 		switch (e.key) {
 			case 'Enter':
-				this.props.onChange(this.state.value, this.props.property);
+				this.commit(e);
 				break;
 			case 'ArrowUp':
 				this.props.onNext(e);
@@ -65,6 +66,14 @@ class TextInput extends React.Component {
 		if (handled) {
 			e.preventDefault();
 		}
+	}
+
+	commit(e) {
+		this.setState({
+			transient_value: this.state.value
+		}, () => {
+			this.props.onEnd(e);
+		});
 	}
 
 	register(input) {
@@ -90,7 +99,7 @@ class TextInput extends React.Component {
 				onChange={this.change}
 				onKeyDown={this.handleKeys}
 				onFocus={this.props.onStart}
-				onBlur={this.props.onEnd}
+				onBlur={this.commit}
 				ref={this.register}
 			/>
 		);
