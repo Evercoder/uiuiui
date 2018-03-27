@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { to_step, cycle, clamp, parse_expression, parse_float, valid_float } from '../util/math';
+import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
 
 import { TextInput } from './';
-
 
 class NumericInput extends React.PureComponent {
 
@@ -28,15 +27,17 @@ class NumericInput extends React.PureComponent {
 	}
 
 	change(value) {
-		this.setState({ 
-			value: this.format_user_input(value) 
-		});
+		this.setState({ value });
 	}
 
 	componentDidUpdate() {
 		if (this.state.value !== this.props.value) {
 			this.props.onChange(this.state.value, this.props.property);
 		}
+	}
+
+	format_user_input(value) {
+		return this.format_value(parseFloat(value));
 	}
 
 	format_value(value, method = clamp) {
@@ -46,16 +47,10 @@ class NumericInput extends React.PureComponent {
 			this.props.precision
 		);
 	}
-
-	format_user_input(proposed_value) {
-		let value = this.props.parse_value(proposed_value);
-		return this.format_value(value);
-	}
  
 	render() {
 
 		let {
-			type,
 			autofocus,
 			className,
 			tabIndex,
@@ -69,19 +64,17 @@ class NumericInput extends React.PureComponent {
 
 		return (
 				<TextInput
-					className={`
-						uix-input--numeric 
-						${ className || '' }
-					`}
-					tabIndex={tabIndex}
-					valid={valid_float}
-					value={value}
-					onChange={this.change}
-					onPrev={this.decrease}
-					onNext={this.increase}
-					onStart={onStart}
-					onEnd={onEnd}
-					autofocus={autofocus}
+					className={ `uix-input--numeric ${ className || '' }` }
+					tabIndex={ tabIndex }
+					valid={ valid_float }
+					format={ this.format_user_input }
+					value={ value }
+					onChange={ this.change }
+					onPrev={ this.decrease }
+					onNext={ this.increase }
+					onStart={ onStart }
+					onEnd={ onEnd }
+					autofocus={ autofocus }
 				>
 					{
 						React.Children.map(
@@ -111,11 +104,11 @@ class NumericInput extends React.PureComponent {
 		this.setState(
 			current_state => {
 
+				let base_value = current_state.value !== undefined ? 
+					current_state.value : this.props.start;
+
 				let value = this.format_value(
-					(
-						current_state.value !== undefined ? 
-							current_state.value : this.props.start
-					) + amount, 
+					base_value + amount, 
 					this.props.cyclical ? cycle : clamp
 				);
 
@@ -134,17 +127,13 @@ class NumericInput extends React.PureComponent {
 				this.props.increment(e) : this.props.increment
 		) || this.props.step;
 	}
-
 }
 
-const increment_bigger_step_on_shift = e => e ? (e.shiftKey ? 10 : 1) : undefined;
-
 NumericInput.defaultProps = {
-	type: 'text',
 	autofocus: false,
 	step: 1,
 	precision: 0,
-	increment: increment_bigger_step_on_shift,
+	increment: e => e ? (e.shiftKey ? 10 : 1) : undefined,
 	start: 0,
 	end: 100,
 	value: '',
@@ -152,8 +141,6 @@ NumericInput.defaultProps = {
 	onStart: noop,
 	onEnd: noop,
 	property: undefined,
-	expressions: true,
-	parse_value: parse_float,
 	cyclical: false,
 	className: undefined
 };

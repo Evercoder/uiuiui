@@ -5,7 +5,9 @@ import { noop, returnTrue, invariant } from '../util/functions';
 class TextInput extends React.Component {
 
 	constructor(props) {
+
 		super(props);
+
 		this.change = this.change.bind(this);
 		this.handleKeys = this.handleKeys.bind(this);
 		this.register = this.register.bind(this);
@@ -37,15 +39,10 @@ class TextInput extends React.Component {
 
 	change(e) {
 		let input_value = e.target.value;
-
-		let state = {
-			transient_value: input_value
-		};
-
+		let state = { transient_value: input_value };
 		if (this.props.valid(input_value)) {
-			state['value'] = input_value;
+			state['value'] = this.props.format(input_value);
 		}
-
 		this.setState(state);
 	}
 
@@ -75,21 +72,12 @@ class TextInput extends React.Component {
 				return current_state.transient_value !== current_state.value ? 
 					{ transient_value: current_state.value } : null;
 			}, 
-			() => {
-				this.props.onEnd(e);
-			}
+			() => this.props.onEnd(e)
 		);
 	}
 
 	register(input) {
-		if (input) {
-			this.input = input;
-			if (this.props.autofocus) {
-				this.input.focus();
-			}
-		} else {
-			this.input = null;
-		}
+		input && this.props.autofocus && input.focus();
 	}
 
 	render() {
@@ -103,25 +91,18 @@ class TextInput extends React.Component {
 			transient_value
 		} = this.state;
 
-		let input_value = transient_value === undefined ? '' : transient_value;
-
 		return (
-			<div
-				className={`
-					uix-input
-					${ className || '' }
-				`}
-			>
+			<div className={ `uix-input ${ className || '' }` }>
 				<input
-					tabIndex={tabIndex}
-					value={input_value}
-					onChange={this.change}
-					onKeyDown={this.handleKeys}
-					onFocus={this.props.onStart}
-					onBlur={this.commit}
-					ref={this.register}
+					tabIndex={ tabIndex }
+					value={ transient_value === undefined ? '' : transient_value }
+					onChange={ this.change }
+					onKeyDown={ this.handleKeys }
+					onFocus={ this.props.onStart }
+					onBlur={ this.commit }
+					ref={ this.register } 
 				/>
-				{this.props.children}
+				{ this.props.children }
 			</div>
 		);
 	}
@@ -130,13 +111,16 @@ class TextInput extends React.Component {
 TextInput.defaultProps = {
 	tabIndex: 0,
 	className: undefined,
+
+	onChange: noop,
 	onStart: noop,
 	onEnd: noop,
 	onPrev: noop,
 	onNext: noop,
+
 	valid: returnTrue,
-	onChange: noop,
-	suffix: '%'
+	format: invariant
+	
 };
 
 export default TextInput;
