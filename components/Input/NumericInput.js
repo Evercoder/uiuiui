@@ -28,7 +28,9 @@ class NumericInput extends React.PureComponent {
 	}
 
 	change(value) {
-		this.setState({ value });
+		this.setState({ 
+			value: this.format_user_input(value) 
+		});
 	}
 
 	componentDidUpdate() {
@@ -73,7 +75,6 @@ class NumericInput extends React.PureComponent {
 					`}
 					tabIndex={tabIndex}
 					valid={valid_float}
-					format={this.format_user_input}
 					value={value}
 					onChange={this.change}
 					onPrev={this.decrease}

@@ -13,7 +13,7 @@ class TextInput extends React.Component {
 
 		this.state = {
 			value: props.value,
-			transient_value: typeof props.value !== undefined ? props.value : ''
+			transient_value: props.value
 		};
 	}
 
@@ -21,31 +21,32 @@ class TextInput extends React.Component {
 		if (value !== this.state.value) {
 			this.setState({
 				value: value,
-				transient_value: typeof value !== undefined ? value : ''
+				transient_value: value
 			})
 		}
 	}
 
-	componentDidUpdate(old_props, old_state) {
-		if (this.state.value !== old_state.value && this.state.value !== this.props.value) {
+	componentDidUpdate(previous_props, previous_state) {
+		if (this.state.value === previous_state.value) {
+			return;
+		}
+		if (this.state.value !== this.props.value) {
 			this.props.onChange(this.state.value, this.props.property);
 		}
 	}
 
 	change(e) {
 		let input_value = e.target.value;
-		let is_valid = this.props.valid(input_value);
-		this.setState(
-			is_valid ? 
-				{
-					transient_value: input_value,
-					value: this.props.format(input_value)
-				}
-				:
-				{
-					transient_value: input_value
-				}
-		);
+
+		let state = {
+			transient_value: input_value
+		};
+
+		if (this.props.valid(input_value)) {
+			state['value'] = input_value;
+		}
+
+		this.setState(state);
 	}
 
 	handleKeys(e) {
@@ -69,11 +70,15 @@ class TextInput extends React.Component {
 	}
 
 	commit(e) {
-		this.setState({
-			transient_value: this.state.value
-		}, () => {
-			this.props.onEnd(e);
-		});
+		this.setState(
+			current_state => {
+				return current_state.transient_value !== current_state.value ? 
+					{ transient_value: current_state.value } : null;
+			}, 
+			() => {
+				this.props.onEnd(e);
+			}
+		);
 	}
 
 	register(input) {
@@ -98,6 +103,8 @@ class TextInput extends React.Component {
 			transient_value
 		} = this.state;
 
+		let input_value = transient_value === undefined ? '' : transient_value;
+
 		return (
 			<div
 				className={`
@@ -107,7 +114,7 @@ class TextInput extends React.Component {
 			>
 				<input
 					tabIndex={tabIndex}
-					value={transient_value}
+					value={input_value}
 					onChange={this.change}
 					onKeyDown={this.handleKeys}
 					onFocus={this.props.onStart}
@@ -128,7 +135,6 @@ TextInput.defaultProps = {
 	onPrev: noop,
 	onNext: noop,
 	valid: returnTrue,
-	format: invariant,
 	onChange: noop,
 	suffix: '%'
 };
