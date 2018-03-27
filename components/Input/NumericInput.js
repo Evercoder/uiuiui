@@ -27,7 +27,7 @@ class NumericInput extends React.PureComponent {
 	}
 
 	change(value) {
-		this.setState({ value });
+		this.setState({ value: this.format_user_input(value) });
 	}
 
 	componentDidUpdate() {

@@ -14,17 +14,19 @@ class TextInput extends React.Component {
 		this.commit = this.commit.bind(this);
 
 		this.state = {
-			value: props.value,
-			transient_value: props.value
+			value: this.props.value,
+			formatted_value: this.props.format(this.props.value),
+			transient_value: this.props.value
 		};
 	}
 
 	componentWillReceiveProps({ value }) {
-		if (value !== this.state.value) {
+		if (value !== this.state.formatted_value) {
 			this.setState({
 				value: value,
+				formatted_value: this.props.format(value),
 				transient_value: value
-			})
+			});
 		}
 	}
 
@@ -41,7 +43,8 @@ class TextInput extends React.Component {
 		let input_value = e.target.value;
 		let state = { transient_value: input_value };
 		if (this.props.valid(input_value)) {
-			state['value'] = this.props.format(input_value);
+			state['value'] = input_value;
+			state['formatted_value'] = this.props.format(input_value);
 		}
 		this.setState(state);
 	}
@@ -69,8 +72,8 @@ class TextInput extends React.Component {
 	commit(e) {
 		this.setState(
 			current_state => {
-				return current_state.transient_value !== current_state.value ? 
-					{ transient_value: current_state.value } : null;
+				return current_state.transient_value !== current_state.formatted_value ? 
+					{ transient_value: current_state.formatted_value } : null;
 			}, 
 			() => this.props.onEnd(e)
 		);
