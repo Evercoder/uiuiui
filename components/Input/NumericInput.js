@@ -1,4 +1,5 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
@@ -6,6 +7,10 @@ import { noop } from '../util/functions';
 import { TextInput } from './';
 
 class NumericInput extends React.PureComponent {
+
+	static getDerivedStateFromProps({ value }) {
+		return { value };
+	}
 
 	constructor(props) {
 
@@ -16,14 +21,7 @@ class NumericInput extends React.PureComponent {
 		this.decrease = this.decrease.bind(this);
 		this.format_user_input = this.format_user_input.bind(this);
 
-		this.state = {
-			value: props.value
-		};
-
-	}
-
-	componentWillReceiveProps({ value }) {
-		this.setState({ value });
+		this.state = {};
 	}
 
 	change(value) {
@@ -144,5 +142,7 @@ NumericInput.defaultProps = {
 	cyclical: false,
 	className: undefined
 };
+
+polyfill(NumericInput);
 
 export default NumericInput;

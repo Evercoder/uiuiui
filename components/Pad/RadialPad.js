@@ -1,4 +1,5 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 import { scaleLinear } from 'd3-scale';
 
 import { RadialSurface } from '../Surface';
@@ -7,12 +8,25 @@ import { to_step } from '../util/math';
 import { noop } from '../util/functions';
 
 const initial_state = {
-	interacting: false,
-	r: null,
-	t: null
+	interacting: false
 };
 
 class RadialPad extends React.PureComponent {
+
+	static getDerivedStateFromProps(props) {
+		return {
+			r: props.r,
+			t: props.t,
+			r_scale: scaleLinear()
+				.domain([0, 50])
+				.range([props.r_start, props.r_end])
+				.clamp(true),
+			t_scale: scaleLinear()
+				.domain([-Math.PI, Math.PI])
+				.range([props.t_start, props.t_end])
+				.clamp(true)
+		};
+	}
 
 	constructor(props) {
 
@@ -22,36 +36,8 @@ class RadialPad extends React.PureComponent {
 		this.onStart = this.onStart.bind(this);
 		this.onEnd = this.onEnd.bind(this);
 
-		this.state = {
-			...initial_state,
-			r: props.r,
-			t: props.t
-		};
-		
-		this.computed_props(props);
+		this.state = initial_state;
 
-	}
-
-	componentWillReceiveProps(props) {
-
-		this.setState({
-			r: props.r,
-			t: props.t
-		});
-
-		this.computed_props(props);
-	}
-
-	computed_props(props) {
-		this.r_scale = scaleLinear()
-			.domain([0, 50])
-			.range([this.props.r_start, this.props.r_end])
-			.clamp(true);
-
-		this.t_scale = scaleLinear()
-			.domain([-Math.PI, Math.PI])
-			.range([this.props.t_start, this.props.t_end])
-			.clamp(true);
 	}
 
 	onStart() {
@@ -68,8 +54,8 @@ class RadialPad extends React.PureComponent {
 
 	onChange({ r, t }) {
 
-		let r_val = to_step(this.r_scale(r), this.props.r_step, this.props.r_precision);
-		let t_val = to_step(this.t_scale(t), this.props.t_step, this.props.t_precision);
+		let r_val = to_step(this.state.r_scale(r), this.props.r_step, this.props.r_precision);
+		let t_val = to_step(this.state.t_scale(t), this.props.t_step, this.props.t_precision);
 
 		// don't update state with the same values
 		if (r_val === this.state.r && t_val === this.state.t) {
@@ -92,7 +78,9 @@ class RadialPad extends React.PureComponent {
 		let {
 			r,
 			t,
-			interacting
+			interacting,
+			r_scale,
+			t_scale
 		} = this.state;
 
 		let {
@@ -113,8 +101,8 @@ class RadialPad extends React.PureComponent {
 							child => React.cloneElement(child, {
 								r: r,
 								t: t,
-								r_scale: this.r_scale,
-								t_scale: this.t_scale,
+								r_scale: r_scale,
+								t_scale: t_scale,
 								r_step: r_step,
 								t_step: t_step,
 								interacting: interacting,
@@ -143,5 +131,7 @@ RadialPad.defaultProps = {
 	onChange: noop,
 	property: undefined
 };
+
+polyfill(RadialPad);
 
 export default RadialPad;

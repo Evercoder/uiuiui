@@ -1,4 +1,5 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
@@ -11,12 +12,47 @@ import './Pad.css';
 import { Surface } from '../Surface';
 
 const initial_state = {
-	x: null,
-	y: null,
+	x: undefined,
+	y: undefined,
 	interacting: false
 };
 
 class Pad extends React.PureComponent {
+
+
+
+	static getDerivedStateFromProps(props, current_state) {
+
+		let state = {}, changed = false;
+
+		if (current_state.x !== props.x || current_state.y !== props.y) {
+			state['x'] = props.x;
+			state['y'] = props.y;
+			changed = true;
+		}
+
+		if (current_state.x_start !== props.x_start || current_state.x_end !== props.x_end) {
+			state['x_start'] = props.x_start;
+			state['x_end'] = props.x_end;
+			state['x_scale'] = scaleLinear()
+				.domain([0, 100])
+				.range([props.x_start, props.x_end])
+				.clamp(true);
+			changed = true;
+		}
+
+		if (current_state.y_start !== props.y_start || current_state.y_end !== props.y_end) {
+			state['y_start'] = props.y_start;
+			state['y_end'] = props.y_end;
+			state['y_scale'] = scaleLinear()
+				.domain([0, 100])
+				.range([props.y_start, props.y_end])
+				.clamp(true);
+			changed = true;
+		}
+
+		return changed ? state : null;
+	}
 
 	constructor(props) {
 
@@ -29,23 +65,7 @@ class Pad extends React.PureComponent {
 		this.end = this.end.bind(this);
 
 		// Initial state
-		this.state = {
-			...initial_state,
-			x: props.x,
-			y: props.y
-		}
-
-		this.computed_props(props);
-	}
-
-	componentWillReceiveProps(props) {
-		if (this.state.x !== props.x || this.state.y !== props.y) {
-			this.setState({
-				x: props.x,
-				y: props.y
-			});
-		}
-		this.computed_props(props);
+		this.state = initial_state;
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
@@ -55,31 +75,6 @@ class Pad extends React.PureComponent {
 				y: this.state.y
 			}, this.props.property);
 		}
-	}
-
-	computed_props(props) {
-
-		// Avoid unnecessary scale reinitialization
-		if (
-			this.x_scale &&
-			this.y_scale &&
-			this.props.x_start === props.x_start &&
-			this.props.x_end === props.x_end &&
-			this.props.y_start === props.y_start &&
-			this.props.y_end === props.y_end
-		) {
-			return;
-		}
-
-		this.x_scale = scaleLinear()
-			.domain([0, 100])
-			.range([props.x_start, props.x_end])
-			.clamp(true);
-
-		this.y_scale = scaleLinear()
-			.domain([0, 100])
-			.range([props.y_start, props.y_end])
-			.clamp(true);
 	}
 
 	format_x(value, method = clamp) {
@@ -99,8 +94,8 @@ class Pad extends React.PureComponent {
 	}
 
 	change({x, y}) {
-		let x_val = this.format_x(this.x_scale(x));
-		let y_val = this.format_y(this.y_scale(y));
+		let x_val = this.format_x(this.state.x_scale(x));
+		let y_val = this.format_y(this.state.y_scale(y));
 
 		this.setState(
 			previous_state => {
@@ -148,7 +143,9 @@ class Pad extends React.PureComponent {
 		let {
 			x,
 			y,
-			interacting
+			interacting,
+			x_scale,
+			y_scale
 		} = this.state;
 
 		return (
@@ -173,8 +170,8 @@ class Pad extends React.PureComponent {
 						child => React.cloneElement(child, {
 							x: x,
 							y: y,
-							x_scale: this.x_scale,
-							y_scale: this.y_scale,
+							x_scale: x_scale,
+							y_scale: y_scale,
 							x_step: x_step,
 							y_step: y_step,
 							x_precision: x_precision,
@@ -275,5 +272,7 @@ Pad.defaultProps = {
 	onStart: noop,
 	onEnd: noop
 };
+
+polyfill(Pad);
 
 export default Pad;

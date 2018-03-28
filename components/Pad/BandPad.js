@@ -1,4 +1,5 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 
 import { scaleLinear } from 'd3-scale';
 
@@ -8,11 +9,31 @@ import { noop } from '../util/functions';
 import { Surface } from '../Surface';
 
 const initial_state = {
-	interacting: false,
-	values: undefined
+	interacting: false
 };
 
 class BandPad extends React.Component {
+
+	static getDerivedStateFromProps(props, current_state) {
+
+		let state = {}, changed = false;
+
+		if (current_state.values !== props.values) {
+			state['values'] = props.values || new Array(props.bands).fill(0);
+			changed = true;
+		}
+
+		if (current_state.bands !== props.bands) {
+			state['bands'] = props.bands;
+			state['scale'] = scaleLinear()
+				.domain([0, 100])
+				.range([0, props.bands])
+				.clamp(true);
+			changed = true;
+		}
+
+		return changed ? state : null;
+	}
 
 	constructor(props) {
 
@@ -22,28 +43,7 @@ class BandPad extends React.Component {
 		this.onEnd = this.onEnd.bind(this);
 		this.onChange = this.onChange.bind(this);
 
-		this.state = {
-			...initial_state,
-			values: props.values || new Array(props.bands).fill(0)
-		};
-
-		this.computed_props(props);
-	}
-
-	componentWillReceiveProps(props) {
-		this.setState({
-			values: props.values || new Array(props.bands).fill(0)
-		});
-
-		this.computed_props(props);
-	}
-
-	computed_props(props) {
-		this.scale = scaleLinear()
-			.domain([0, 100])
-			.range([0, this.props.bands])
-			.clamp(true);
-
+		this.state = initial_state;
 	}
 
 	onStart() {
@@ -60,7 +60,7 @@ class BandPad extends React.Component {
 
 	onChange({x, y}) {
 
-		let band = Math.floor(this.scale(x));
+		let band = Math.floor(this.state.scale(x));
 		if (band >= this.props.bands) {
 			band = this.props.bands - 1;
 		}
@@ -118,12 +118,14 @@ class BandPad extends React.Component {
 }
 
 BandPad.defaultProps = {
-	values: undefined,
+	values: new Array(36).fill(0),
 	bands: 36,
 	step: 1,
 	precision: 0,
 	onChange: noop,
 	property: undefined
 };
+
+polyfill(BandPad);
 
 export default BandPad;

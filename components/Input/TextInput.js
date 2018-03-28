@@ -1,8 +1,20 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 
 import { noop, returnTrue, invariant } from '../util/functions';
 
 class TextInput extends React.Component {
+
+	static getDerivedStateFromProps(props, current_state) {
+		if (props.value !== current_state.formatted_value) {
+			return {
+				value: props.value,
+				formatted_value: props.format(props.value),
+				transient_value: props.value
+			};
+		}
+		return null;
+	}
 
 	constructor(props) {
 
@@ -13,21 +25,8 @@ class TextInput extends React.Component {
 		this.register = this.register.bind(this);
 		this.commit = this.commit.bind(this);
 
-		this.state = {
-			value: this.props.value,
-			formatted_value: this.props.format(this.props.value),
-			transient_value: this.props.value
-		};
-	}
+		this.state = {};
 
-	componentWillReceiveProps({ value }) {
-		if (value !== this.state.formatted_value) {
-			this.setState({
-				value: value,
-				formatted_value: this.props.format(value),
-				transient_value: value
-			});
-		}
 	}
 
 	componentDidUpdate(previous_props, previous_state) {
@@ -125,5 +124,7 @@ TextInput.defaultProps = {
 	format: invariant
 	
 };
+
+polyfill(TextInput);
 
 export default TextInput;

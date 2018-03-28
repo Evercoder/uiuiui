@@ -1,4 +1,5 @@
 import React from 'react';
+import polyfill from 'react-lifecycles-compat';
 import EventListener from 'react-event-listener';
 
 import { noop } from '../util/functions';
@@ -6,11 +7,17 @@ import { noop } from '../util/functions';
 import { Pad } from '../Pad';
 
 const initial_state = {
-	value: null,
 	interacting: false
 };
 
 class Slider extends React.Component {
+
+	static getDerivedStateFromProps(props, current_state) {
+		if (current_state.value !== props.value) {
+			return { value: props.value };
+		}
+		return null;
+	} 
 
 	constructor(props) {
 
@@ -22,18 +29,7 @@ class Slider extends React.Component {
 		this.end = this.end.bind(this);
 
 		// Initial state
-		this.state = {
-			...initial_state,
-			value: props.value
-		}
-	}
-
-	componentWillReceiveProps(props) {
-		if (this.state.value !== props.value) {
-			this.setState({
-				value: props.value
-			});
-		}
+		this.state = initial_state;
 	}
 
 	componentDidUpdate(prev_props, prev_state) {
@@ -164,5 +160,7 @@ Slider.defaultProps = {
 	onEnd: noop
 
 };
+
+polyfill(Slider);
 
 export default Slider;

@@ -10,8 +10,6 @@ class BandPadProgress extends React.PureComponent {
 			values
 		} = this.props;
 
-		console.log(values);
-
 		return (
 			<div className='uix-bandpad__progress'>
 				{
