@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 
 import { scaleIdentity } from 'd3-scale';
 
-import { Surface } from '../Surface';
+import Surface from './Surface';
 
 import { noop } from '../util/functions';
 

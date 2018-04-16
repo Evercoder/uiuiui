@@ -1,6 +1,6 @@
 # Surface
 
-`Surface` is a low-level component which provides the user interaction for components such as [`Slider`](../Slider/README.md), [`Pad`](../Pad/README.md) and [`ColorPicker`](../ColorPicker/README.md).
+`Surface` is a low-level component which provides the user interaction for components such as [`Slider`](../Slider/README.md), [`Pad`](../Pad/README.md).
 
 [Storybook for `Surface`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Surface), containing some examples.
 

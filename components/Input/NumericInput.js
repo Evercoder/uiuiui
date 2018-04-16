@@ -4,7 +4,7 @@ import polyfill from 'react-lifecycles-compat';
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
 
-import { TextInput } from './';
+import TextInput from './TextInput';
 
 class NumericInput extends React.PureComponent {
 

@@ -60,4 +60,5 @@ typings/
 .DS_Store
 
 build
+yarn-error.log
 

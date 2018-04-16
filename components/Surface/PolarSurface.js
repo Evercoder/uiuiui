@@ -6,7 +6,7 @@ import { scaleLinear } from 'd3-scale';
 import { polar_scale } from '../util/math';
 import { noop } from '../util/functions';
 
-import { Surface } from './';
+import Surface from './Surface';
 
 class PolarSurface extends React.PureComponent {
 	constructor(props) {
