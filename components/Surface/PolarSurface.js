@@ -8,7 +8,7 @@ import { noop } from '../util/functions';
 
 import { Surface } from './';
 
-class RadialSurface extends React.PureComponent {
+class PolarSurface extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.change = this.change.bind(this);
@@ -25,7 +25,7 @@ class RadialSurface extends React.PureComponent {
 	render() {
 		return (
 			<Surface
-				className='uix-surface--radial'
+				className='uix-surface--polar'
 				onChange={this.change}
 				onStart={this.props.onStart}
 				onEnd={this.props.onEnd}
@@ -43,7 +43,7 @@ class RadialSurface extends React.PureComponent {
 const x_scale = scaleLinear().range([-50, 50]).clamp(true);
 const y_scale = scaleLinear().range([50, -50]).clamp(true);
 
-RadialSurface.defaultProps = {
+PolarSurface.defaultProps = {
 	onChange: noop,
 	onStart: undefined,
 	onEnd: undefined,
@@ -51,4 +51,4 @@ RadialSurface.defaultProps = {
 	interacting: false
 };
 
-export default RadialSurface;
+export default PolarSurface;

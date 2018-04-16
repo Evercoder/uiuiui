@@ -5,7 +5,7 @@ import { range } from 'd3-array';
 import { arc_from_circle } from '../util/svg';
 import { deg_to_radians } from '../util/math';
 
-class RadialPadGrid extends React.PureComponent {
+class PolarPadGrid extends React.PureComponent {
 	render() {
 		let {
 			r_step,
@@ -32,20 +32,20 @@ class RadialPadGrid extends React.PureComponent {
 		`).join(' ');
 
 		return (
-			<svg className='uix-radialpad__grid' viewBox={`0 0 ${size} ${size}`}>
+			<svg className='uix-polarpad__grid' viewBox={`0 0 ${size} ${size}`}>
 				<rect 
-					className='uix-radialpad__grid-background'
+					className='uix-polarpad__grid-background'
 					x='0' 
 					y='0' 
 					width='100%' 
 					height='100%'
 				/>
 				<path 
-					className='uix-radialpad__grid-lines uix-radialpad__grid-lines--r'
+					className='uix-polarpad__grid-lines uix-polarpad__grid-lines--r'
 					d={r_path}
 				/>
 				<path 
-					className='uix-radialpad__grid-lines uix-radialpad__grid-lines--t'
+					className='uix-polarpad__grid-lines uix-polarpad__grid-lines--t'
 					d={t_path}
 				/>
 			</svg>
@@ -53,4 +53,4 @@ class RadialPadGrid extends React.PureComponent {
 	}
 }
 
-export default RadialPadGrid;
+export default PolarPadGrid;

@@ -4,7 +4,7 @@ export {
 
 export {
 	Surface,
-	RadialSurface,
+	PolarSurface,
 	DeltaSurface
 } from './Surface';
 
@@ -27,9 +27,9 @@ export {
 	PadGrid,
 	PadHandle,
 	PadTooltip,
-	RadialPad,
-	RadialPadGrid,
-	RadialPadHandle,
+	PolarPad,
+	PolarPadGrid,
+	PolarPadHandle,
 	BandPad,
 	BandPadProgress
 } from './Pad';

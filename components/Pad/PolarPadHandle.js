@@ -2,7 +2,7 @@ import React from 'react';
 
 import { polar_scale } from '../util/math';
 
-class RadialPadHandle extends React.Component {
+class PolarPadHandle extends React.Component {
 	render() {
 		let {
 			r,
@@ -21,7 +21,7 @@ class RadialPadHandle extends React.Component {
 
 		return (
 			<div 
-				className='uix-radialpad__handle'
+				className='uix-polarpad__handle'
 				style={handle_styles}
 			>
 
@@ -30,6 +30,6 @@ class RadialPadHandle extends React.Component {
 	}
 }
 
-RadialPadHandle.defaultProps = {};
+PolarPadHandle.defaultProps = {};
 
-export default RadialPadHandle;
+export default PolarPadHandle;

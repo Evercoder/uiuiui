@@ -1,4 +1,4 @@
-.uix-radialpad {
+.uix-polarpad {
 	width: 300px;
 	height: 300px;
 	background: #f0f0f0;
@@ -6,11 +6,11 @@
 	border-radius: 50%;
 }
 
-.uix-radialpad:focus {
+.uix-polarpad:focus {
 	outline: none;
 }
 
-.uix-radialpad__handle {
+.uix-polarpad__handle {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -22,22 +22,22 @@
 	z-index: 100;
 }
 
-.uix-radialpad:focus .uix-radialpad__handle {
+.uix-polarpad:focus .uix-polarpad__handle {
 	border-color: blue;
 }
 
-.uix-radialpad__grid {
+.uix-polarpad__grid {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	z-index: 10;
 }
 
-.uix-radialpad__grid-background {
+.uix-polarpad__grid-background {
 	fill: none;
 }
 
-.uix-radialpad__grid-lines {
+.uix-polarpad__grid-lines {
 	stroke: #ccc;
 	stroke-width: 1;
 	vector-effect: non-scaling-stroke;

@@ -2,7 +2,7 @@ import React from 'react';
 import polyfill from 'react-lifecycles-compat';
 import { scaleLinear } from 'd3-scale';
 
-import { RadialSurface } from '../Surface';
+import { PolarSurface } from '../Surface';
 
 import { to_step } from '../util/math';
 import { noop } from '../util/functions';
@@ -11,7 +11,7 @@ const initial_state = {
 	interacting: false
 };
 
-class RadialPad extends React.PureComponent {
+class PolarPad extends React.PureComponent {
 
 	static getDerivedStateFromProps(props) {
 		return {
@@ -89,8 +89,8 @@ class RadialPad extends React.PureComponent {
 		} = this.props;
 
 		return (
-			<div className='uix-radialpad'>
-				<RadialSurface 
+			<div className='uix-polarpad'>
+				<PolarSurface 
 					onChange={this.onChange}
 					onStart={this.onStart}
 					onEnd={this.onEnd}
@@ -111,13 +111,13 @@ class RadialPad extends React.PureComponent {
 							})
 						)
 					}
-				</RadialSurface>
+				</PolarSurface>
 			</div>
 		);
 	}
 }
 
-RadialPad.defaultProps = {
+PolarPad.defaultProps = {
 	r: 0,
 	r_start: 0,
 	r_end: 100,
@@ -132,6 +132,6 @@ RadialPad.defaultProps = {
 	property: undefined
 };
 
-polyfill(RadialPad);
+polyfill(PolarPad);
 
-export default RadialPad;
+export default PolarPad;

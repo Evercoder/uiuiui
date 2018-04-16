@@ -11,7 +11,7 @@ import PortalWrapper from './helpers/PortalWrapper';
 
 import { 
 	Surface,
-	RadialSurface,
+	PolarSurface,
 	DeltaSurface,
 	TextInput,
 	NumericInput,
@@ -27,9 +27,9 @@ import {
 	PadGrid,
 	PadHandle,
 	PadTooltip,
-	RadialPad,
-	RadialPadGrid,
-	RadialPadHandle,
+	PolarPad,
+	PolarPadGrid,
+	PolarPadHandle,
 	BandPad,
 	BandPadProgress,
 	MultiSlider,
@@ -152,12 +152,12 @@ storiesOf('Pad', module)
 			</Pad>
 		);
 	})
-	.add('Basic RadialPad', () => {
+	.add('Basic PolarPad', () => {
 		return (
-			<RadialPad onChange={action('onChange')} r_step='10' t_step='10'>
-				<RadialPadHandle/>
-				<RadialPadGrid />
-			</RadialPad>
+			<PolarPad onChange={action('onChange')} r_step='10' t_step='10'>
+				<PolarPadHandle/>
+				<PolarPadGrid />
+			</PolarPad>
 		);
 	})
 	.add('Basic BandPad', () => {
@@ -177,9 +177,9 @@ storiesOf('Surface', module)
 	.add('Passive Surface', () => {
 		return <Surface passive></Surface>;
 	})
-	.add('Basic RadialSurface', () => {
-		return <div className='radial-surface-container'>
-			<RadialSurface onChange={action('onChange')}/>
+	.add('Basic PolarSurface', () => {
+		return <div className='polar-surface-container'>
+			<PolarSurface onChange={action('onChange')}/>
 		</div>;
 	})
 	.add('Basic DeltaSurface', () => {
