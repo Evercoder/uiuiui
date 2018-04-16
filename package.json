@@ -1,6 +1,6 @@
 {
   "name": "uiuiui",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "main": "build/uiuiui.cjs.js",
   "module": "build/uiuiui.esm.js",
   "repository": "git@github.com:danburzo/uiuiui.git",
