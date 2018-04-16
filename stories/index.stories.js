@@ -7,33 +7,22 @@ import { linkTo } from '@storybook/addon-links';
 // helpers
 import ControlledComponentWrapper from './helpers/ControlledComponentWrapper';
 import CustomSelectionUI from './helpers/CustomSelectionUI';
+import PortalWrapper from './helpers/PortalWrapper';
 
 import { 
 	Surface,
 	RadialSurface,
-	DeltaSurface
-} from '../components/Surface';
-
-import { 
+	DeltaSurface,
 	TextInput,
 	NumericInput,
-	NumericInputControls
-} from '../components/Input';
-
-import { 
+	NumericInputControls,
 	List,
-	ListItem 
-} from '../components/List';
-
-import {
+	ListItem,
 	Slider,
 	SliderHandle,
 	SliderProgress,
 	SliderTooltip,
-	SliderGrid
-} from '../components/Slider';
-
-import {
+	SliderGrid,
 	Pad,
 	PadGrid,
 	PadHandle,
@@ -42,21 +31,13 @@ import {
 	RadialPadGrid,
 	RadialPadHandle,
 	BandPad,
-	BandPadProgress
-} from '../components/Pad';
-
-import {
+	BandPadProgress,
 	MultiSlider,
-	MultiSliderHandle
-} from '../components/MultiSlider';
-
-import {
-	Popup
-} from '../components/Popup';
-
-import {
+	MultiSliderHandle,
+	Popup,
+	Portal,
 	Select
-} from '../components/Select';
+} from '../components';
 
 import './style.css';
 
@@ -421,4 +402,17 @@ storiesOf('Select', module)
 				</Select>
 			</ControlledComponentWrapper>
 		);
+	});
+
+storiesOf("Portal", module)
+	.add('Portal', () => {
+		return <div>
+			<Portal 
+				target={document.body} 
+				reference={() => document.querySelector('.portal-reference')}
+			>
+				Hello
+			</Portal>
+			<div className='portal-reference'></div>
+		</div>;
 	})

@@ -44,6 +44,10 @@ export {
 } from './Popup';
 
 export {
+	Portal
+} from './Portal';
+
+export {
 	Select
 } from './Select';
 

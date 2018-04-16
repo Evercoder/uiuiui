@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { noop, invariant } from '../util/functions';
+import { noop, identity } from '../util/functions';
 
 import { Popup } from '../Popup';
 
@@ -99,7 +99,7 @@ class Select extends React.Component {
 					interacting && 
 						(target !== undefined ? 
 							ReactDOM.createPortal : 
-							invariant
+							identity
 						)(
 							<Popup
 								autofocus 

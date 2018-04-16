@@ -1,7 +1,7 @@
 import React from 'react';
 import polyfill from 'react-lifecycles-compat';
 
-import { noop, returnTrue, invariant } from '../util/functions';
+import { noop, returnTrue, identity } from '../util/functions';
 
 class TextInput extends React.Component {
 
@@ -121,7 +121,7 @@ TextInput.defaultProps = {
 	onNext: noop,
 
 	valid: returnTrue,
-	format: invariant
+	format: identity
 	
 };
 
