@@ -24,8 +24,8 @@
 }
 
 .uix-select__popup--portal {
-	position: fixed;
-	width: auto;
+	top: 100%;
+	left: 0;
 }
 
 .uix-select__popup-content .uix-list__item {

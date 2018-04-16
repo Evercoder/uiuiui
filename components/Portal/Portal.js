@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom';
 import { identity } from '../util/functions';
 
 const initial_state = {
-	left: null,
-	top: null
+	rect: {}
 };
 
 class Portal extends React.Component {
@@ -23,8 +22,7 @@ class Portal extends React.Component {
 			if (ref) {
 				let rect = (typeof ref === 'function' ? ref() : ref).getBoundingClientRect();
 				this.setState({
-					left: rect.left,
-					top: rect.top
+					rect: rect
 				});
 			}
 		}
@@ -37,8 +35,7 @@ class Portal extends React.Component {
 		} = this.props;
 
 		let { 
-			left, 
-			top
+			rect
 		} = this.state;
 
 		if (target) {
@@ -47,8 +44,10 @@ class Portal extends React.Component {
 					className='uix-portal' 
 					style={
 						{
-							left: `${left}px`,
-							top: `${top}px`
+							left: `${rect.left}px`,
+							top: `${rect.top}px`,
+							width: `${rect.width}px`,
+							height: `${rect.height}px`
 						}
 					}
 					ref={this.register}

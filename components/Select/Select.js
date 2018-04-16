@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { noop, identity } from '../util/functions';
 
 import { Popup } from '../Popup';
+import { Portal } from '../Portal';
 
 class Select extends React.Component {
 
@@ -69,7 +69,8 @@ class Select extends React.Component {
 		} = this.props;
 
 		let {
-			interacting
+			interacting,
+			wrapper
 		} = this.state;
 
 		return (
@@ -97,10 +98,10 @@ class Select extends React.Component {
 
 				{
 					interacting && 
-						(target !== undefined ? 
-							ReactDOM.createPortal : 
-							identity
-						)(
+						<Portal 
+							target={target} 
+							reference={this._el}
+						>
 							<Popup
 								autofocus 
 								onClose={this.close}
@@ -124,7 +125,7 @@ class Select extends React.Component {
 										)
 								}
 							</Popup>
-						, target)
+						</Portal>
 				}
 				
 			</div>
