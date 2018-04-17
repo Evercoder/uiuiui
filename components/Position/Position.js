@@ -43,12 +43,11 @@ class Position extends React.PureComponent {
 
 	render() {
 		return (
-			this.props.interacting ? 
-				<EventListener
-					target='document'
-					onMouseMove={this.onChange} 
-					onMouseUp={this.onEnd}
-				/> : null
+			<EventListener
+				target='document'
+				onMouseMove={this.onChange} 
+				onMouseUp={this.onEnd}
+			/>
 		);
 	}
 }

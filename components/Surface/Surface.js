@@ -113,11 +113,13 @@ class Surface extends React.PureComponent {
 				ref={this.register}
 				{...events}
 			>
-				<Position 
-					interacting={interacting} 
-					onChange={this.change}
-					onEnd={this.end}
-				/>
+			{
+				interacting && 
+					<Position 
+						onChange={this.change}
+						onEnd={this.end}
+					/>
+			}
 
 				{ this.props.children }
 			</div>
