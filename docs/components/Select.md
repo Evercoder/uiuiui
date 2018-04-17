@@ -1,6 +1,6 @@
 # Select
 
-Selects are similar to the HTML `<select>` elements, and allow the user to pick from a set of values. It puts its children (typically a [List](../List/README.md)) into a [Popup](../Popup/README.md), which in turn can be placed into a [Portal](../Portal/README.md) to avoid z-index problems in some situations.
+Selects are similar to the HTML `<select>` elements, and allow the user to pick from a set of values. It puts its children (typically a [List](./List.md)) into a [Popup](./Popup.md), which in turn can be placed into a [Portal](./Portal.md) to avoid z-index problems in some situations.
 
 ## Properties
 

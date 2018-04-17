@@ -1,6 +1,6 @@
 # Portal
 
-Portals are low-level components that can place their children in any DOM element. Additionally, they can mirror the size and position of another DOM element. They're used in [Select](../Select/README.md) components.
+Portals are low-level components that can place their children in any DOM element. Additionally, they can mirror the size and position of another DOM element. They're used in [Select](./Select.md) components.
 
 ## Properties
 

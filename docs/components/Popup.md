@@ -1,6 +1,6 @@
 # Popup
 
-Popups are low-level components that detect clicks outside their bounds. They're used in [Select](../Select/README.md) components.
+Popups are low-level components that detect clicks outside their bounds. They're used in [Select](./Select.md) components.
 
 ## Properties
 

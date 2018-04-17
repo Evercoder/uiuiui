@@ -51,19 +51,19 @@ Along with its main use as a component library to be used directly, the code sho
 
 ### Low-level components
 
-* [Position](./components/Position/README.md)
-* [Surface](./components/Surface/README.md)
-* [Popup](./components/Popup/README.md)
-* [Portal](./components/Portal/README.md)
+* [Position](./docs/components/Position.md)
+* [Surface](./docs/components/Surface.md)
+* [Popup](./docs/components/Popup.md)
+* [Portal](./docs/components/Portal.md)
 
 ### UI components
 
-* [Pad](./components/Pad/README.md)
-* [Slider](./components/Slider/README.md)
-* [MultiSlider](./components/MultiSlider/README.md)
-* [Input](./components/Input/README.md)
-* [List](./components/List/README.md)
-* [Select](./components/Select/README.md)
+* [Pad](./docs/components/Pad.md)
+* [Slider](./docs/components/Slider.md)
+* [MultiSlider](./docs/components/MultiSlider.md)
+* [Input](./docs/components/Input.md)
+* [List](./docs/components/List.md)
+* [Select](./docs/components/Select.md)
 
 ## Development
 

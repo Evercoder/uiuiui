@@ -1,8 +1,8 @@
 # Pad
 
-Pads are two-dimensional surfaces the user can interact with. The [storybook for `Pad`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Pad) contains some examples.
+Pads are two-dimensional surfaces the user can interact with. The [storybook for `Pad`][storybook] contains some examples.
 
-Internally, Pads use [Surfaces](../Surface/README.md).
+Internally, Pads use [Surfaces](./Surface.md).
 
 ## Properties
 
@@ -53,5 +53,5 @@ Property | Type | Default | Description
 
 * `BandPadProgress`
 
-
+[storybook]: https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Pad
 [property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
