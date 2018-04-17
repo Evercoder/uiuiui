@@ -1,9 +1,10 @@
 {
   "name": "uiuiui",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "main": "build/uiuiui.cjs.js",
   "module": "build/uiuiui.esm.js",
   "browser": "build/uiuiui.umd.js",
+  "style": "build/uiuiui.css",
   "repository": "git@github.com:danburzo/uiuiui.git",
   "author": "Dan Burzo <danburzo@gmail.com>",
   "license": "MIT",
