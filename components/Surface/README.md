@@ -1,8 +1,6 @@
 # Surface
 
-`Surface` is a low-level component which provides the user interaction for other components, such as [Sliders](../Slider/README.md) and [Pads](../Pad/README.md).
-
-The [storybook for `Surface`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Surface) contains some examples.
+Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](../Slider/README.md) and [Pads](../Pad/README.md). The [storybook for `Surface`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Surface) contains some examples.
 
 ## How it's built
 
@@ -13,27 +11,21 @@ The Surface uses a [Position](../Position/README.md) component to get the user's
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
 `className` | String | _empty_ | Additional CSS classes to add to the component.
-`passive` | Boolean | `false` | 
-`interacting` | Boolean | `false` | 
 `x_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | 
 `y_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | 
-`onChange` | Function | _none_ | A callback that is invoked each time the X/Y coordinates are changed based on user interaction.
-`onStart` | Function | _none_ | A callback that is invoked when the user starts an interaction (e.g. MouseDown on the Surface)
-`onEnd` | Function | _none_ | A callback that is invoked when the user ends an interaction (e.g. on MouseUp)
-`onInsert` | Function | _none_ | 
+`onChange` | Function | _none_ | A callback function that's invoked whenever the user's coordinates change. It receives an object in the form `{x: …, y: …}` with X and Y as percentages.
+`onStart` | Function | _none_ | A callback function that's invoked when the user starts an interaction (e.g. the `mousedown` event). It receives the original DOM event as its only parameter.
+`onEnd` | Function | _none_ | A callback function that's invoked when the user ends an interaction (e.g. the `mouseup` event). It receives the original DOM event as its only parameter.
 `property` | Any | `undefined` | An optional identifier for [the `property` pattern][property].
+`passive` | Boolean | `false` | Whether the Surface should be _active_ or _passive_. See clarification below. 
+`interacting` | Boolean | `false` | Whether the Surface should be interacting.
+`onInsert` | Function | _none_ | A callback function that's invoked when the user triggers the _insert_ behavior (doubleclick event).
 
-### `onChange`
+### Active vs. Passive Surfaces
 
-The `onChange` callback receives an object containing `x` and `y` coordinates expressed in percentages in the interval `[0..100]` describing the user's position on the surface.
+An __active__ Surface receives `mousedown` events and starts an interaction.
 
-### `onStart`
-
-This is provided for symmetry with `onEnd`.
-
-### `onEnd`
-
-The `onEnd` callback is useful when you need to know that the user has finished interacting with the surface. While you might stage a transient value on the `onChange` callback, you can use `onEnd` to commit that value.
+Conversely, for a __passive__ Surface the interaction is controlled through the `interacting` flag. It can, however, trigger an _insert_ action when the user double-clicks the surface.
 
 ## CSS
 
@@ -47,3 +39,12 @@ The `Surface` component accepts arbitrary children.
 
 [property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
 
+## Other types of Surfaces
+
+### `PolarSurface`
+
+TBD.
+
+### `DeltaSurface`
+
+TBD.
