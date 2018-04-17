@@ -4,6 +4,27 @@ Simple, accessible, React controls and form elements.
 
 See an [online demo](https://danburzo.github.io/uiuiui/storybook-static) created with [Storybook](https://storybook.js.org).
 
+## Usage
+
+Install uiuiui as a dependency to your project:
+
+```bash
+$ npm add --dev uiuiui
+```
+
+It's bundled for both CJS and ES modules, so either way of using it works:
+
+```
+let uiuiui = require('uiuiui'); // Node.js
+import { Slider } from 'uiuiui'; // ES Module
+```
+
+You also need some way to import the CSS into your project:
+
+```
+import `uiuiui/build/uiuiui.css`
+```
+
 ## Rationale
 
 When I started working on this React UI component library, there were a few things I had in mind:
