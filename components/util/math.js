@@ -11,16 +11,6 @@ export const to_step = (value, step, precision = 0, rounding = 'round') =>
 		precision
 	);
 
-export const polar_scale = (x, y) => ({
-	r: Math.sqrt(x * x + y * y),
-	t: Math.atan2(y, x)
-});
-
-polar_scale.invert = (r, t) => ({
-	x: r * Math.cos(t),
-	y: r * Math.sin(t)
-});
-
 export const deg_to_radians = deg => deg * Math.PI / 180;
 
 export const clamp = (value, start, end) =>

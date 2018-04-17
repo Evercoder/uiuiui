@@ -1,9 +1,5 @@
 import Pad from './Pad';
 
-import './Pad.css';
-import './BandPad.css';
-import './PolarPad.css';
-
 export { default as Pad } from './Pad';
 export { default as PadHandle } from './PadHandle';
 export { default as PadGrid } from './PadGrid';
@@ -15,3 +11,7 @@ export { default as PolarPadGrid } from './PolarPadGrid';
 
 export { default as BandPad } from './BandPad';
 export { default as BandPadProgress } from './BandPadProgress';
+
+import './Pad.css';
+import './BandPad.css';
+import './PolarPad.css';

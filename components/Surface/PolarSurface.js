@@ -1,9 +1,8 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { scaleLinear } from 'd3-scale';
 
-import { polar_scale } from '../util/math';
+import scalePolar from '../util/scalePolar';
 import { noop } from '../util/functions';
 
 import Surface from './Surface';
@@ -15,7 +14,7 @@ class PolarSurface extends React.PureComponent {
 	}
 
 	change({x, y}) {
-		let { r, t } = polar_scale(x, y);
+		let { r, t } = scalePolar(x, y);
 		this.props.onChange({
 			r: Math.min(r, 50),
 			t: t

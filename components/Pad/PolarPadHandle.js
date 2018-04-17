@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { polar_scale } from '../util/math';
+import scalePolar from '../util/scalePolar';
 
 class PolarPadHandle extends React.Component {
 	render() {
@@ -12,7 +12,7 @@ class PolarPadHandle extends React.Component {
 			interacting
 		} = this.props;
 
-		let { x, y } = polar_scale.invert(r_scale.invert(r), t_scale.invert(t));
+		let { x, y } = scalePolar.invert(r_scale.invert(r), t_scale.invert(t));
 
 		let handle_styles = {
 			left: (x + 50) + '%',
