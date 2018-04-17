@@ -6,9 +6,9 @@ Selects are similar to the HTML `<select>` elements, and allow the user to pick 
 
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
-`tabIndex` | Number | 0 |
+`className` | String | _none_ | Any additional class names to pass to the component.
+`tabIndex` | Integer | `0` | The component's tab index.
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
-`className` | String | _none_ |
 `value` | Any | _none_ |
 `onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 `target` | DOM Element | _none_ |

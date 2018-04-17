@@ -14,14 +14,16 @@ It uses a linear scale from [`d3-scale`](https://github.com/d3/d3-scale) to map 
 
 Property | Type | Default value | Notes
 -------- | ---- | ------------- | -----
-`value` | `number` | `0` | The initial value for the slider.
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
+`className` | String | _none_ | Any additional class names to pass to the component.
+`tabIndex` | Integer | `0` | The component's tab index.
+`value` | `number` | _none_ | The initial value for the slider.
 `start` | `number` | `0` | The __starting value__ for the range.
 `end` | `number` | `100` | The __end value__ for the range. It is __not necessary__ that `start <= end`, as the Slider works well even with inverted ranges.
 `step` | `number` | `1` | I recommend you also define an appropriate `precision` to go along with the `step`, to make sure you don't get bitten by JavaScript's float operation errors.
 `precision` | `number` | `0` | The number of decimals to round the value to.
 `increment` | `number` | none | (Optional) number that defines the _increment step_ when the user presses the arrow keys. When not defined, the `step` property will be used for this purpose.
 `vertical` | `boolean` | `false` | Whether the slider should be horizontal or vertical.
-`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 
 ## CSS
 

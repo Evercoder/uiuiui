@@ -9,8 +9,8 @@ Internally, Pads use [Surfaces](../Surface/README.md).
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
-`className` | String | _none_ |
-`tabIndex` | Number | _none_ |
+`className` | String | _none_ | Any additional class names to pass to the component.
+`tabIndex` | Integer | `0` | The component's tab index.
 `x_start` | Number | `0` | 
 `x_end` | Number | `100` |
 `y_start` | Number | `0` |
