@@ -18,7 +18,7 @@ class PolarSurface extends React.PureComponent {
 		this.props.onChange({
 			r: Math.min(r, 50),
 			t: t
-		});
+		}, this.props.property);
 	}
 
 	render() {
@@ -32,6 +32,7 @@ class PolarSurface extends React.PureComponent {
 				y_scale={y_scale}
 				passive={this.props.passive}
 				interacting={this.props.interacting}
+				property={this.props.property}
 			>
 				{ this.props.children }
 			</Surface>
@@ -47,7 +48,8 @@ PolarSurface.defaultProps = {
 	onStart: undefined,
 	onEnd: undefined,
 	passive: false,
-	interacting: false
+	interacting: false,
+	property: undefined
 };
 
 export default PolarSurface;

@@ -24,8 +24,8 @@ class DeltaSurface extends React.Component {
 
 	change({x, y}) {
 		this.props.onChange({
-			x: x - this._initial_x,
-			y: y - this._initial_y
+			dx: x - this._initial_x,
+			dy: y - this._initial_y
 		});
 	}
 

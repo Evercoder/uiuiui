@@ -9,8 +9,8 @@ It uses a [Position](../Position/README.md) component to get the user's coordina
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
 `className` | String | _empty_ | Additional CSS classes to add to the component.
-`x_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | 
-`y_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | 
+`x_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | The scale to use on the X axis.
+`y_scale` | Scale | `scaleLinear().range([0, 100]).clamp(true)` | The scale to use on the Y axis.
 `onChange` | Function | _none_ | A callback function that's invoked whenever the user's coordinates change. It receives an object in the form `{x: …, y: …}` with X and Y as percentages.
 `onStart` | Function | _none_ | A callback function that's invoked when the user starts an interaction (e.g. the `mousedown` event). It receives the original DOM event as its only parameter.
 `onEnd` | Function | _none_ | A callback function that's invoked when the user ends an interaction (e.g. the `mouseup` event). It receives the original DOM event as its only parameter.
@@ -35,15 +35,15 @@ The `Surface` component has the class name __`uix-surface`__.
 
 The `Surface` component accepts arbitrary children.
 
-## Other types of Surfaces
+## Variations
 
 ### `PolarSurface`
 
-A PolarSurface is a surface that reports the angle and distance from the surface's center.
+A PolarSurface is a surface that reports the angle and distance from the surface's center. The `onChange` callback function will receive an object in the form `{ r: …, t: … }`, with `r` being the radius (distance from the center) and `t` the angle, in radians.
 
 ### `DeltaSurface`
 
-A DeltaSurface is a surface that reports the distance between the current coordinates in relation to the initial coordinates at the start of the interaction.
+A DeltaSurface is a surface that reports the distance between the current coordinates in relation to the initial coordinates at the start of the interaction. The `onChange` callback function will receive an object in the form `{ dx: …, dy: … }`.
 
 
 [property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
