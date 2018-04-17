@@ -14,15 +14,15 @@ $ npm add --dev uiuiui
 
 It's bundled for both CJS and ES modules, so either way of using it works:
 
-```
-let uiuiui = require('uiuiui'); // Node.js
-import { Slider } from 'uiuiui'; // ES Module
+```js
+let uiuiui = require('uiuiui'); // CommonJS
+import { Slider } from 'uiuiui'; // ES Modules
 ```
 
 You also need some way to import the CSS into your project:
 
-```
-import `uiuiui/build/uiuiui.css`
+```js
+import "uiuiui/build/uiuiui.css"
 ```
 
 ## Rationale
@@ -47,38 +47,30 @@ The project aims to provide the user with useful primitives with which to build 
 
 Along with its main use as a component library to be used directly, the code should be clear and heavily annotated to provide information on how each component is built, how it works, and how one might implement similar components.
 
-## Controls
+## API Reference
 
-Taking a leaf from [_Atomic Web Design_](bradfrost.com/blog/post/atomic-web-design/), the library provides a set of increasingly complex building blocks:
-
-### Atoms (Utility components)
-
-These low-level components, not meant for public consumption, may form the basis of new high-level components:
-
-* [Position](./components/Position/README.md)
-* [Surface](./components/Surface/README.md)
-
-### Molecules (High-level components)
-
-These are components usable in a project, based on _Atoms_:
-
-* [Slider](./components/Slider/README.md)
+* [Input](./components/Input/README.md)
+* [List](./components/List/README.md)
+* [MultiSlider](./components/MultiSlider/README.md)
 * [Pad](./components/Pad/README.md)
-
-### Organisms (Components using other components)
-
-See:
-
-* [uiuiui-color](https://github.com/danburzo/uiuiui-color)
-* [uiuiui-music](https://github.com/danburzo/uiuiui-music)
+* [Popup](./components/Popup/README.md)
+* [Portal](./components/Portal/README.md)
+* [Position](./components/Position/README.md)
+* [Select](./components/Select/README.md)
+* [Slider](./components/Slider/README.md)
+* [Surface](./components/Surface/README.md)
 
 ## Development
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+[CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## See also
+
+* [uiuiui-color](https://github.com/danburzo/uiuiui-color)
+* [uiuiui-music](https://github.com/danburzo/uiuiui-music)
+* [uiuiui-patterns](https://github.com/danburzo/uiuiui-patterns)
 
 ## Open Source
 
-This project uses:
-
-* [D3.js](https://github.com/d3)
+This project uses [d3-scale](https://github.com/d3/d3-scale) and [react-event-listener](https://github.com/oliviertassinari/react-event-listener).
 
