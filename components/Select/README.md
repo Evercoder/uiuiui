@@ -10,7 +10,7 @@ Property | Type | Default | Description
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `className` | String | _none_ |
 `value` | Any | _none_ |
-`onChange` | Function | _none_ |
+`onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 `target` | DOM Element | _none_ |
 
 ## CSS

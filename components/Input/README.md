@@ -19,11 +19,11 @@ Property | Type | Default | Description
 `autofocus` | Boolean | `false` |
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | String | _none_ |  
-`onChange` | Function | _none_ |
-`onStart` | Function | _none_ |
-`onEnd` | Function | _none_ |
-`onPrev` | Function | _none_ |
-`onNext` | Function | _none_ |
+`onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onStart` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onEnd` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onPrev` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onNext` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 `valid` | Function | `() => true` | 
 `format` | Function | `value => value` |
 
@@ -42,9 +42,9 @@ Property | Type | Default | Description
 `autofocus` | Boolean | `false` |
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | String | _none_ |  
-`onChange` | Function | _none_ |
-`onStart` | Function | _none_ |
-`onEnd` | Function | _none_ |
+`onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onStart` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onEnd` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 `cyclical` | Boolean | `false` |
 `step` | Number | `1` |
 `precision` | Number | `0` |

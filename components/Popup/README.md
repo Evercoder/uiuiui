@@ -10,7 +10,7 @@ Property | Type | Default | Description
 `tabIndex` | Integer | `0` | The component's tab index.
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `autofocus` | Boolean | `false` | Whether the component should autofocus when it's mounted in the DOM.
-`onClose` | Function | _none_ | A callback function that gets invoked when there's a click outside the bounds of the popup.
+`onClose` | Function | _none_ | A callback function that gets invoked when there's a click outside the bounds of the popup. When the `property` prop is set, it will be passed back as the second argument.
 
 ## Children
 

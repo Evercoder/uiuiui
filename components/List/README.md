@@ -10,8 +10,8 @@ Property | Type | Default | Description
 `className` | String | _none_ |
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | Any | _none_ |
-`onChange` | Function | _none_ |
-`onSelect` | Function | _none_ |
+`onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onSelect` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 
 ## Built-in Children
 

@@ -24,9 +24,9 @@ Property | Type | Default | Description
 `x` | Number | _none_ |
 `y` | Number | _none_ |
 `cyclical` | Boolean | `false` |
-`onChange` | Function | _none_ |
-`onStart` | Function | _none_ |
-`onEnd` | Function | _none_ |
+`onChange` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onStart` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
+`onEnd` | Function | _none_ | When the `property` prop is set, it will be passed back as the second argument.
 
 ## Children
 
