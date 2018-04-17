@@ -56,7 +56,8 @@ class Position extends React.PureComponent {
 Position.defaultProps = {
 	onChange: noop,
 	onEnd: noop,
-	property: undefined
+	property: undefined,
+	interacting: false
 };
 
 export default Position;
