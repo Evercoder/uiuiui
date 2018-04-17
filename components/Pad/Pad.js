@@ -268,6 +268,7 @@ Pad.defaultProps = {
 	tabIndex: 0,
 	className: undefined,
 	cyclical: false,
+	onChange: noop,
 	onStart: noop,
 	onEnd: noop
 };
