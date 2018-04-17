@@ -126,19 +126,20 @@ class NumericInput extends React.PureComponent {
 }
 
 NumericInput.defaultProps = {
+	tabIndex: 0,
+	className: undefined,
 	autofocus: false,
+	property: undefined,
+	cyclical: false,
 	step: 1,
 	precision: 0,
 	increment: e => e ? (e.shiftKey ? 10 : 1) : undefined,
 	start: 0,
 	end: 100,
-	value: '',
+	value: undefined,
 	onChange: noop,
 	onStart: noop,
-	onEnd: noop,
-	property: undefined,
-	cyclical: false,
-	className: undefined
+	onEnd: noop
 };
 
 export default NumericInput;

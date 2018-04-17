@@ -110,8 +110,13 @@ class TextInput extends React.Component {
 }
 
 TextInput.defaultProps = {
+
 	tabIndex: 0,
 	className: undefined,
+	autofocus: false,
+	property: undefined,
+
+	value: undefined,
 
 	onChange: noop,
 	onStart: noop,
