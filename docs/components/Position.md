@@ -1,6 +1,8 @@
 # Position
 
-`Position` is a low-level component that reports the cursor position on each `mousemove` event on the `onChange` callback. The [Storybook for `Position`][storybook] contains some examples.
+[source][source] | [storybook][storybook]
+
+`Position` is a low-level component that reports the cursor position on each `mousemove` event on the `onChange` callback.
 
 ## Properties
 
@@ -54,10 +56,7 @@ class MyComponent extends React.Component {
     return (
       <div 
         onMouseDown={ 
-          e => { 
-            this.setState({ interacting: true }); 
-            e.preventDefault();
-          } 
+          e => { this.setState({ interacting: true }); e.preventDefault(); } 
         }
       >
         <p>
@@ -79,5 +78,6 @@ class MyComponent extends React.Component {
 
 _Note: these examples use less than ideal React idioms to make them shorter. For better performance, avoid passing inline functions as callbacks._
 
+[source]: ../../components/Position/Position.js
 [storybook]: https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Position
 [property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md

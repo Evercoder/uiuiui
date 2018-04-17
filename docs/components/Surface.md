@@ -1,6 +1,8 @@
 # Surface
 
-Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](./Slider.md) and [Pads](./Pad.md). The [storybook for `Surface`][storybook] contains some examples.
+[source][source] | [storybook][storybook]
+
+Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](./Slider.md) and [Pads](./Pad.md).
 
 It uses a [Position](./Position.md) component to get the user's coordinates, which it then relates to its own bounds. By default it reports the coordinates as percentages (numbers in the range 0 — 100), but any scale from [`d3-scale`][d3-scale] can be used instead.
 
@@ -45,6 +47,7 @@ A PolarSurface is a surface that reports the angle and distance from the surface
 
 A DeltaSurface is a surface that reports the distance between the current coordinates in relation to the initial coordinates at the start of the interaction. The `onChange` callback function will receive an object in the form `{ dx: …, dy: … }`.
 
+[source]: ../../components/Surface/Surface.js
 [storybook]: https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Surface
 [d3-scale]: https://github.com/d3/d3-scale
 [property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
