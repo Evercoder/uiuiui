@@ -134,11 +134,11 @@ class Select extends React.Component {
 }
 
 Select.defaultProps = {
-	value: null,
-	className: undefined,
 	tabIndex: 0,
-	onChange: noop,
 	property: undefined,
+	className: undefined,
+	value: undefined,
+	onChange: noop,
 	target: undefined
 };
 

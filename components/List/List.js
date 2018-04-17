@@ -45,12 +45,12 @@ class List extends React.Component {
 }
 
 List.defaultProps = {
-	className: undefined,
 	tabIndex: '0',
-	value: null,
+	className: undefined,
+	property: undefined,
+	value: undefined,
 	onChange: noop,
-	onSelect: noop,
-	property: undefined
+	onSelect: noop
 };
 
 export default List;
