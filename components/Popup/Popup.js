@@ -35,8 +35,7 @@ class Popup extends React.Component {
 
 		let { 
 			className,
-			tabIndex,
-			target
+			tabIndex
 		} = this.props;
 
 		return (
@@ -63,11 +62,11 @@ class Popup extends React.Component {
 }
 
 Popup.defaultProps = {
-	autofocus: false,
 	tabIndex: 0,
 	className: undefined,
-	onClose: noop,
-	target: undefined
+	property: undefined,
+	autofocus: false,
+	onClose: noop
 };
 
 export default Popup;
