@@ -37,8 +37,8 @@ TextInput components have the class name __`uix-input`__.
 
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
-`tabIndex` | Number | `0` |
-`className` | String | _none_ |
+`className` | String | _none_ | Any additional class names to pass to the component.
+`tabIndex` | Integer | `0` | The component's tab index.
 `autofocus` | Boolean | `false` |
 `property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | String | _none_ |  
