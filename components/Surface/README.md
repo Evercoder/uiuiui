@@ -2,9 +2,7 @@
 
 Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](../Slider/README.md) and [Pads](../Pad/README.md). The [storybook for `Surface`](https://danburzo.github.io/uiuiui/storybook-static/?selectedKind=Surface) contains some examples.
 
-## How it's built
-
-The Surface uses a [Position](../Position/README.md) component to get the user's coordinates, which it then scales to the `[0%, 100%]` interval using [`d3-scale`](https://github.com/d3/d3-scale).
+It uses a [Position](../Position/README.md) component to get the user's coordinates, which it then relates to its own bounds. By default it reports the coordinates as percentages (numbers in the range 0 — 100), but any scale from [`d3-scale`](https://github.com/d3/d3-scale) can be used instead.
 
 ## Properties
 
@@ -37,14 +35,15 @@ The `Surface` component has the class name __`uix-surface`__.
 
 The `Surface` component accepts arbitrary children.
 
-[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
-
 ## Other types of Surfaces
 
 ### `PolarSurface`
 
-TBD.
+A PolarSurface is a surface that reports the angle and distance from the surface's center.
 
 ### `DeltaSurface`
 
-TBD.
+A DeltaSurface is a surface that reports the distance between the current coordinates in relation to the initial coordinates at the start of the interaction.
+
+
+[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md
