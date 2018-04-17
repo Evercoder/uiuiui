@@ -8,7 +8,7 @@ Property | Type | Default | Description
 -------- | ---- | ------- | -----------
 `className` | String | _none_ | Any additional class names to pass to the component.
 `tabIndex` | Integer | `0` | The component's tab index.
-`property` | Any | `undefined` | An optional identifier for [the `property` pattern][property].
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `autofocus` | Boolean | `false` | Whether the component should autofocus when it's mounted in the DOM.
 `onClose` | Function | _none_ | A callback function that gets invoked when there's a click outside the bounds of the popup.
 

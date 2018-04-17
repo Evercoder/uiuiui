@@ -21,6 +21,7 @@ Property | Type | Default value | Notes
 `precision` | `number` | `0` | The number of decimals to round the value to.
 `increment` | `number` | none | (Optional) number that defines the _increment step_ when the user presses the arrow keys. When not defined, the `step` property will be used for this purpose.
 `vertical` | `boolean` | `false` | Whether the slider should be horizontal or vertical.
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 
 ## CSS
 
@@ -79,3 +80,6 @@ import { SliderTooltip } from './components/Slider';
 ```
 
 It has the class name `uix-slider__tooltip`.
+
+
+[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md

@@ -17,7 +17,7 @@ Property | Type | Default | Description
 `tabIndex` | Number | `0` |
 `className` | String | _none_ |
 `autofocus` | Boolean | `false` |
-`property` | Any | _none_ |
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | String | _none_ |  
 `onChange` | Function | _none_ |
 `onStart` | Function | _none_ |
@@ -40,7 +40,7 @@ Property | Type | Default | Description
 `tabIndex` | Number | `0` |
 `className` | String | _none_ |
 `autofocus` | Boolean | `false` |
-`property` | Any | _none_ |
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `value` | String | _none_ |  
 `onChange` | Function | _none_ |
 `onStart` | Function | _none_ |
@@ -59,3 +59,6 @@ Property | Type | Default | Description
 ### CSS
 
 NumericInput components have the class names __`uix-input uix-input--numeric`__.
+
+
+[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md

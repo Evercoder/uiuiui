@@ -7,7 +7,7 @@ Selects are similar to the HTML `<select>` elements, and allow the user to pick 
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
 `tabIndex` | Number | 0 |
-`property` | Any | _none_ |
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `className` | String | _none_ |
 `value` | Any | _none_ |
 `onChange` | Function | _none_ |
@@ -16,3 +16,5 @@ Property | Type | Default | Description
 ## CSS
 
 Select components have the class name __`uix-select`__. When using a Portal, the __`uix-select--portal`__ class name is also present.
+
+[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md

@@ -8,7 +8,7 @@ Internally, Pads use [Surfaces](../Surface/README.md).
 
 Property | Type | Default | Description
 -------- | ---- | ------- | -----------
-`property` | Any | _none_ | 
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `className` | String | _none_ |
 `tabIndex` | Number | _none_ |
 `x_start` | Number | `0` | 
@@ -52,3 +52,6 @@ Property | Type | Default | Description
 #### Built-in children
 
 * `BandPadProgress`
+
+
+[property]: https://github.com/danburzo/react-recipes/blob/master/recipes/property-pattern.md

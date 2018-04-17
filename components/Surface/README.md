@@ -14,7 +14,7 @@ Property | Type | Default | Description
 `onChange` | Function | _none_ | A callback function that's invoked whenever the user's coordinates change. It receives an object in the form `{x: …, y: …}` with X and Y as percentages.
 `onStart` | Function | _none_ | A callback function that's invoked when the user starts an interaction (e.g. the `mousedown` event). It receives the original DOM event as its only parameter.
 `onEnd` | Function | _none_ | A callback function that's invoked when the user ends an interaction (e.g. the `mouseup` event). It receives the original DOM event as its only parameter.
-`property` | Any | `undefined` | An optional identifier for [the `property` pattern][property].
+`property` | Any | _none_ | [An optional identifier][property] to pass along to the callback functions.
 `passive` | Boolean | `false` | Whether the Surface should be _active_ or _passive_. See clarification below. 
 `interacting` | Boolean | `false` | Whether the Surface should be interacting.
 `onInsert` | Function | _none_ | A callback function that's invoked when the user triggers the _insert_ behavior (doubleclick event).
