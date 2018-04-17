@@ -1,11 +1,14 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 import pkg from './package.json';
 
 const postcss_config = { 
 	extensions: ['.css'], 
-	extract: 'build/uiuiui.css'
+	plugins: [
+		autoprefixer()
+	]
 };
 
 const babel_config = {
