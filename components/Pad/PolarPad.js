@@ -1,5 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
 import { scaleLinear } from 'd3-scale';
 
 import { PolarSurface } from '../Surface';
@@ -131,7 +130,5 @@ PolarPad.defaultProps = {
 	onChange: noop,
 	property: undefined
 };
-
-polyfill(PolarPad);
 
 export default PolarPad;

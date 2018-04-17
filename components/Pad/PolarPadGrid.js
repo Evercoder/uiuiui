@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { range } from 'd3-array';
+import range from '../util/range';
 
 import { arc_from_circle } from '../util/svg';
 import { deg_to_radians } from '../util/math';

@@ -1,5 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
 
 import { noop, returnTrue, identity } from '../util/functions';
 
@@ -124,7 +123,5 @@ TextInput.defaultProps = {
 	format: identity
 	
 };
-
-polyfill(TextInput);
 
 export default TextInput;

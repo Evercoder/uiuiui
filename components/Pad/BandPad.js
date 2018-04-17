@@ -1,5 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
 
 import { scaleLinear } from 'd3-scale';
 
@@ -125,7 +124,5 @@ BandPad.defaultProps = {
 	onChange: noop,
 	property: undefined
 };
-
-polyfill(BandPad);
 
 export default BandPad;

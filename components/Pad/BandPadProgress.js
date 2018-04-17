@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { range } from 'd3-array';
+import range from '../util/range';
 
 class BandPadProgress extends React.PureComponent {
 	render() {

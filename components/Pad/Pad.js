@@ -1,5 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
 import EventListener from 'react-event-listener';
 
 import { scaleLinear } from 'd3-scale';
@@ -272,7 +271,5 @@ Pad.defaultProps = {
 	onStart: noop,
 	onEnd: noop
 };
-
-polyfill(Pad);
 
 export default Pad;

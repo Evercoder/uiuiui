@@ -1,5 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
 import EventListener from 'react-event-listener';
 
 import { noop } from '../util/functions';
@@ -160,7 +159,5 @@ Slider.defaultProps = {
 	onEnd: noop
 
 };
-
-polyfill(Slider);
 
 export default Slider;

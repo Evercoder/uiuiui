@@ -1,4 +1,0 @@
-{
-  "presets": [["es2015-rollup", { modules: false}], "react"],
-  "plugins": ["transform-object-rest-spread"]
-}

@@ -1,6 +1,4 @@
 import React from 'react';
-import polyfill from 'react-lifecycles-compat';
-
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
 
@@ -142,7 +140,5 @@ NumericInput.defaultProps = {
 	cyclical: false,
 	className: undefined
 };
-
-polyfill(NumericInput);
 
 export default NumericInput;
