@@ -6,6 +6,7 @@ import pkg from './package.json';
 
 const postcss_config = { 
 	extensions: ['.css'], 
+	extract: pkg.style,
 	plugins: [
 		autoprefixer()
 	]
