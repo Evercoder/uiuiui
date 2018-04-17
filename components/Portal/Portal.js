@@ -18,7 +18,7 @@ class Portal extends React.Component {
 	register(el) {
 		this.el = el;
 		if (el) {
-			let ref = this.props.reference;
+			let ref = this.props.mirror;
 			if (ref) {
 				let rect = (typeof ref === 'function' ? ref() : ref).getBoundingClientRect();
 				this.setState({
@@ -31,7 +31,8 @@ class Portal extends React.Component {
 	render() {
 		let {
 			target,
-			reference
+			mirror,
+			className
 		} = this.props;
 
 		let { 
@@ -41,7 +42,10 @@ class Portal extends React.Component {
 		if (target) {
 			return ReactDOM.createPortal(
 				<div 
-					className='uix-portal' 
+					className={`
+						uix-portal
+						${ className || '' } 
+					`}
 					style={
 						{
 							left: `${rect.left}px`,
@@ -63,7 +67,9 @@ class Portal extends React.Component {
 }
 
 Portal.defaultProps = {
-	target: undefined
+	className: undefined,
+	target: undefined,
+	mirror: undefined
 };
 
 export default Portal;

@@ -18,9 +18,9 @@ The `Popup` component accepts arbitrary children. If a function is passed in the
 
 ```jsx
 <Popup>
-	{
-		close => <button onClick={close}>Close yourself</button>
-	}
+  {
+    close => <button onClick={close}>Close yourself</button>
+  }
 </Popup>
 ``` 
 

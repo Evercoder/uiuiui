@@ -43,13 +43,13 @@ class Select extends React.Component {
 	}
 
 	focus() {
-		if (this._el) {
-			this._el.focus();
+		if (this.element) {
+			this.element.focus();
 		}
 	}
 
 	register(el) {
-		this._el = el;
+		this.element = el;
 	}
 
 	handleKeys(e) {
@@ -100,7 +100,7 @@ class Select extends React.Component {
 					interacting && 
 						<Portal 
 							target={target} 
-							reference={this._el}
+							mirror={this.element}
 						>
 							<Popup
 								autofocus 

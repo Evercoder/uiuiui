@@ -53,8 +53,8 @@ Along with its main use as a component library to be used directly, the code sho
 
 * [Position](./components/Position/README.md)
 * [Surface](./components/Surface/README.md)
-* [Portal](./components/Portal/README.md)
 * [Popup](./components/Popup/README.md)
+* [Portal](./components/Portal/README.md)
 
 ### UI components
 
