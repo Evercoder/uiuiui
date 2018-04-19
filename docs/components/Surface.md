@@ -2,9 +2,7 @@
 
 [source][source] | [storybook][storybook]
 
-Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](./Slider.md) and [Pads](./Pad.md).
-
-It uses a [Position](./Position.md) component to get the user's coordinates, which it then relates to its own bounds. By default it reports the coordinates as percentages (numbers in the range 0 — 100), but any scale from [`d3-scale`][d3-scale] can be used instead.
+Surfaces are low-level components which provide the user interaction for other components, such as [Sliders](./Slider.md) and [Pads](./Pad.md). It uses a [Position](./Position.md) component to get the user's coordinates, which it then relates to its own bounds. By default it reports the coordinates as percentages (numbers in the range 0 — 100), but you can use any scale from [`d3-scale`][d3-scale], or implement your own.
 
 ## Properties
 

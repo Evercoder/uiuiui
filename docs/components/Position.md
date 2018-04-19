@@ -2,7 +2,7 @@
 
 [source][source] | [storybook][storybook]
 
-`Position` is a low-level component that reports the cursor position on each `mousemove` event on the `onChange` callback.
+Position is a low-level component that reports the cursor position on each `mousemove` event on the `onChange` callback function. It's used in [Surfaces](../Surface.md).
 
 ## Properties
 
