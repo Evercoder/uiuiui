@@ -1,6 +1,6 @@
 {
   "name": "uiuiui",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "build/uiuiui.cjs.js",
   "module": "build/uiuiui.esm.js",
   "browser": "build/uiuiui.umd.js",
@@ -23,10 +23,11 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.24.1",
     "npm-run-all": "^4.1.2",
+    "postcss": "^6.0.21",
     "rollup": "^0.58.0",
     "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-css-bundle": "^1.0.1",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-postcss": "^1.5.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "why-did-you-update": "^0.1.0"
