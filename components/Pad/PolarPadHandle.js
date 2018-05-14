@@ -1,6 +1,7 @@
 import React from 'react';
-
 import scalePolar from '../util/scalePolar';
+
+import './PolarPadHandle.css';
 
 class PolarPadHandle extends React.Component {
 	render() {

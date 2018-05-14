@@ -1,6 +1,7 @@
 import React from 'react';
+import PadHandle from '../Pad/PadHandle';
 
-import { PadHandle } from '../Pad';
+import './SliderHandle.css';
 
 class SliderHandle extends React.PureComponent {
 	render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { noop, returnTrue, identity } from '../util/functions';
+import './Input.css';
 
 class TextInput extends React.Component {
 

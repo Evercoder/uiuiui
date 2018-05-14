@@ -1,7 +1,8 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { noop } from '../util/functions';
+
+import './InputControls.css';
 
 const initial_state = {
 	increasing: false,

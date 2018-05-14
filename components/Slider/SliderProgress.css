@@ -1,0 +1,16 @@
+.uix-slider__progress {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: #c0c0c0;
+	z-index: 10;
+	pointer-events: none;
+}
+
+.uix-slider--vertical .uix-slider__progress {
+	left: 0;
+	right: 0;
+	top: auto;
+	bottom: 0;
+}

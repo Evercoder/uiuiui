@@ -1,6 +1,7 @@
 import React from 'react';
+import PadGrid from '../Pad/PadGrid';
 
-import { PadGrid } from '../Pad';
+import './SliderGrid.css';
 
 class SliderGrid extends React.PureComponent {
 	render() {

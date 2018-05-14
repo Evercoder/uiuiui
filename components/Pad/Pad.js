@@ -1,14 +1,11 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { scaleLinear } from 'd3-scale';
-
 import { noop } from '../util/functions';
 import { to_step, clamp, cycle } from '../util/math';
+import Surface from '../Surface/Surface';
 
 import './Pad.css';
-
-import { Surface } from '../Surface';
 
 const initial_state = {
 	x: undefined,

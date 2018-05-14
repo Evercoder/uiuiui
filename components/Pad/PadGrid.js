@@ -1,6 +1,7 @@
 import React from 'react';
-
 import range from '../util/range';
+
+import './PadGrid.css';
 
 class PadGrid extends React.PureComponent {
 	render() {

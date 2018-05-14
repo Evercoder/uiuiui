@@ -1,0 +1,15 @@
+.uix-pad__handle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -50%);
+	width: 0.5em;
+	height: 0.5em;
+	border-radius: 50%;
+	border: 1px solid #777;
+	z-index: 100;
+}
+
+.uix-pad:focus .uix-pad__handle {
+	border-color: #000;
+}

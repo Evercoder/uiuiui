@@ -1,9 +1,9 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { noop } from '../util/functions';
+import Pad from '../Pad/Pad';
 
-import { Pad } from '../Pad';
+import './Slider.css';
 
 const initial_state = {
 	interacting: false

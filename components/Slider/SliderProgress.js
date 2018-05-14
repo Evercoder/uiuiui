@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './SliderProgress.css';
+
 class SliderProgress extends React.PureComponent {
 	render() {
 		let {

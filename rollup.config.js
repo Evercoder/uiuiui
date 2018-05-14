@@ -1,15 +1,13 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
-import postcss from 'rollup-plugin-postcss';
+import cssbundle from 'rollup-plugin-css-bundle';
+import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import pkg from './package.json';
 
-const postcss_config = { 
-	extensions: ['.css'], 
-	extract: pkg.style,
-	plugins: [
-		autoprefixer()
-	]
+const css_config = { 
+	output: pkg.style,
+	transform: code => postcss([autoprefixer]).process(code, {})
 };
 
 const babel_config = {
@@ -22,17 +20,19 @@ const babel_config = {
 export default [{
 	input: 'components/index.js',
 	external: Object.keys(pkg.dependencies),
+	treeshake: false,
 	output: [
 		{ file: pkg.main, format: 'cjs' },
 		{ file: pkg.module, format: 'es' }
 	],
 	plugins: [
 		resolve(),
-		postcss(postcss_config),
+		cssbundle(css_config),
 		babel(babel_config)
 	]
 }, {
 	input: 'components/index.js',
+	treeshake: false,
 	external: Object.keys(pkg.dependencies).filter(dep => dep.indexOf('react') === 0),
 	output: {
 		file: pkg.browser,
@@ -41,7 +41,7 @@ export default [{
 	},
 	plugins: [
 		resolve(),
-		postcss(postcss_config),
+		cssbundle(css_config),
 		babel(babel_config)
 	]
 }];

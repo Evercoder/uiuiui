@@ -1,4 +1,5 @@
 import React from 'react';
+import './PadTooltip.css';
 
 class PadTooltip extends React.PureComponent {
 	render() {

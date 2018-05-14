@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { noop } from '../util/functions';
+import './ListItem.css';
 
 class ListItem extends React.PureComponent {
 	

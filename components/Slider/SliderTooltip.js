@@ -1,6 +1,7 @@
 import React from 'react';
+import PadTooltip from '../Pad/PadTooltip';
 
-import { PadTooltip } from '../Pad';
+import './SliderTooltip.css';
 
 const show_x = (x, y) => x;
 const show_y = (x, y) => y;

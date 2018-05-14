@@ -2,8 +2,10 @@ import React from 'react';
 
 import { noop, identity } from '../util/functions';
 
-import { Popup } from '../Popup';
-import { Portal } from '../Portal';
+import Popup from '../Popup/Popup';
+import Portal from '../Portal/Portal';
+
+import './Select.css';
 
 class Select extends React.Component {
 

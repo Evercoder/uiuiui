@@ -1,9 +1,9 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
-import { Surface } from '../Surface';
-
+import Surface from '../Surface/Surface';
 import { noop } from '../util/functions';
+
+import './MultiSlider.css';
 
 const initial_state = {
 	interacting: false

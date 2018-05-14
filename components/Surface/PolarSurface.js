@@ -1,11 +1,11 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
-
 import scalePolar from '../util/scalePolar';
 import { noop } from '../util/functions';
-
 import Surface from './Surface';
+
+import './PolarSurface.css';
 
 class PolarSurface extends React.PureComponent {
 	constructor(props) {

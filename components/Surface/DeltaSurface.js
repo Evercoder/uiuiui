@@ -1,11 +1,10 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { scaleIdentity } from 'd3-scale';
-
 import Surface from './Surface';
-
 import { noop } from '../util/functions';
+
+import './DeltaSurface.css';
 
 class DeltaSurface extends React.Component {
 

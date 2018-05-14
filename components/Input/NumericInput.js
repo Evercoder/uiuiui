@@ -1,7 +1,6 @@
 import React from 'react';
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
-
 import TextInput from './TextInput';
 
 class NumericInput extends React.PureComponent {

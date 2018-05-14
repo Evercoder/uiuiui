@@ -9,37 +9,3 @@
 .uix-polarpad:focus {
 	outline: none;
 }
-
-.uix-polarpad__handle {
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform: translate(-50%, -50%);
-	width: 0.5em;
-	height: 0.5em;
-	border-radius: 50%;
-	border: 1px solid #000;
-	z-index: 100;
-}
-
-.uix-polarpad:focus .uix-polarpad__handle {
-	border-color: blue;
-}
-
-.uix-polarpad__grid {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	z-index: 10;
-}
-
-.uix-polarpad__grid-background {
-	fill: none;
-}
-
-.uix-polarpad__grid-lines {
-	stroke: #ccc;
-	stroke-width: 1;
-	vector-effect: non-scaling-stroke;
-	fill: none;
-}

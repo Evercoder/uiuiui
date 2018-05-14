@@ -1,11 +1,10 @@
 import React from 'react';
-
 import { scaleLinear } from 'd3-scale';
-
 import { to_step } from '../util/math';
 import { noop } from '../util/functions';
+import Surface from '../Surface/Surface';
 
-import { Surface } from '../Surface';
+import './BandPad.css';
 
 const initial_state = {
 	interacting: false

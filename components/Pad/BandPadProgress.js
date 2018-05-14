@@ -1,6 +1,7 @@
 import React from 'react';
-
 import range from '../util/range';
+
+import './BandPadProgress.css';
 
 class BandPadProgress extends React.PureComponent {
 	render() {

@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { noop } from '../util/functions';
+
+import './MultiSliderHandle.css';
 
 class MultiSliderHandle extends React.PureComponent {
 	

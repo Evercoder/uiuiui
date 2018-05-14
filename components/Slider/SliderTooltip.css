@@ -1,0 +1,9 @@
+.uix-slider .uix-slider__tooltip {
+	transform: translate(-50%, 75%);
+}
+
+.uix-slider--vertical .uix-slider__tooltip {
+	left: 100%;
+	top: 0;
+	transform: translate(75%, -50%);
+}

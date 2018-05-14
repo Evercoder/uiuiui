@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { noop } from '../util/functions';
+import './List.css';
 
 class List extends React.Component {
 	constructor(props) {

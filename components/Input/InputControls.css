@@ -1,0 +1,40 @@
+.uix-input__controls {
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+	width: 1em;
+	border-left: 1px solid #999;
+	display: none;
+}
+
+.uix-input:hover .uix-input__controls {
+	display: block;
+}
+
+.uix-input__control {
+	display: block;
+	background: #f0f0f0;
+	text-align: center;
+	height: 50%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.uix-input__control--increment {
+	border-bottom: 1px solid #999;
+}
+
+.uix-input__controls .uix-icon {
+	stroke: #999;
+	stroke-width: 1.5;
+	fill: none;
+	overflow: visible;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.uix-input__control:hover .uix-icon {
+	stroke: #000;
+}

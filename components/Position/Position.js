@@ -1,6 +1,5 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-
 import { noop } from '../util/functions';
 
 /*

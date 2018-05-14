@@ -1,4 +1,5 @@
 import React from 'react';
+import './PadHandle.css';
 
 class PadHandle extends React.PureComponent {
 	render() {

@@ -1,57 +1,28 @@
-export {
-	Position
-} from './Position';
-
-export {
-	Surface,
-	PolarSurface,
-	DeltaSurface
-} from './Surface';
-
-export { 
-	TextInput,
-	NumericInput,
-	NumericInputControls
-} from './Input';
-
-export {
-	Slider,
-	SliderHandle,
-	SliderProgress,
-	SliderTooltip,
-	SliderGrid
-} from './Slider';
-
-export {
-	Pad,
-	PadGrid,
-	PadHandle,
-	PadTooltip,
-	PolarPad,
-	PolarPadGrid,
-	PolarPadHandle,
-	BandPad,
-	BandPadProgress
-} from './Pad';
-
-export {
-	List,
-	ListItem
-} from './List';
-
-export {
-	Popup
-} from './Popup';
-
-export {
-	Portal
-} from './Portal';
-
-export {
-	Select
-} from './Select';
-
-export {
-	MultiSlider,
-	MultiSliderHandle
-} from './MultiSlider';
+export { default as Position } from './Position/Position';
+export { default as Surface } from './Surface/Surface';
+export { default as PolarSurface } from './Surface/PolarSurface';
+export { default as DeltaSurface } from './Surface/DeltaSurface';
+export { default as TextInput } from './Input/TextInput';
+export { default as NumericInput } from './Input/NumericInput';
+export { default as NumericInputControls } from './Input/NumericInputControls';
+export { default as Slider } from './Slider/Slider';
+export { default as SliderHandle } from './Slider/SliderHandle';
+export { default as SliderProgress } from './Slider/SliderProgress';
+export { default as SliderTooltip } from './Slider/SliderTooltip';
+export { default as SliderGrid } from './Slider/SliderGrid';
+export { default as Pad } from './Pad/Pad';
+export { default as PadGrid } from './Pad/PadGrid';
+export { default as PadHandle } from './Pad/PadHandle';
+export { default as PadTooltip } from './Pad/PadTooltip';
+export { default as PolarPad } from './Pad/PolarPad';
+export { default as PolarPadGrid } from './Pad/PolarPadGrid';
+export { default as PolarPadHandle } from './Pad/PolarPadHandle';
+export { default as BandPad } from './Pad/BandPad';
+export { default as BandPadProgress } from './Pad/BandPadProgress';
+export { default as List } from './List/List';
+export { default as ListItem } from './List/ListItem';
+export { default as Popup } from './Popup/Popup';
+export { default as Portal } from './Portal/Portal';
+export { default as Select } from './Select/Select';
+export { default as MultiSlider } from './MultiSlider/MultiSlider';
+export { default as MultiSliderHandle } from './MultiSlider/MultiSliderHandle';

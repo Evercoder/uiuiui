@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { identity } from '../util/functions';
+
+import './Portal.css';
 
 const initial_state = {
 	rect: {}

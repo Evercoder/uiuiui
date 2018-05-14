@@ -1,10 +1,10 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
-
-import { Position } from '../Position';
-
+import Position from '../Position/Position';
 import { noop } from '../util/functions';
+
+import './Surface.css';
 
 const initial_state = {
 	interacting: false

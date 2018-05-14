@@ -1,9 +1,9 @@
 import React from 'react';
-
 import range from '../util/range';
-
 import { arc_from_circle } from '../util/svg';
 import { deg_to_radians } from '../util/math';
+
+import './PolarPadGrid.css';
 
 class PolarPadGrid extends React.PureComponent {
 	render() {

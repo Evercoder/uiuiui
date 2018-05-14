@@ -1,0 +1,22 @@
+.uix-slider__handle {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(-50%, -50%);
+	height: 1em;
+	width: 1em;
+	background: #777;
+	border-radius: 50%;
+	z-index: 100;
+}
+
+.uix-slider:focus .uix-slider__handle,
+.uix-slider__handle:hover,
+.uix-slider__handle--interacting {
+	background: #000;
+}
+
+.uix-slider--vertical .uix-slider__handle {
+	left: 50%;
+	top: 0;
+}
