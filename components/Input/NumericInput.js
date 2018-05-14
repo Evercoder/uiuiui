@@ -2,6 +2,7 @@ import React from 'react';
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
 import TextInput from './TextInput';
+import NumericInputControls from './NumericInputControls';
 
 class NumericInput extends React.PureComponent {
 
@@ -50,7 +51,8 @@ class NumericInput extends React.PureComponent {
 			className,
 			tabIndex,
 			onStart,
-			onEnd
+			onEnd,
+			title
 		} = this.props;
 
 		let {
@@ -70,16 +72,22 @@ class NumericInput extends React.PureComponent {
 					onStart={ onStart }
 					onEnd={ onEnd }
 					autofocus={ autofocus }
+					title={ title }
 				>
 					{
 						React.Children.map(
 							this.props.children,
-							child => React.cloneElement(child, {
-								increase: this.increase,
-								decrease: this.decrease,
-								start: onStart,
-								end: onEnd
-							})
+							child => {
+								if (child.type === NumericInputControls) {
+									return React.cloneElement(child, {
+										increase: this.increase,
+										decrease: this.decrease,
+										start: onStart,
+										end: onEnd
+									});
+								}
+								return React.cloneElement(child)
+							}
 						)
 					}
 				</TextInput>

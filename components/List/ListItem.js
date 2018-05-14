@@ -27,7 +27,8 @@ class ListItem extends React.PureComponent {
 		let { 
 			selected,
 			tabIndex,
-			className
+			className,
+			title
 		} = this.props;
 
 		return (

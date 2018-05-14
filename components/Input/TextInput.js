@@ -85,7 +85,8 @@ class TextInput extends React.Component {
 
 		let {
 			className,
-			tabIndex
+			tabIndex,
+			title
 		} = this.props;
 
 		let {
@@ -102,6 +103,7 @@ class TextInput extends React.Component {
 					onFocus={ this.props.onStart }
 					onBlur={ this.commit }
 					ref={ this.register } 
+					title={ title }
 				/>
 				{ this.props.children }
 			</div>
