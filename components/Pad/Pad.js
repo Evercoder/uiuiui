@@ -10,20 +10,19 @@ import './Pad.css';
 const initial_state = {
 	x: undefined,
 	y: undefined,
-	interacting: false
+	interacting: false,
+	prev_prop_x: undefined,
+	prev_prop_y: undefined
 };
 
 class Pad extends React.PureComponent {
 
-
-
 	static getDerivedStateFromProps(props, current_state) {
-
 		let state = {}, changed = false;
 
-		if (current_state.x !== props.x || current_state.y !== props.y) {
-			state['x'] = props.x;
-			state['y'] = props.y;
+		if (current_state.prev_prop_x !== props.x || current_state.prev_prop_y !== props.y) {
+			state['x'] = state['prev_prop_x'] = props.x;
+			state['y'] = state['prev_prop_y'] = props.y;
 			changed = true;
 		}
 
@@ -51,9 +50,8 @@ class Pad extends React.PureComponent {
 	}
 
 	constructor(props) {
-
 		super(props);
-		
+
 		// Event handlers
 		this.change = this.change.bind(this);
 		this.keydown = this.keydown.bind(this);
