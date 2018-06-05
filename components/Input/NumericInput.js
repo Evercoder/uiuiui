@@ -6,8 +6,14 @@ import NumericInputControls from './NumericInputControls';
 
 class NumericInput extends React.PureComponent {
 
-	static getDerivedStateFromProps({ value }) {
-		return { value };
+	static getDerivedStateFromProps(props, current_state) {
+		if (props.value !== current_state.prev_prop_value) {
+			return { 
+				value: props.value,
+				prev_prop_value: props.value
+			};
+		}
+		return null;
 	}
 
 	constructor(props) {
