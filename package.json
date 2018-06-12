@@ -5,7 +5,7 @@
   "module": "build/uiuiui.esm.js",
   "browser": "build/uiuiui.umd.js",
   "style": "build/uiuiui.css",
-  "repository": "git@github.com:danburzo/uiuiui.git",
+  "repository": "git@github.com:Evercoder/uiuiui.git",
   "author": "Dan Burzo <danburzo@gmail.com>",
   "license": "MIT",
   "files": [
