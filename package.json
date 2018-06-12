@@ -36,7 +36,7 @@
     "d3-scale": "^2.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-event-listener": "^0.5.3"
+    "react-event-listener": "^0.6.0"
   },
   "scripts": {
     "start": "npm-run-all --parallel storybook:start build:watch",
