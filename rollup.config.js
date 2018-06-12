@@ -20,25 +20,20 @@ const babel_config = {
 export default [{
 	input: 'components/index.js',
 	external: Object.keys(pkg.dependencies),
-	treeshake: false,
 	output: [
 		{ file: pkg.main, format: 'cjs' },
-		{ file: pkg.module, format: 'es' }
+		{ file: pkg.module, format: 'es' },
+		{
+			file: pkg.browser,
+			format: 'umd',
+			name: 'uiuiui',
+			globals: {
+				'react': 'React',
+				'react-dom': 'ReactDOM',
+				'react-event-listener': 'EventListener'
+			}
+		}
 	],
-	plugins: [
-		resolve(),
-		cssbundle(css_config),
-		babel(babel_config)
-	]
-}, {
-	input: 'components/index.js',
-	treeshake: false,
-	external: Object.keys(pkg.dependencies).filter(dep => dep.indexOf('react') === 0),
-	output: {
-		file: pkg.browser,
-		format: 'umd',
-		name: 'uiuiui'
-	},
 	plugins: [
 		resolve(),
 		cssbundle(css_config),
