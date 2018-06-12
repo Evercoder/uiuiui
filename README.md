@@ -2,7 +2,9 @@
 
 Simple, accessible, React controls and form elements.
 
-See an [online demo](https://danburzo.github.io/uiuiui/storybook-static) created with [Storybook](https://storybook.js.org).
+_⚠ Until the first stable release (1.0.0) the API is considered unstable and will be changing quite a bit. Use cautiously!_
+
+See an [online demo](https://evercoder.github.io/uiuiui/storybook-static) powered by [Storybook](https://storybook.js.org).
 
 ## Usage
 
