@@ -1,6 +1,6 @@
 {
   "name": "uiuiui",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "build/uiuiui.cjs.js",
   "module": "build/uiuiui.esm.js",
   "browser": "build/uiuiui.umd.js",
