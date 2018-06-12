@@ -6,14 +6,18 @@ import Pad from '../Pad/Pad';
 import './Slider.css';
 
 const initial_state = {
-	interacting: false
+	interacting: false,
+	prev_prop_value: undefined
 };
 
 class Slider extends React.Component {
 
 	static getDerivedStateFromProps(props, current_state) {
-		if (current_state.value !== props.value) {
-			return { value: props.value };
+		if (current_state.prev_prop_value !== props.value) {
+			return { 
+				value: props.value,
+				prev_prop_value: props.value
+			};
 		}
 		return null;
 	} 

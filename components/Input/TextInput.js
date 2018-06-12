@@ -5,9 +5,10 @@ import './Input.css';
 class TextInput extends React.Component {
 
 	static getDerivedStateFromProps(props, current_state) {
-		if (props.value !== current_state.formatted_value) {
+		if (props.value !== current_state.prev_prop_value) {
 			return {
 				value: props.value,
+				prev_prop_value: props.value,
 				formatted_value: props.format(props.value),
 				transient_value: props.value
 			};
@@ -39,7 +40,10 @@ class TextInput extends React.Component {
 
 	change(e) {
 		let input_value = e.target.value;
-		let state = { transient_value: input_value };
+		let state = { 
+			transient_value: input_value,
+			prev_prop_value: this.state.prev_prop_value
+		};
 		if (this.props.valid(input_value)) {
 			state['value'] = input_value;
 			state['formatted_value'] = this.props.format(input_value);
