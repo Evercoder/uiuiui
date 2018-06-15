@@ -59,7 +59,8 @@ typings/
 
 .DS_Store
 
-build
+build/
+dist/
 yarn-error.log
 
 .docz
