@@ -2,6 +2,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import buble from 'rollup-plugin-buble';
 import cssbundle from 'rollup-plugin-css-bundle';
+import babel from 'rollup-plugin-babel';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import pkg from './package.json';
@@ -23,6 +24,12 @@ export default [
 		input: 'components/index.js',
 		external: Object.keys(pkg.dependencies),
 		output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
-		plugins: [cssbundle(css_config), buble({ objectAssign: true }), resolve(), commonjs()]
+		plugins: [
+			cssbundle(css_config),
+			buble({ objectAssign: true }),
+			resolve(),
+			commonjs(),
+			babel(babel_config)
+		]
 	}
 ];
