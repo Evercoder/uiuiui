@@ -3,7 +3,6 @@ import { noop } from '../util/functions';
 import './ListItem.css';
 
 class ListItem extends React.PureComponent {
-	
 	constructor(props) {
 		super(props);
 		this.select = this.select.bind(this);
@@ -23,22 +22,18 @@ class ListItem extends React.PureComponent {
 	}
 
 	render() {
-
-		let { 
-			selected,
-			tabIndex,
-			className,
-			title
-		} = this.props;
+		let { selected, tabIndex, className, title } = this.props;
 
 		return (
-			<li 
+			<li
 				tabIndex={tabIndex}
-				className={`uix-list__item ${ selected ? 'uix-list__item--selected' : ''}  ${className || ''}`}
-				onMouseUp={this.select}
+				className={`uix-list__item ${
+					selected ? 'uix-list__item--selected' : ''
+				}  ${className || ''}`}
+				onClick={this.select}
 				onKeyDown={this.keydown}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</li>
 		);
 	}
