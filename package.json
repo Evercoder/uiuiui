@@ -1,6 +1,6 @@
 {
 	"name": "uiuiui",
-	"version": "0.4.5",
+	"version": "0.4.6",
 	"main": "dist/uiuiui.cjs.js",
 	"module": "dist/uiuiui.js",
 	"style": "dist/uiuiui.css",
@@ -36,8 +36,8 @@
 		"why-did-you-update": "^0.1.0"
 	},
 	"dependencies": {
-		"culori": "^0.3.0",
-		"culori-scales": "^1.0.5",
+		"culori": "^0.4.2",
+		"culori-scales": "^1.0.9",
 		"d3-scale": "^2.0.0",
 		"memoize-one": "^3.1.1",
 		"prop-types": "^15.6.1",
