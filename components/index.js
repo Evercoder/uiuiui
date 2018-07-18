@@ -38,4 +38,4 @@ export { default as OpacitySlider } from './ColorSlider/OpacitySlider';
 export { default as ColorVariations } from './ColorVariations/ColorVariations';
 export { default as GradientSlider } from './GradientSlider/GradientSlider';
 export { default as Swatch } from './Swatch/Swatch';
-export {default as SwatchList } from './SwatchList/SwatchList';
+export { default as SwatchList } from './SwatchList/SwatchList';
