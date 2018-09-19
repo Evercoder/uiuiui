@@ -7,10 +7,9 @@ import { noop } from '../util/functions';
 import './DeltaSurface.css';
 
 class DeltaSurface extends React.Component {
-
 	constructor(props) {
 		super(props);
-		
+
 		this.start = this.start.bind(this);
 		this.change = this.change.bind(this);
 	}
@@ -19,29 +18,35 @@ class DeltaSurface extends React.Component {
 		this._initial_x = e.clientX;
 		this._initial_y = e.clientY;
 		e.preventDefault();
+		this.props.onStart(e);
 	}
 
-	change({x, y}) {
+	change({ x, y }) {
 		this.props.onChange({
 			dx: x - this._initial_x,
 			dy: y - this._initial_y
 		});
 	}
 
+	end(e) {
+		this.props.onEnd(e);
+	}
+
 	render() {
 		return (
-			<Surface 
-				className='uix-surface--delta'
+			<Surface
+				className="uix-surface--delta"
 				x_scale={scale_identity}
 				y_scale={scale_identity}
 				onStart={this.start}
 				onChange={this.change}
+				onEnd={this.end}
 				passive={this.props.passive}
 				interacting={this.props.interacting}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</Surface>
-		)
+		);
 	}
 }
 
@@ -49,6 +54,8 @@ const scale_identity = scaleIdentity();
 
 DeltaSurface.defaultProps = {
 	onChange: noop,
+	onStart: noop,
+	onEnd: noop,
 	passive: false,
 	interacting: false
 };
