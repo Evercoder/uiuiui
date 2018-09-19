@@ -12,6 +12,7 @@ class DeltaSurface extends React.Component {
 
 		this.start = this.start.bind(this);
 		this.change = this.change.bind(this);
+		this.end = this.end.bind(this);
 	}
 
 	start(e) {

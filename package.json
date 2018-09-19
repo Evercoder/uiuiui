@@ -1,6 +1,6 @@
 {
 	"name": "uiuiui",
-	"version": "0.4.7",
+	"version": "0.4.8",
 	"main": "dist/uiuiui.cjs.js",
 	"module": "dist/uiuiui.js",
 	"style": "dist/uiuiui.css",
