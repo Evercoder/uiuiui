@@ -6735,10 +6735,10 @@ rollup-plugin-commonjs@^9.2.0:
     resolve "^1.8.1"
     rollup-pluginutils "^2.3.3"
 
-rollup-plugin-css-bundle@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-css-bundle/-/rollup-plugin-css-bundle-1.0.3.tgz#8d4e8787e9958d0d44af94e98e02fcc953fbc9a7"
-  integrity sha512-6gb3oqgw0tRyoeULdLizA6L8GhPs9VaUAVVc4cnn3PLLElorxP04Mk+8WoqYG44zh45INdpwSS3tYJpfX961nw==
+rollup-plugin-css-bundle@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-css-bundle/-/rollup-plugin-css-bundle-1.0.4.tgz#efb25e456b1a8e49558c1151ef82c898a563ba10"
+  integrity sha512-J2Skkm/7hQhFgGNb57Lz3rQJCW2G24ggUej9OzXZe6b+ymqXpRHVMFtfpqe3g/YCS3PJsvujY99T3euGVdMP6Q==
   dependencies:
     fs-extra "^5.0.0"
     rollup-pluginutils "^2.0.1"
