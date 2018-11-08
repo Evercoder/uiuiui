@@ -59,9 +59,12 @@ typings/
 
 .DS_Store
 
-build/
 dist/
 yarn-error.log
 
+# docz
 .docz
 .cache
+
+# storybook
+.storybook/dist
