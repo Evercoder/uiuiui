@@ -2,7 +2,37 @@
 name: ColorBand
 ---
 
-import { PropsTable } from 'docz';
-import CheckerboardBand from '../../components/ColorBand/CheckerboardBand';
+import { PropsTable, Playground } from 'docz';
+import CheckerboardBand from './CheckerboardBand';
+import HueBand from './HueBand';
+import ColorBand from './ColorBand';
+
+# ColorBand
+
+## ColorBand
+
+<PropsTable of={ColorBand} />
+
+<Playground>
+	<div style={{height: '1em'}}>
+		<ColorBand/>
+	</div>
+</Playground>
+
+## CheckerboardBand
 
 <PropsTable of={CheckerboardBand} />
+
+<Playground>
+	<CheckerboardBand/>
+</Playground>
+
+## HueBand
+
+<PropsTable of={HueBand} />
+
+<Playground>
+	<div style={{height: '1em'}}>
+		<HueBand/>
+	</div>
+</Playground>

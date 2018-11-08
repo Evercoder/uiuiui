@@ -5,6 +5,7 @@ import culori, {
 	round as culoriRound,
 	hsv as culoriHsv
 } from 'culori';
+import PropTypes from 'prop-types';
 
 import { noop } from '../util/functions';
 
@@ -13,7 +14,7 @@ import Swatch from '../Swatch/Swatch';
 import ColorVariations from '../ColorVariations/ColorVariations';
 import SaturationBrightnessPad from '../ColorPad/SaturationBrightnessPad';
 import CheckerboardBand from '../ColorBand/CheckerboardBand';
-import HueSlider from '../ColorSlider/HueSlider'; 
+import HueSlider from '../ColorSlider/HueSlider';
 import OpacitySlider from '../ColorSlider/OpacitySlider';
 import ColorTextInput from '../Input/ColorTextInput';
 
@@ -27,11 +28,10 @@ const initial_state = {
 };
 
 class ColorPicker extends React.PureComponent {
-
 	static getDerivedStateFromProps(props, current_state) {
 		return props.reactive ? extract_hsba(props.value) : null;
 	}
-	
+
 	constructor(props) {
 		super(props);
 		this.changed = this.changed.bind(this);
@@ -71,50 +71,43 @@ class ColorPicker extends React.PureComponent {
 	}
 
 	render() {
-
-		let {
-			hue,
-			saturation,
-			brightness,
-			opacity
-		} = this.state;
+		let { hue, saturation, brightness, opacity } = this.state;
 
 		let color = _css(hsba_to_hsv(this.state));
-		let color_full_opacity = _css(hsba_to_hsv({...this.state, opacity: 100 }));
+		let color_full_opacity = _css(hsba_to_hsv({ ...this.state, opacity: 100 }));
 
 		return (
-			<div className='uix-colorpicker'>
-				<div className='uix-colorpicker__section uix-colorpicker__section--hsb'>
+			<div className="uix-colorpicker">
+				<div className="uix-colorpicker__section uix-colorpicker__section--hsb">
 					<SaturationBrightnessPad
-						hue={ hue }
-						saturation={ saturation }
-						brightness={ brightness }
-						onChange={ this.changed }
-						property={ sb_to_state }
-						onStart={ this.start }
-						onEnd={ this.end }
+						hue={hue}
+						saturation={saturation}
+						brightness={brightness}
+						onChange={this.changed}
+						property={sb_to_state}
+						onStart={this.start}
+						onEnd={this.end}
 					/>
 
-					<HueSlider 
-						hue={ hue } 
-						onChange={ this.changed }
-						property='hue'
-						onStart={ this.start }
-						onEnd={ this.end }
+					<HueSlider
+						hue={hue}
+						onChange={this.changed}
+						property="hue"
+						onStart={this.start}
+						onEnd={this.end}
 					/>
 
-					<OpacitySlider 
-						color={ color_full_opacity } 
-						opacity={ opacity } 
-						onChange={ this.changed }
-						property='opacity'
-						onStart={ this.start }
-						onEnd={ this.end }
+					<OpacitySlider
+						color={color_full_opacity}
+						opacity={opacity}
+						onChange={this.changed}
+						property="opacity"
+						onStart={this.start}
+						onEnd={this.end}
 					/>
 				</div>
 
-				<div className='uix-colorpicker__section uix-colorpicker__section--variations'>
-
+				<div className="uix-colorpicker__section uix-colorpicker__section--variations">
 					<ColorVariations
 						onSelect={this.setColorPreserveOpacity}
 						color={color_full_opacity}
@@ -131,58 +124,60 @@ class ColorPicker extends React.PureComponent {
 
 					<ColorVariations
 						onSelect={this.setColorPreserveOpacity}
-						color={ color_full_opacity }
-						scale={ color => 
-							([
-								color,
-								hsba_to_hsv({...this.state, hue: this.state.hue + 90 })
-							])
-						}
+						color={color_full_opacity}
+						scale={color => [
+							color,
+							hsba_to_hsv({ ...this.state, hue: this.state.hue + 90 })
+						]}
 						trim
-						mode='hsv'
+						mode="hsv"
 					/>
-
 				</div>
 
-				<div className='uix-colorpicker__section uix-colorpicker__section--current'>
-					<Swatch 
-						color={ color }
-					>
-						<CheckerboardBand/>
+				<div className="uix-colorpicker__section uix-colorpicker__section--current">
+					<Swatch color={color}>
+						<CheckerboardBand />
 					</Swatch>
 
-					<ColorTextInput 
-						onChange={this.setColor} 
-						value={ color }
-						
-					/>
+					<ColorTextInput onChange={this.setColor} value={color} />
 
-					<NumericInput 
-						start='0' 
-						end='100' 
-						value={ opacity }
-						onChange={ this.changed }
-						property='opacity'
+					<NumericInput
+						start="0"
+						end="100"
+						value={opacity}
+						onChange={this.changed}
+						property="opacity"
 						onStart={this.start}
 						onEnd={this.end}
 					>
-						<span style={
-							{
+						<span
+							style={{
 								position: 'absolute',
-								'right': '0.25em',
-								'top': '50%',
-								'transform': 'translate(0, -50%)'
-							}
-						}>%</span>
+								right: '0.25em',
+								top: '50%',
+								transform: 'translate(0, -50%)'
+							}}
+						>
+							%
+						</span>
 					</NumericInput>
 				</div>
 			</div>
 		);
 	}
+}
+
+ColorPicker.propTypes = {
+	className: PropTypes.string,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+	onStart: PropTypes.func,
+	onChange: PropTypes.func,
+	onEnd: PropTypes.func,
+	property: PropTypes.string,
+	reactive: PropTypes.bool
 };
 
 ColorPicker.defaultProps = {
-
 	/*
 		Style hooks
 	 */
@@ -215,14 +210,13 @@ ColorPicker.defaultProps = {
 	reactive: false
 };
 
-
 /*
 	Utilities
 	-----------------------------------------------------------------
  */
 
-const toWhite = color => ([color, 'white']);
-const toBlack = color => ([color, 'black']);
+const toWhite = color => [color, 'white'];
+const toBlack = color => [color, 'black'];
 
 const roundi = culoriRound(0);
 const _css = culoriFormatter();
@@ -238,12 +232,13 @@ const extract_hsba = color => {
 	return ret;
 };
 
-const hsba_to_hsv = color => culoriHsv({
-	h: color.hue % 360,
-	s: color.saturation / 100,
-	v: color.brightness / 100,
-	alpha: color.opacity / 100
-});
+const hsba_to_hsv = color =>
+	culoriHsv({
+		h: color.hue % 360,
+		s: color.saturation / 100,
+		v: color.brightness / 100,
+		alpha: color.opacity / 100
+	});
 
 const sb_to_state = ({ x: saturation, y: brightness }) => ({ saturation, brightness });
 
