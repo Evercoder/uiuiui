@@ -1,0 +1,9 @@
+.equalizer {
+	display: flex;
+	height: 300px;
+}
+
+.equalizer .uix-slider {
+	margin: 0 0.5em;
+	width: 100%;
+}

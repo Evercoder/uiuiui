@@ -6,18 +6,16 @@ import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import pkg from './package.json';
 
-const css_config = {
-	output: pkg.style,
-	transform: code => postcss([autoprefixer]).process(code, {})
-};
-
 export default [
 	{
-		input: 'components/index.js',
+		input: pkg.source,
 		external: Object.keys(pkg.dependencies),
 		output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'es' }],
 		plugins: [
-			cssbundle(css_config),
+			cssbundle({
+				output: pkg.style,
+				transform: code => postcss([autoprefixer]).process(code, {})
+			}),
 			buble({ objectAssign: 'Object.assign' }),
 			resolve(),
 			commonjs()

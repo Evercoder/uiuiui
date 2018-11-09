@@ -4,14 +4,18 @@ Simple, accessible, React controls and form elements.
 
 _⚠ Until the first stable release (1.0.0) the API is considered unstable and will be changing quite a bit. Use cautiously!_
 
-See an [online demo](https://evercoder.github.io/uiuiui/storybook-static) powered by [Storybook](https://storybook.js.org).
+See an [online demo](https://evercoder.github.io/uiuiui).
 
 ## Usage
 
 Install uiuiui as a dependency to your project:
 
 ```bash
-$ npm add --dev uiuiui
+# using npm
+npm install uiuiui
+
+# using yarn
+yarn add --dev uiuiui
 ```
 
 It's bundled for both CJS and ES modules, so either way of using it works:
@@ -70,12 +74,4 @@ Along with its main use as a component library to be used directly, the code sho
 ## Development
 
 To develop uiuiui, see [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## See also
-
-* [uiuiui-patterns](https://github.com/evercoder/uiuiui-patterns)
-
-## Open Source
-
-This project uses [d3-scale](https://github.com/d3/d3-scale) and [react-event-listener](https://github.com/oliviertassinari/react-event-listener).
 

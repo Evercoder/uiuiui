@@ -1,0 +1,7 @@
+.uix-list__item {
+	display: block;
+}
+
+.uix-list__item--selected {
+	font-weight: bold;
+}

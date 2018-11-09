@@ -1,0 +1,10 @@
+.uix-multislider__handle {
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	top: 50%;
+	left: 0;
+	transform: translate(-50%, -50%);
+	background: red;
+	border-radius: 50%;
+}

@@ -1,0 +1,7 @@
+.portal-reference {
+	border: 1px solid green;
+	padding: 1em;
+	display: inline-block;
+	position: relative;
+	left: 300px;
+}

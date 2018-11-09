@@ -1,0 +1,10 @@
+.uix-pad {
+	width: 300px;
+	height: 300px;
+	background: #f0f0f0;
+	position: relative;
+}
+
+.uix-pad:focus {
+	outline: none;
+}

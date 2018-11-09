@@ -1,0 +1,17 @@
+.uix-input {
+	position: relative;
+}
+
+.uix-input input {
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 1em;
+	font-family: inherit;
+	border: 1px solid #999;
+	height: 100%;
+}
+
+.uix-input input:focus {
+	outline: none;
+	border-color: #000;
+}

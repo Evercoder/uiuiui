@@ -1,0 +1,12 @@
+.custom-selection-ui {
+}
+
+.custom-selection-ui circle {
+	r: 3;
+	fill: red;
+	pointer-events: all;
+}
+
+.custom-selection-ui circle.selected {
+	fill: blue;
+}
