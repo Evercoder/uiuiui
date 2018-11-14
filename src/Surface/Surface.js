@@ -1,6 +1,9 @@
+// Libs
 import React from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
+
 import Position from '../Position/Position';
 import { noop } from '../util/functions';
 
@@ -21,7 +24,7 @@ const initial_state = {
 	
 */
 
-class Surface extends React.PureComponent {
+class Surface extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -58,9 +61,6 @@ class Surface extends React.PureComponent {
 		this.props.onEnd(e);
 	}
 
-	// TODO `rect` could be cached at the beginning of the interaction
-	// for better performance, but less reliability.
-	// (e.g. if the surface moves during the process)
 	scale({ x, y }) {
 		if (this.wrapper) {
 			let rect = this.wrapper.getBoundingClientRect();
@@ -107,9 +107,20 @@ class Surface extends React.PureComponent {
 	}
 }
 
+Surface.propTypes = {
+	property: PropTypes.any,
+	className: PropTypes.string,
+	onStart: PropTypes.func,
+	onChange: PropTypes.func,
+	onEnd: PropTypes.func,
+	onInsert: PropTypes.func,
+	x_scale: PropTypes.func.isRequired,
+	y_scale: PropTypes.func.isRequired,
+	passive: PropTypes.bool.isRequired,
+	interacting: PropTypes.bool
+};
+
 Surface.defaultProps = {
-	property: undefined,
-	className: undefined,
 	onStart: noop,
 	onEnd: noop,
 	onChange: noop,

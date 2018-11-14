@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { to_step, cycle, clamp, valid_float } from '../util/math';
 import { noop } from '../util/functions';
 import TextInput from './TextInput';
@@ -118,18 +120,93 @@ class NumericInput extends React.PureComponent {
 	}
 }
 
+NumericInput.propTypes = {
+	/**
+	 * The component's tab index.
+	 */
+	tabIndex: PropTypes.number,
+
+	/**
+	 * Any additional class names to pass to the component.
+	 */
+	className: PropTypes.string,
+
+	/**
+	 * Whether the component should autofocus when it's mounted in the DOM.
+	 */
+	autofocus: PropTypes.bool.isRequired,
+
+	/**
+	 * An optional identifier to pass along to the callback functions.
+	 */
+	property: PropTypes.any,
+
+	/**
+	 * Whether the input should cycle the value when reaching the interval edges.
+	 */
+	cyclical: PropTypes.bool.isRequired,
+
+	/**
+	 * The step to use when changing the value with the Up / Down arrow keys.
+	 * For steps that are fractions, always use an appropriate `precision`
+	 * as well, to avoid floating-point errors.
+	 */
+	step: PropTypes.number.isRequired,
+
+	/**
+	 * The number of decimals to round the value to.
+	 */
+	precision: PropTypes.number.isRequired,
+
+	/**
+	 *
+	 */
+	increment: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+
+	/**
+	 * The _starting value_ for the range.
+	 */
+	start: PropTypes.number.isRequired,
+
+	/**
+	 * The _end value_ for the range.
+	 * It's not necessary to have `start < end`,
+	 * as the NumericInput works well even with inverted ranges.
+	 */
+	end: PropTypes.number.isRequired,
+
+	/**
+	 * The input's initial value.
+	 * Whenever the component receives a new value from its parent,
+	 * it will reset the component's inner state to match that value.
+	 */
+	value: PropTypes.number,
+
+	/**
+	 * When the `property` prop is set, it will be passed back as the second argument.
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * When the `property` prop is set, it will be passed back as the second argument.
+	 */
+	onStart: PropTypes.func,
+
+	/**
+	 * When the `property` prop is set, it will be passed back as the second argument.
+	 */
+	onEnd: PropTypes.func
+};
+
 NumericInput.defaultProps = {
 	tabIndex: 0,
-	className: undefined,
 	autofocus: false,
-	property: undefined,
 	cyclical: false,
 	step: 1,
 	precision: 0,
 	increment: e => (e ? (e.shiftKey ? 10 : 1) : undefined),
 	start: 0,
 	end: 100,
-	value: undefined,
 	onChange: noop,
 	onStart: noop,
 	onEnd: noop

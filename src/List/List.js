@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { noop } from '../util/functions';
 import './List.css';
 
@@ -32,11 +33,40 @@ class List extends React.Component {
 	}
 }
 
+List.propTypes = {
+	/**
+	 * The component's tab index.
+	 */
+	tabIndex: PropTypes.number,
+
+	/**
+	 * Any additional class names to pass to the component.
+	 */
+	className: PropTypes.string,
+
+	/**
+	 * An optional identifier to pass along to the callback functions.
+	 */
+	property: PropTypes.any,
+
+	/**
+	 * The component's tab index.
+	 */
+	value: PropTypes.any,
+
+	/**
+	 * When the `property` prop is set, it will be passed back as the second argument.
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * When the `property` prop is set, it will be passed back as the second argument.
+	 */
+	onSelect: PropTypes.func
+};
+
 List.defaultProps = {
-	tabIndex: '0',
-	className: undefined,
-	property: undefined,
-	value: undefined,
+	tabIndex: 0,
 	onChange: noop,
 	onSelect: noop
 };

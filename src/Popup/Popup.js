@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
+import PropTypes from 'prop-types';
+
 import { noop } from '../util/functions';
 
 import './Popup.css';
@@ -52,10 +54,34 @@ class Popup extends React.Component {
 	}
 }
 
+Popup.propTypes = {
+	property: PropTypes.any,
+
+	/**
+	 * Any additional class names to pass to the component.
+	 */
+	className: PropTypes.string,
+
+	/**
+	 * The component's tabindex
+	 */
+	tabIndex: PropTypes.number,
+
+	/**
+	 * Whether the component should autofocus when it's mounted in the DOM.
+	 */
+	autofocus: PropTypes.bool.isRequired,
+
+	/**
+	 * A callback function that gets invoked when there's a click outside
+	 * the bounds of the popup. When the `property` prop is set,
+	 * it will be passed back as the second argument.
+	 */
+	onClose: PropTypes.func
+};
+
 Popup.defaultProps = {
 	tabIndex: 0,
-	className: undefined,
-	property: undefined,
 	autofocus: false,
 	onClose: noop
 };
