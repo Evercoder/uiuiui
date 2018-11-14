@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import range from '../util/range';
 
 import './BandPadProgress.css';
@@ -24,6 +26,8 @@ class BandPadProgress extends React.PureComponent {
 		);
 	}
 }
+
+BandPadProgress.propTypes = {};
 
 BandPadProgress.defaultProps = {};
 

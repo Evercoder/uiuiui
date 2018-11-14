@@ -1,9 +1,6 @@
 import React from 'react';
-import culori, {
-	formatter as culoriFormatter,
-	samples as culoriSamples,
-	interpolate as culoriInterpolate
-} from 'culori';
+import PropTypes from 'prop-types';
+import culori, { formatter, samples, interpolate } from 'culori';
 
 import { noop } from '../util/functions';
 
@@ -12,14 +9,14 @@ import SwatchList from '../SwatchList/SwatchList';
 
 import './ColorVariations.css';
 
-const hex = culoriFormatter('hex');
+const hex = formatter('hex');
 
 class ColorVariations extends React.PureComponent {
 	render() {
 		let { color, scale, count, mode, className, tabIndex, trim } = this.props;
 
-		let variations = culoriSamples(count)
-			.map(culoriInterpolate(scale(color), mode))
+		let variations = samples(count)
+			.map(interpolate(scale(color), mode))
 			.map(hex);
 
 		if (trim) {
@@ -44,9 +41,19 @@ class ColorVariations extends React.PureComponent {
 	}
 }
 
+ColorVariations.propTypes = {
+	trim: PropTypes.bool,
+	className: PropTypes.string,
+	tabIndex: PropTypes.number,
+	color: PropTypes.string,
+	scale: PropTypes.func,
+	mode: PropTypes.string,
+	count: PropTypes.number,
+	onSelect: PropTypes.func
+};
+
 ColorVariations.defaultProps = {
 	trim: false,
-	className: undefined,
 	tabIndex: 0,
 	color: 'red',
 	scale: color => [color, 'black'],

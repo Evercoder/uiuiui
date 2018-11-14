@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { noop } from '../util/functions';
 
 import './MultiSliderHandle.css';
@@ -30,9 +32,13 @@ class MultiSliderHandle extends React.PureComponent {
 	}
 }
 
+MultiSliderHandle.propTypes = {
+	onStart: PropTypes.func,
+	property: PropTypes.string
+};
+
 MultiSliderHandle.defaultProps = {
-	onStart: noop,
-	property: undefined
+	onStart: noop
 };
 
 export default MultiSliderHandle;

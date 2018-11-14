@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './PadTooltip.css';
 
 class PadTooltip extends React.PureComponent {
@@ -26,6 +28,10 @@ class PadTooltip extends React.PureComponent {
 		);
 	}
 }
+
+PadTooltip.propTypes = {
+	label: PropTypes.func
+};
 
 PadTooltip.defaultProps = {
 	label: (x, y) => `${x}:${y}`

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './SliderProgress.css';
 
@@ -24,5 +25,7 @@ class SliderProgress extends React.PureComponent {
 		);
 	}
 }
+
+SliderProgress.propTypes = {};
 
 export default SliderProgress;

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './PadHandle.css';
 
 class PadHandle extends React.PureComponent {
@@ -24,7 +26,9 @@ class PadHandle extends React.PureComponent {
 }
 
 PadHandle.defaultProps = {
-	className: undefined
+	className: PropTypes.string
 };
+
+PadHandle.defaultProps = {};
 
 export default PadHandle;

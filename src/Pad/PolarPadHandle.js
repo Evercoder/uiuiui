@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import scalePolar from '../util/scalePolar';
 
 import './PolarPadHandle.css';
@@ -17,6 +19,8 @@ class PolarPadHandle extends React.Component {
 		return <div className="uix-polarpad__handle" style={handle_styles} />;
 	}
 }
+
+PolarPadHandle.propTypes = {};
 
 PolarPadHandle.defaultProps = {};
 

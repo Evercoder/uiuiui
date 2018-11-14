@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
+
 import { scaleIdentity } from 'd3-scale';
 import Surface from './Surface';
 import { noop } from '../util/functions';
@@ -52,6 +54,14 @@ class DeltaSurface extends React.Component {
 }
 
 const scale_identity = scaleIdentity();
+
+DeltaSurface.propTypes = {
+	onChange: PropTypes.func,
+	onStart: PropTypes.func,
+	onEnd: PropTypes.func,
+	passive: PropTypes.bool,
+	interacting: PropTypes.bool
+};
 
 DeltaSurface.defaultProps = {
 	onChange: noop,

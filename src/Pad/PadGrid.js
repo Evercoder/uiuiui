@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import range from '../util/range';
 
 import './PadGrid.css';
@@ -33,5 +35,9 @@ class PadGrid extends React.PureComponent {
 		);
 	}
 }
+
+PadGrid.propTypes = {};
+
+PadGrid.defaultProps = {};
 
 export default PadGrid;

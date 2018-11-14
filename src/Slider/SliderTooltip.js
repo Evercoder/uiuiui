@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import PadTooltip from '../Pad/PadTooltip';
 
 import './SliderTooltip.css';
@@ -16,5 +18,7 @@ class SliderTooltip extends React.PureComponent {
 		return <PadTooltip className="uix-slider__tooltip" {...this.props} {...slider_props} />;
 	}
 }
+
+SliderTooltip.propTypes = {};
 
 export default SliderTooltip;

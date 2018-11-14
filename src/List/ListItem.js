@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { noop } from '../util/functions';
 import './ListItem.css';
 
@@ -39,11 +40,17 @@ class ListItem extends React.PureComponent {
 	}
 }
 
+ListItem.propTypes = {
+	value: PropTypes.any,
+	selected: PropTypes.bool,
+	onSelect: PropTypes.func,
+	className: PropTypes.string
+};
+
 ListItem.defaultProps = {
 	value: null,
 	selected: false,
-	onSelect: noop,
-	className: undefined
+	onSelect: noop
 };
 
 export default ListItem;

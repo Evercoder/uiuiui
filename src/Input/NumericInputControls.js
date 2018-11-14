@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import { noop } from '../util/functions';
 
@@ -119,6 +120,13 @@ class NumericInputControls extends React.PureComponent {
 		);
 	}
 }
+
+NumericInputControls.propTypes = {
+	increase: PropTypes.func,
+	decrease: PropTypes.func,
+	onEnd: PropTypes.func,
+	onStart: PropTypes.func
+};
 
 NumericInputControls.defaultProps = {
 	increase: noop,

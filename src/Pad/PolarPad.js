@@ -1,6 +1,6 @@
 import React from 'react';
-import { scaleLinear } from 'd3-scale';
 import PropTypes from 'prop-types';
+import { scaleLinear } from 'd3-scale';
 
 import PolarSurface from '../Surface/PolarSurface';
 import { to_step } from '../util/math';

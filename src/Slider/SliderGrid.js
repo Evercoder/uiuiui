@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PadGrid from '../Pad/PadGrid';
 
 import './SliderGrid.css';
@@ -23,5 +24,7 @@ class SliderGrid extends React.PureComponent {
 		);
 	}
 }
+
+SliderGrid.propTypes = {};
 
 export default SliderGrid;

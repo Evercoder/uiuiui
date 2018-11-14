@@ -1,11 +1,10 @@
 import React from 'react';
-import { formatter as culoriFormatter } from 'culori';
+import PropTypes from 'prop-types';
+import { formatter } from 'culori';
 
 import { noop } from '../util/functions';
 
 import TextInput from './TextInput';
-
-const fmt = (value, format) => culoriFormatter(format)(value);
 
 class ColorTextInput extends React.PureComponent {
 	static getDerivedStateFromProps(props, current_state) {
@@ -21,7 +20,7 @@ class ColorTextInput extends React.PureComponent {
 	}
 
 	format_color(value) {
-		return fmt(value, this.props.format);
+		return formatter(this.props.format)(value);
 	}
 
 	render() {
@@ -35,6 +34,11 @@ class ColorTextInput extends React.PureComponent {
 		);
 	}
 }
+
+ColorTextInput.propTypes = {
+	format: PropTypes.string,
+	onChange: PropTypes.func
+};
 
 ColorTextInput.defaultProps = {
 	format: 'hex',

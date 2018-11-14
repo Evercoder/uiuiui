@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MultiSlider from '../MultiSlider/MultiSlider';
 import MultiSliderHandle from '../MultiSlider/MultiSliderHandle';
@@ -61,6 +62,10 @@ class GradientSlider extends React.Component {
 		);
 	}
 }
+
+GradientSlider.propTypes = {
+	stops: PropTypes.array
+};
 
 GradientSlider.defaultProps = {
 	stops: [{ position: 0, color: '#000' }, { position: 100, color: '#fff' }]

@@ -114,8 +114,8 @@ Surface.propTypes = {
 	onChange: PropTypes.func,
 	onEnd: PropTypes.func,
 	onInsert: PropTypes.func,
-	x_scale: PropTypes.func.isRequired,
-	y_scale: PropTypes.func.isRequired,
+	x_scale: PropTypes.func,
+	y_scale: PropTypes.func,
 	passive: PropTypes.bool.isRequired,
 	interacting: PropTypes.bool
 };

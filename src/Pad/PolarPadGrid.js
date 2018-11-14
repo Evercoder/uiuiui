@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import range from '../util/range';
 import { arc_from_circle } from '../util/svg';
 import { deg_to_radians } from '../util/math';
@@ -47,5 +49,9 @@ class PolarPadGrid extends React.PureComponent {
 		);
 	}
 }
+
+PolarPadGrid.propTypes = {};
+
+PolarPadGrid.defaultProps = {};
 
 export default PolarPadGrid;

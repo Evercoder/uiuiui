@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PadHandle from '../Pad/PadHandle';
 
 import './SliderHandle.css';
@@ -20,5 +21,7 @@ class SliderHandle extends React.PureComponent {
 		);
 	}
 }
+
+SliderHandle.propTypes = {};
 
 export default SliderHandle;

@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import { scaleLinear } from 'd3-scale';
-import PropTypes from 'prop-types';
 
 import { noop } from '../util/functions';
 import { to_step, clamp, cycle } from '../util/math';

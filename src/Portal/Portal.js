@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
 import { identity } from '../util/functions';
 
 import './Portal.css';
@@ -58,10 +60,12 @@ class Portal extends React.Component {
 	}
 }
 
-Portal.defaultProps = {
-	className: undefined,
-	target: undefined,
-	mirror: undefined
+Portal.propTypes = {
+	className: PropTypes.string,
+	target: PropTypes.object,
+	mirror: PropTypes.object
 };
+
+Portal.defaultProps = {};
 
 export default Portal;
