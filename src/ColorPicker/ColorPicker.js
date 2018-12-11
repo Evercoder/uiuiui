@@ -65,7 +65,9 @@ class ColorPicker extends React.PureComponent {
 
 	componentDidUpdate() {
 		let val = _css(hsba_to_hsv(this.state));
-		if (val !== this.props.value) {
+		if (prevProps.value !== this.props.value) {
+			this.setColor(this.props.value);
+		} else if (val !== this.props.value) {
 			this.props.onChange(val, this.props.property);
 		}
 	}
@@ -215,7 +217,11 @@ const extract_hsba = color => {
 	if (hsba.h !== undefined) ret['hue'] = hsba.h;
 	if (hsba.s !== undefined) ret['saturation'] = hsba.s * 100;
 	if (hsba.v !== undefined) ret['brightness'] = hsba.v * 100;
-	if (hsba.alpha !== undefined) ret['opacity'] = roundi(hsba.alpha * 100);
+	if (hsba.alpha !== undefined) {
+		ret['opacity'] = roundi(hsba.alpha * 100);
+	} else {
+		ret['opacity'] = 100;
+	}
 	return ret;
 };
 
