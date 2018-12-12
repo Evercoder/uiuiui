@@ -9,7 +9,7 @@ import TextInput from './TextInput';
 class ColorTextInput extends React.PureComponent {
 	static getDerivedStateFromProps(props, current_state) {
 		return {
-			value: fmt(props.value, props.format)
+			value: formatter(props.format)(props.value)
 		};
 	}
 
