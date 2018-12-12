@@ -77,7 +77,7 @@ class ColorPicker extends React.PureComponent {
 		let color_full_opacity = _css(hsba_to_hsv({ ...this.state, opacity: 100 }));
 
 		return (
-			<div className="uix-colorpicker">
+			<div className={'uix-colorpicker ' + (this.props.className || '')}>
 				<div className="uix-colorpicker__section uix-colorpicker__section--hsb">
 					<SaturationBrightnessPad
 						hue={hue}
