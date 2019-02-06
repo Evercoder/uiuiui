@@ -1,0 +1,39 @@
+.uix-button {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+	font-family: inherit;
+	font-size: 1em;
+	line-height: 1;
+
+	color: black;
+	border: 1px solid currentColor;
+	border-radius: 0.25em;
+
+	background: white;
+
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+.uix-button::-moz-inner-focus {
+	border: none;
+}
+
+.uix-button[disabled] {
+	background: lightgray;
+	color: gray;
+}
+
+.uix-button:focus {
+	outline: 2px solid red;
+}
+
+.uix-button:hover {
+	/*color: blue;*/
+}
+
+.uix-button:active {
+	color: red;
+}
