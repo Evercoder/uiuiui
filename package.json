@@ -1,6 +1,6 @@
 {
 	"name": "uiuiui",
-	"version": "0.5.5",
+	"version": "0.5.6",
 	"main": "dist/uiuiui.cjs.js",
 	"module": "dist/uiuiui.js",
 	"source": "src/index.js",
