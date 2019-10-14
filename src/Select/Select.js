@@ -27,6 +27,7 @@ class Select extends React.Component {
 	select(value) {
 		this.close();
 		this.focus();
+		this.props.onSelect(value, this.props.property);
 		if (value !== this.props.value) {
 			this.props.onChange(value, this.props.property);
 		}
@@ -119,14 +120,15 @@ Select.propTypes = {
 	property: PropTypes.any,
 	className: PropTypes.string,
 	buttonContent: PropTypes.string,
-	value: PropTypes.number,
+	value: PropTypes.any,
 	tabIndex: PropTypes.number,
 	target: PropTypes.object
 };
 
 Select.defaultProps = {
 	tabIndex: 0,
-	onChange: noop
+	onChange: noop,
+	onSelect: noop
 };
 
 export default Select;
