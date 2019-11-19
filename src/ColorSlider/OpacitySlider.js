@@ -30,10 +30,15 @@ class OpacitySlider extends React.PureComponent {
 				onChange={this.props.onChange}
 				onStart={this.props.onStart}
 				onEnd={this.props.onEnd}
+				vertical={this.props.vertical}
 			>
-				<CheckerboardBand />
-				<ColorBand direction={this.props.direction} colors={colors} />
-				<SliderHandle />
+				<CheckerboardBand className={this.props.sliderClassName} />
+				<ColorBand
+					className={this.props.sliderClassName}
+					direction={this.props.direction}
+					colors={colors}
+				/>
+				<SliderHandle className={this.props.padClassName} />
 			</Slider>
 		);
 	}
@@ -46,13 +51,17 @@ OpacitySlider.propTypes = {
 	onChange: PropTypes.func,
 	onEnd: PropTypes.func,
 	vertical: PropTypes.bool,
-	direction: PropTypes.string
+	direction: PropTypes.string,
+	padClassName: PropTypes.string,
+	sliderClassName: PropTypes.string
 };
 
 OpacitySlider.defaultProps = {
 	onStart: noop,
 	onChange: noop,
-	onEnd: noop
+	onEnd: noop,
+	direction: 'to right',
+	vertical: false
 };
 
 export default OpacitySlider;

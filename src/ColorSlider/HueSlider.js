@@ -21,9 +21,10 @@ class HueSlider extends React.PureComponent {
 				onChange={this.props.onChange}
 				onStart={this.props.onStart}
 				onEnd={this.props.onEnd}
+				vertical={this.props.vertical}
 			>
-				<HueBand direction={this.props.direction} />
-				<SliderHandle />
+				<HueBand direction={this.props.direction} className={this.props.sliderClassName} />
+				<SliderHandle className={this.props.padClassName} />
 			</Slider>
 		);
 	}
@@ -36,13 +37,17 @@ HueSlider.propTypes = {
 	property: PropTypes.any,
 	hue: PropTypes.number,
 	vertical: PropTypes.bool,
-	direction: PropTypes.string
+	direction: PropTypes.string,
+	padClassName: PropTypes.string,
+	sliderClassName: PropTypes.string
 };
 
 HueSlider.defaultProps = {
 	onStart: noop,
 	onChange: noop,
-	onEnd: noop
+	onEnd: noop,
+	direction: 'to right',
+	vertical: false
 };
 
 export default HueSlider;
