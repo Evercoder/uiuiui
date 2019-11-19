@@ -17,6 +17,7 @@ class HueSlider extends React.PureComponent {
 				start={0}
 				end={360}
 				step={1}
+				vertical={this.props.vertical}
 				onChange={this.props.onChange}
 				onStart={this.props.onStart}
 				onEnd={this.props.onEnd}
