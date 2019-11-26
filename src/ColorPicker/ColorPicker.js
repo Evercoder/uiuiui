@@ -63,7 +63,10 @@ class ColorPicker extends React.PureComponent {
 		this.props.onEnd(_css(hsba_to_hsv(this.state)), e);
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
+		// Don't trigger onChange() when a new value comes threw props
+		if (prevProps.value !== this.props.value) return;
+
 		let val = _css(hsba_to_hsv(this.state));
 		if (val !== this.props.value) {
 			this.props.onChange(val, this.props.property);
