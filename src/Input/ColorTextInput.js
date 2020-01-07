@@ -9,7 +9,7 @@ import TextInput from './TextInput';
 class ColorTextInput extends React.PureComponent {
 	static getDerivedStateFromProps(props, current_state) {
 		return {
-			value: formatter(props.format)(props.value)
+			value: props.autoFormat ? formatter(props.format)(props.value) : props.value
 		};
 	}
 
@@ -37,12 +37,14 @@ class ColorTextInput extends React.PureComponent {
 
 ColorTextInput.propTypes = {
 	format: PropTypes.string,
-	onChange: PropTypes.func
+	onChange: PropTypes.func,
+	autoFormat: PropTypes.bool
 };
 
 ColorTextInput.defaultProps = {
 	format: 'hex',
-	onChange: noop
+	onChange: noop,
+	autoFormat: false
 };
 
 export default ColorTextInput;

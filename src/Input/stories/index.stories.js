@@ -106,4 +106,19 @@ storiesOf('Input', module)
 				)}
 			</Husk>
 		);
+	})
+
+	.add('ColorTextInput (controlled) with autoFormat', () => {
+		return (
+			<Husk useState={{ value: '#000' }}>
+				{(state, setState) => (
+					<ColorTextInput
+						autoFormat
+						value={state.value}
+						format="hex"
+						onChange={value => setState({ value })}
+					/>
+				)}
+			</Husk>
+		);
 	});
