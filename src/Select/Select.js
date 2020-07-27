@@ -119,7 +119,7 @@ class Select extends React.Component {
 Select.propTypes = {
 	property: PropTypes.any,
 	className: PropTypes.string,
-	buttonContent: PropTypes.string,
+	buttonContent: PropTypes.any,
 	value: PropTypes.any,
 	tabIndex: PropTypes.number,
 	target: PropTypes.object
