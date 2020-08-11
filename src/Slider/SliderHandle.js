@@ -9,14 +9,15 @@ class SliderHandle extends React.PureComponent {
 		let slider_props = {
 			[this.props.vertical ? 'x' : 'y']: 50
 		};
+		let { className, ...others } = this.props;
 		return (
 			<PadHandle
 				className={`
 					uix-slider__handle
-					${this.props.className}
+					${className}
 					${this.props.interacting ? 'uix-slider__handle--interacting' : ''}
 				`}
-				{...this.props}
+				{...others}
 				{...slider_props}
 			/>
 		);
