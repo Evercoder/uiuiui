@@ -95,9 +95,10 @@ class Surface extends React.Component {
 		let events = {};
 		if (passive) {
 			events['onDoubleClick'] = this.insert;
-		} else if (isTouchEnabledDevice()) {
-			events['onTouchMove'] = this.start;
 		} else {
+			if (isTouchEnabledDevice()) {
+				events['onTouchMove'] = this.start;
+			}
 			events['onMouseDownCapture'] = this.start;
 		}
 
