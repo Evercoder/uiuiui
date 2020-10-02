@@ -37,12 +37,14 @@ class Select extends React.Component {
 		this.setState({
 			interacting: true
 		});
+		this.props.onOpen();
 	}
 
 	close() {
 		this.setState({
 			interacting: false
 		});
+		this.props.onClose();
 	}
 
 	focus() {
@@ -128,6 +130,8 @@ Select.propTypes = {
 Select.defaultProps = {
 	tabIndex: 0,
 	onChange: noop,
+	onOpen: noop,
+	onClose: noop,
 	onSelect: noop
 };
 
